@@ -1,4 +1,11 @@
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Overview
+This is the **FRONTEND** part of the project.
+
+### `npm install`
+should be run after cloning to download all node modules.
 
 ## Available Scripts
 
