@@ -4,13 +4,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 After cloning the repo, you should run:
 
 ### `npm install`
-to install basic packages.
+to install all required node modules.
 
-### `npm install jest jest-enzyme enzyme enzyme-adapter-react-16`
-to install/update Jest and Enzyme for testing (see "ITHS - v17.pdf").
+This will include (since *package-lock.json* has already been updated) :
 
-### `npm install express body-parser dotenv axios`
-to install/update Express, Body Parser, Dotenv & Axios for **Server** (see "ITHS - v18.pdf").
+- Jest and Enzyme for testing (see "ITHS - v17.pdf").
+- Express, Body Parser, Dotenv & Axios for **Server** (see "ITHS - v18.pdf").
 
 ## Install nodemon globally for server monitoring
 **Note:** This only needs to be done once and was done during the lesson with Kenneth 2019-05-03.<br>
