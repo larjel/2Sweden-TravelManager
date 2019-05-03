@@ -1,23 +1,5 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Project Setup (by Lars)
-After cloning the repo, you should run:
-
-### `npm install`
-to install all required node modules.
-
-This will include (since *package-lock.json* has already been updated) :
-
-- Jest and Enzyme for testing (see "ITHS - v17.pdf").
-- Express, Body Parser, Dotenv & Axios for **Server** (see "ITHS - v18.pdf").
-
-## Install nodemon globally for server monitoring
-**Note:** This only needs to be done once and was done during the lesson with Kenneth 2019-05-03.<br>
-So if you already can run 'nodemon' you do not need to do this.
-
-**To install globally run:**<br>
-### `npm install nodemon -g`
-
 ## Available Scripts
 
 In the project directory, you can run:
