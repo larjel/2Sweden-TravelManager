@@ -25,3 +25,14 @@ Open [http://localhost:5000](http://localhost:5000) to view it in the browser.
 The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
+### `npm run server`
+
+Will start the server with [nodemon](https://nodemon.io/) (instead of node)
+
+### `npm run dev`
+
+Will start both the client and the server (by using [concurrently](https://www.npmjs.com/package/concurrently)).
+
+### `npm run client`
+
+Will start just the client.
