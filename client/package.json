@@ -35,5 +35,6 @@
     "enzyme-adapter-react-16": "^1.12.1",
     "jest": "^24.7.1",
     "jest-enzyme": "^7.0.2"
-  }
+  },
+  "proxy": "http://localhost:5000"
 }
