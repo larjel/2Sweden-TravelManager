@@ -54,7 +54,6 @@ router.get('/newUser/:username', (req, res) => {
 router.post('/getLocations', (req, res) => {
   const place = req.body.place
 
-  const key = process.env.ROME_2_RIO_KEY
   const baseUrl = getRome2RioGeocodeBaseUrl()
   const url = `${baseUrl}&query=${place}`
 
