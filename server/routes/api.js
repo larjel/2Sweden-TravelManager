@@ -65,7 +65,7 @@ router.post('/getSearchResults', (req, res) => {
   const fromPlace = req.body.fromPlace
   const toPlace = req.body.toPlace
 
-  const baseUrl = getRome2RioGeocodeBaseUrl()
+  const baseUrl = getRome2RioSearchBaseUrl()
   const url = `${baseUrl}&oName=${fromPlace}&dName=${toPlace}&noRideshare`
 
   httpGetRequest(url, res);
