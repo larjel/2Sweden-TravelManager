@@ -1,0 +1,2 @@
+# Ignore the lock file that may be generated if 'npm install' is run here by mistake
+/package-lock.json
