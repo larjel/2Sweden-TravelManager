@@ -9,7 +9,7 @@ class App extends Component {
       searchValue2: '',
       fromDate: '',
       toDate: '',
-      places: [],
+      routes: [],
       errorMsg: null,
       apiResult: null
     }
@@ -19,7 +19,7 @@ class App extends Component {
   /*
   Sends a request to backend with POST-method.
    */
-  getPlaces = async (fromPlace, toPlace) => {
+  getRoutes = async (fromPlace, toPlace) => {
     let response = await fetch('api/getSearchResults/', {
       method: 'POST',
       headers: {
@@ -34,11 +34,11 @@ class App extends Component {
   handleSearchSubmit = event => {
     event.preventDefault()
 
-    this.getPlaces(this.state.searchValue1, this.state.searchValue2)
+    this.getRoutes(this.state.searchValue1, this.state.searchValue2)
       .then(data => {
-        let places = data.places
+        let routes = data.routes
         this.setState({
-          places
+          routes
         })
       })
       .catch(err =>
@@ -49,25 +49,19 @@ class App extends Component {
   }
 
   render() {
-    const places = this.state.places.length
-      ? this.state.places.map((place, i) => {
+    const routes = this.state.routes.length
+      ? this.state.routes.map((route, i) => {
         return (
           <li key={`${i}-react-key`}>
-            <h3>{place.name}</h3>
-            <p>{place.kind}</p>
-            <p>
-              {place.lat}, {place.lng}
-            </p>
-            <p>{place.longName}</p>
+            <h3>{route.name}</h3>
+            <p>Distance: {route.distance} km</p>
+            <p>Total duration: {route.totalDuration} minutes</p>
           </li>
         )
       })
       : null
 
-
-
-
-    const data = this.state.places;
+    const data = this.state.routes;
     return (
       <div className='App'>
         <h3>Enter your prerequisites! </h3>
@@ -91,6 +85,7 @@ class App extends Component {
             required="required"
           />
           <div className="inputFields">
+            {/*
             <label className="label" htmlFor="fromDate">Departure date</label>
             <input
               onChange={e => this.setState({ fromDate: e.target.value })}
@@ -109,7 +104,8 @@ class App extends Component {
               max="2025-01-01" min="2024-01-01"
               required="required">
             </input>
-            <button style={{ margin: '0 0 0 20px' }}>Sök</button>
+            */}
+            <button style={{ margin: '0 0 0 320px' }}>Sök</button>
           </div>
         </form>
         <datalist id="destinations">
@@ -118,9 +114,9 @@ class App extends Component {
           <option>Åre</option>
         </datalist>
         <div>
-          <Tables places={data.places} />
+          <Tables routes={data.routes} />
           <h2>Results</h2>
-          <ul>{places}</ul>
+          <ul>{routes}</ul>
         </div>
       </div>
     )
