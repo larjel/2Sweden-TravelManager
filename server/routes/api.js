@@ -67,9 +67,9 @@ router.post('/getSearchResults', (req, res) => {
   const fromPlace = req.body.fromPlace
   const toPlace = req.body.toPlace
   // Todo: Add support to set language via req.body
-  const languageCode = 'en'
-  // Todo: Add support to set currency via req.body. However, currency seems to have bad support in API!
-  const currencyCode = 'en'
+  const languageCode = 'en' // ISO 639-1
+  // Todo: Add support to set currency via req.body
+  const currencyCode = 'SEK' // ISO 4217
 
   const baseUrl = getRome2RioSearchBaseUrl()
   const url = `${baseUrl}&oName=${fromPlace}&dName=${toPlace}&currencyCode=${currencyCode}&languageCode=${languageCode}`
