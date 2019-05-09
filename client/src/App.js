@@ -56,12 +56,22 @@ class App extends Component {
   render() {
     const routes = this.state.routes.length
       ? this.state.routes.map((route, i) => {
-        console.log(route)
+        const prices = route.indicativePrices;
+        let priceLow = 0;
+        let priceHigh = 0;
+        if (Array.isArray(prices)) {
+          priceLow = prices[0].priceLow;
+          priceHigh = prices[0].priceHigh;
+        }
         return (
           <li key={`${i}-react-key`}>
             <h3>{route.name}</h3>
             <p>Distance: {route.distance} km</p>
-            <p>Total duration: {route.totalDuration} minutes</p>
+            <p>Total duration: {Math.floor(route.totalDuration / 60)}h {route.totalDuration % 60}min</p>
+            {prices ?
+              (<p>Price: {priceLow} - {priceHigh} SEK</p>)
+              : (<p>Price: Unknown</p>)
+            }
           </li>
         )
       })
