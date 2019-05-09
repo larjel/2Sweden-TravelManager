@@ -1,13 +1,12 @@
-* {box-sizing: border-box;}
-
-
+* {
+  box-sizing: border-box;
+}
 
 .app {
   background-color: yellow;
 }
 
-.formLayout {
-}
+.formLayout {}
 
 .inputFields {
   padding: 10px;
@@ -19,15 +18,14 @@
   box-sizing: border-box;
 }
 
-.input2 {
-
-}
+.input2 {}
 
 body {
   padding: 4em;
   background: #e5e5e5;
   font: 13px/1.4 Geneva, 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
 }
+
 .label {
   display: block;
   color: white;
@@ -38,15 +36,18 @@ body {
   border-radius: 5px;
   background-color: #fff;
   padding: 3px 5px;
-  box-shadow: inset 0 3px 6px rgba(0,0,0,0.1);
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.1);
   width: 190px;
-  
-}[type="date"] {
-  background:#fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png)  97% 50% no-repeat ;
 }
+
+[type="date"] {
+  background: #fff url(https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/calendar_2.png) 97% 50% no-repeat;
+}
+
 [type="date"]::-webkit-inner-spin-button {
   display: none;
 }
+
 [type="date"]::-webkit-calendar-picker-indicator {
   opacity: 0;
 }
@@ -56,33 +57,22 @@ body {
   background: #e5e5e5;
   font: 13px/1.4 Geneva, 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
 }
+
 label {
   display: block;
 }
-
 
 input[type="date"] {
   border: none;
   border-bottom: 1px solid red;
 }
 
-
-
-
-
-
-
-
-
-
-
-
 .wrapper {
   margin: 0 auto;
   font: 1.2em Helvetica, arial, sans-serif;
 }
 
-.wrapper > * {
+.wrapper>* {
   border: 2px solid black;
   border-radius: 5px;
   padding: 5px;
@@ -97,62 +87,58 @@ nav ul {
 .main-head {
   grid-area: header;
   background: blue;
+  font: 1.5em Helvetica, arial, sans-serif;
+  color: yellow;
 }
+
 .content {
   grid-area: content;
   background: gray;
 }
+
 .main-nav {
   grid-area: nav;
   background: green;
 }
+
 .side {
   grid-area: sidebar;
   background: teal;
 }
+
 .ad {
   grid-area: ad;
   background: yellow;
 }
+
 .main-footer {
   grid-area: footer;
   background: pink;
 }
+
 .wrapper {
   display: grid;
   grid-gap: 20px;
-  grid-template-areas: 
-    "header"
-    "nav"
-    "content"
-    "sidebar"
-    "ad"
-    "footer";
+  grid-template-areas: "header" "nav" "content" "sidebar" "ad" "footer";
 }
+
 @media (min-width: 500px) {
   .wrapper {
     grid-template-columns: 1fr 3fr;
-    grid-template-areas: 
-      "header  header"
-      "nav     nav"
-      "sidebar content"
-      "ad      footer";
+    grid-template-areas: "header  header" "nav     nav" "sidebar content" "ad      footer";
   }
   nav ul {
     display: flex;
     justify-content: space-between;
   }
 }
+
 @media (min-width: 700px) {
   .wrapper {
     grid-template-columns: 1fr 4fr 1fr;
-    grid-template-areas: 
-      "header header  header"
-      "nav    content sidebar"
-      "nav    content ad"
-      "footer footer  footer"
-   }
-   nav ul {
-     flex-direction: column;
-   }
+    grid-template-areas: "header header  header" "nav    content sidebar" "nav    content ad" "footer footer  footer"
+  }
+  nav ul {
+    flex-direction: column;
+  }
 }
