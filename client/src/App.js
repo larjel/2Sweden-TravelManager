@@ -9,7 +9,7 @@ class App extends Component {
       searchValue2: '',
       fromDate: '',
       toDate: '',
-      routes: [],
+      routes: {},
       errorMsg: null,
       apiResult: null
     }
@@ -25,7 +25,7 @@ class App extends Component {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ fromPlace: fromPlace, toPlace: toPlace })
+      body: JSON.stringify({ fromPlace: fromPlace, toPlace: toPlace + ',Sweden' })
     })
     let data = await response.json()
     return data
@@ -48,9 +48,15 @@ class App extends Component {
       )
   }
 
+  refreshPage = () => {
+    console.log("Refresh page");
+    window.location.reload();
+  }
+
   render() {
     const routes = this.state.routes.length
       ? this.state.routes.map((route, i) => {
+        console.log(route)
         return (
           <li key={`${i}-react-key`}>
             <h3>{route.name}</h3>
@@ -64,7 +70,7 @@ class App extends Component {
     const data = this.state.routes;
     return (
       <div className='App'>
-        <h3>Enter your prerequisites! </h3>
+        <h3>Choose desired travel route!</h3>
         <form className="formLayout" onSubmit={this.handleSearchSubmit}>
 
           <input
@@ -81,7 +87,7 @@ class App extends Component {
             list="destinations"
             id="destination"
             name='destination'
-            placeholder='Choose destination...'
+            placeholder='To...'
             required="required"
           />
           <div className="inputFields">
@@ -105,16 +111,17 @@ class App extends Component {
               required="required">
             </input>
             */}
-            <button style={{ margin: '0 0 0 320px' }}>Sök</button>
+            <button type="submit" style={{ margin: '0 0 0 190px' }}>Search</button>
+            <button type="button" style={{ margin: '0 0 0 20px' }} onClick={this.refreshPage}>New search</button>
           </div>
         </form>
         <datalist id="destinations">
           <option>Stockholm</option>
           <option>Falun</option>
-          <option>Åre</option>
+          <option>Are</option>
         </datalist>
         <div>
-          <Tables routes={data.routes} />
+          {/*<Tables routes={data.routes} />*/}
           <h2>Results</h2>
           <ul>{routes}</ul>
         </div>
