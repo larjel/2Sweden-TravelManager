@@ -10,6 +10,7 @@ class App extends Component {
       fromDate: '',
       toDate: '',
       routes: {},
+      currencyCode: '',
       errorMsg: null,
       apiResult: null
     }
@@ -36,9 +37,9 @@ class App extends Component {
 
     this.getRoutes(this.state.searchValue1, this.state.searchValue2)
       .then(data => {
-        let routes = data.routes
         this.setState({
-          routes
+          routes: data.routes,
+          currencyCode: data.currencyCode
         })
       })
       .catch(err =>
@@ -69,7 +70,7 @@ class App extends Component {
             <p>Distance: {route.distance} km</p>
             <p>Total duration: {Math.floor(route.totalDuration / 60)}h {route.totalDuration % 60}min</p>
             {prices ?
-              (<p>Price: {priceLow} - {priceHigh} SEK</p>)
+              (<p>Price: {priceLow} - {priceHigh} {this.state.currencyCode}</p>)
               : (<p>Price: Unknown</p>)
             }
           </li>
