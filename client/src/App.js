@@ -9,7 +9,8 @@ class App extends Component {
       searchValue2: '',
       fromDate: '',
       toDate: '',
-      places: [],
+      routes: {},
+      currencyCode: '',
       errorMsg: null,
       apiResult: null
     }
@@ -19,13 +20,13 @@ class App extends Component {
   /*
   Sends a request to backend with POST-method.
    */
-  getPlaces = async (fromPlace, toPlace) => {
+  getRoutes = async (fromPlace, toPlace) => {
     let response = await fetch('api/getSearchResults/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ fromPlace: fromPlace, toPlace: toPlace })
+      body: JSON.stringify({ fromPlace: fromPlace, toPlace: toPlace + ',Sweden' })
     })
     let data = await response.json()
     return data
@@ -34,11 +35,11 @@ class App extends Component {
   handleSearchSubmit = event => {
     event.preventDefault()
 
-    this.getPlaces(this.state.searchValue1, this.state.searchValue2)
+    this.getRoutes(this.state.searchValue1, this.state.searchValue2)
       .then(data => {
-        let places = data.places
         this.setState({
-          places
+          routes: data.routes,
+          currencyCode: data.currencyCode
         })
       })
       .catch(err =>
@@ -48,29 +49,39 @@ class App extends Component {
       )
   }
 
+  refreshPage = () => {
+    console.log("Refresh page");
+    window.location.reload();
+  }
+
   render() {
-    const places = this.state.places.length
-      ? this.state.places.map((place, i) => {
+    const routes = this.state.routes.length
+      ? this.state.routes.map((route, i) => {
+        const prices = route.indicativePrices;
+        let priceLow = 0;
+        let priceHigh = 0;
+        if (Array.isArray(prices)) {
+          priceLow = prices[0].priceLow;
+          priceHigh = prices[0].priceHigh;
+        }
         return (
           <li key={`${i}-react-key`}>
-            <h3>{place.name}</h3>
-            <p>{place.kind}</p>
-            <p>
-              {place.lat}, {place.lng}
-            </p>
-            <p>{place.longName}</p>
+            <h3>{route.name}</h3>
+            <p>Distance: {route.distance} km</p>
+            <p>Total duration: {Math.floor(route.totalDuration / 60)}h {route.totalDuration % 60}min</p>
+            {prices ?
+              (<p>Price: {priceLow} - {priceHigh} {this.state.currencyCode}</p>)
+              : (<p>Price: Unknown</p>)
+            }
           </li>
         )
       })
       : null
 
-
-
-
-    const data = this.state.places;
+    const data = this.state.routes;
     return (
       <div className='App'>
-        <h3>Enter your prerequisites! </h3>
+        <h3>Choose desired travel route!</h3>
         <form className="formLayout" onSubmit={this.handleSearchSubmit}>
 
           <input
@@ -87,10 +98,11 @@ class App extends Component {
             list="destinations"
             id="destination"
             name='destination'
-            placeholder='Choose destination...'
+            placeholder='To...'
             required="required"
           />
           <div className="inputFields">
+            {/*
             <label className="label" htmlFor="fromDate">Departure date</label>
             <input
               onChange={e => this.setState({ fromDate: e.target.value })}
@@ -109,18 +121,20 @@ class App extends Component {
               max="2025-01-01" min="2024-01-01"
               required="required">
             </input>
-            <button style={{ margin: '0 0 0 20px' }}>Sök</button>
+            */}
+            <button type="submit" style={{ margin: '0 0 0 190px' }}>Search</button>
+            <button type="button" style={{ margin: '0 0 0 20px' }} onClick={this.refreshPage}>New search</button>
           </div>
         </form>
         <datalist id="destinations">
           <option>Stockholm</option>
           <option>Falun</option>
-          <option>Åre</option>
+          <option>Are</option>
         </datalist>
         <div>
-          <Tables places={data.places} />
+          {/*<Tables routes={data.routes} />*/}
           <h2>Results</h2>
-          <ul>{places}</ul>
+          <ul>{routes}</ul>
         </div>
       </div>
     )
