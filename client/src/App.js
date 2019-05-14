@@ -10,16 +10,10 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      searchValue1: '',
-      searchValue2: '',
-      fromDate: '',
-      toDate: '',
       routes: {},
       currencyCode: '',
-      errorMsg: null,
-      apiResult: null
+      errorMsg: null
     }
-    this.handleSearchSubmit = this.handleSearchSubmit.bind(this)
   }
 
   /*
@@ -37,11 +31,8 @@ class App extends Component {
     return data
   }
 
-  handleSearchSubmit = event => {
-    event.preventDefault()
-    var search1 = event.target.elements.search1.value;
-    var search2 = event.target.elements.destination.value;
-    this.getRoutes(this.state.searchValue1, this.state.searchValue2)
+  handleSearchSubmit = (searchValue1, searchValue2) => {
+    this.getRoutes(searchValue1, searchValue2)
       .then(data => {
         this.setState({
           routes: data.routes,
@@ -53,11 +44,6 @@ class App extends Component {
           errorMsg: err
         })
       )
-  }
-
-  refreshPage = () => {
-    console.log("Refresh page");
-    window.location.reload();
   }
 
   render() {
@@ -87,18 +73,12 @@ class App extends Component {
     const data = this.state.routes;
     return (
       <div className='wrapper'>
-        <Header></Header>
-        <Navbar></Navbar>
-      <Main>
-        <div>
-          {/*<Tables routes={data.routes} />*/}
-          <h2>Results</h2>
-          <ul>{routes}</ul>
-        </div>
-        </Main>
-        <Sidebar></Sidebar>
-        <Footer></Footer>
-      </div>  
+        <Header />
+        <Navbar />
+        <Main handleSearchSubmit={this.handleSearchSubmit} />
+        <Sidebar routesList={routes} />
+        <Footer />
+      </div>
     )
   }
 }

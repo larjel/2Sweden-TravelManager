@@ -1,13 +1,32 @@
 import React from 'react'
 import "./Main.css";
 class Main extends React.Component {
-    render() {
-        return(
-            <main className="content">
-            <h3>Choose desired travel route!</h3>
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      searchValue1: '',
+      searchValue2: ''
+    }
+  }
+
+  refreshPage = () => {
+    console.log("Refresh page");
+    window.location.reload();
+  }
+
+  handleSearchSubmit = event => {
+    event.preventDefault()
+    this.props.handleSearchSubmit(this.state.searchValue1, this.state.searchValue2);
+  }
+
+  render() {
+    return (
+      <main className="content">
+        <h3>Choose desired travel route!</h3>
         <form className="formLayout" onSubmit={this.handleSearchSubmit}>
           <input
-            /*onChange={e => this.setState({ searchValue1: e.target.value })}*/
+            onChange={e => this.setState({ searchValue1: e.target.value })}
             className="input"
             type='text'
             name='search1'
@@ -15,7 +34,7 @@ class Main extends React.Component {
             required="required"
           />
           <input
-           /* onChange={e => this.setState({ searchValue2: e.target.value })}*/
+            onChange={e => this.setState({ searchValue2: e.target.value })}
             className="input"
             list="destinations"
             id="destination"
@@ -53,10 +72,9 @@ class Main extends React.Component {
           <option>Falun</option>
           <option>Are</option>
         </datalist>
-        </main>
-        )
-    }
+      </main>
+    )
+  }
 }
-
 
 export default Main;
