@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+.main-head {
+    grid-area: header;
+    background: #006699;
+}
+  
+.logo {
+  width: 10%;
+  float: left;
+}
+
+.headerText {
+  color: #ffcc00;
+  position: relative;
+  text-align: center;
+  top: 1.5vh;
+  font-family: Raleway;
+  font-size: 20px;
+  font-weight: 600;
+  text-shadow:  5px 5px 0 rgb(0, 0, 0);
+  letter-spacing: 2px;
+}
+
+.olympicRings {
+  width: 20%;
+}
+
+
+@media (min-width: 500px) {
+  .headerText {
+    font-size: 23px;
+    top: 1.5vh;
+  } 
+}
+
+@media (min-width: 700px) {
+  .headerText {
+  top: 4vh;
+  font-size: 35px;
+  }
+}

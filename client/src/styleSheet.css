@@ -2,19 +2,15 @@
   box-sizing: border-box;
 }
 
-.formLayout {}
+.app {
+  background-color: #ffcc00;
+}
 
 .inputFields {
   padding: 10px;
   width: 100%;
   justify-content: space-between;
 }
-
-.input1 {
-  box-sizing: border-box;
-}
-
-.input2 {}
 
 body {
   padding: 1em;
@@ -72,33 +68,8 @@ nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
-}
-
-.main-head {
-  grid-area: header;
-  background: blue;
-  font: 1.5em Helvetica, arial, sans-serif;
-  color: yellow;
-}
-
-.content {
-  grid-area: content;
-  background: gray;
-}
-
-.main-nav {
-  grid-area: nav;
-  background: green;
-}
-
-.side {
-  grid-area: sidebar;
-  background: teal;
-}
-
-.main-footer {
-  grid-area: footer;
-  background: pink;
+  display: flex;
+  justify-content: space-between;
 }
 
 .wrapper {
@@ -121,10 +92,7 @@ nav ul {
     "content sidebar" 
     "footer  footer";
   }
-  nav ul {
-    display: flex;
-    justify-content: space-between;
-  }
+  
 }
 
 @media (min-width: 700px) {
@@ -137,7 +105,5 @@ nav ul {
     "content content sidebar"
     "footer footer footer"
   }
-  nav ul {
-    flex-direction: column;
-  }
+
 }
