@@ -5,13 +5,14 @@ import Navbar from './components/Navbar/Navbar'
 import Main from './components/Main/Main'
 import Sidebar from './components/Sidebar/Sidebar'
 import Footer from './components/Footer/Footer'
+import * as utils from './utils/utils.js'
 
 class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      routes: {},
-      currencyCode: '',
+      searchResponse: {},
+      searchPath: '',
       errorMsg: null
     }
   }
@@ -25,7 +26,10 @@ class App extends Component {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ fromPlace: fromPlace, toPlace: toPlace + ',Sweden' })
+      body: JSON.stringify({
+        fromPlace: fromPlace, toPlace: toPlace + ',Sweden',
+        currencyCode: 'SEK', languageCode: 'en'
+      })
     })
     let data = await response.json()
     return data
@@ -35,8 +39,8 @@ class App extends Component {
     this.getRoutes(searchValue1, searchValue2)
       .then(data => {
         this.setState({
-          routes: data.routes,
-          currencyCode: data.currencyCode
+          searchResponse: data,
+          searchPath: searchValue1 + ' -> ' + searchValue2
         })
       })
       .catch(err =>
@@ -47,8 +51,14 @@ class App extends Component {
   }
 
   render() {
-    const routes = this.state.routes.length
-      ? this.state.routes.map((route, i) => {
+    let routes = null;
+    let searchPath = null;
+    const searchResponse = this.state.searchResponse;
+    if (Array.isArray(searchResponse.routes) && searchResponse.routes.length > 0) {
+      searchPath = this.state.searchPath;
+      routes = searchResponse.routes.map((route, i) => {
+        const currencyCode = searchResponse.currencyCode;
+        const totalDuration = utils.convertMinutesToDayHourMin(route.totalDuration);
         const prices = route.indicativePrices;
         let priceLow = 0;
         let priceHigh = 0;
@@ -60,21 +70,21 @@ class App extends Component {
           <li key={`${i}-react-key`}>
             <h3>{route.name}</h3>
             <p>Distance: {route.distance} km</p>
-            <p>Total duration: {Math.floor(route.totalDuration / 60)}h {route.totalDuration % 60}min</p>
+            <p>Total duration: {totalDuration}</p>
             {prices ?
-              (<p>Price: {priceLow} - {priceHigh} {this.state.currencyCode}</p>)
+              (<p>Price: {priceLow} - {priceHigh} {currencyCode}</p>)
               : (<p>Price: Unknown</p>)
             }
           </li>
         )
       })
-      : null
+    }
 
     return (
       <div className='wrapper'>
         <Header />
         <Navbar />
-        <Main handleSearchSubmit={this.handleSearchSubmit} routesList={routes} />
+        <Main handleSearchSubmit={this.handleSearchSubmit} routesList={routes} searchPath={searchPath} />
         {/* Todo: <Sidebar routeDetails={routeDetails} />*/}
         <Sidebar />
         <Footer />

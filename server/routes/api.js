@@ -66,10 +66,8 @@ router.post('/getLocations', (req, res) => {
 router.post('/getSearchResults', (req, res) => {
   const fromPlace = req.body.fromPlace
   const toPlace = req.body.toPlace
-  // Todo: Add support to set language via req.body
-  const languageCode = 'en' // ISO 639-1
-  // Todo: Add support to set currency via req.body
-  const currencyCode = 'SEK' // ISO 4217
+  const languageCode = req.body.languageCode // ISO 639-1
+  const currencyCode = req.body.currencyCode // ISO 4217
 
   const baseUrl = getRome2RioSearchBaseUrl()
   const url = `${baseUrl}&oName=${fromPlace}&dName=${toPlace}&currencyCode=${currencyCode}&languageCode=${languageCode}`

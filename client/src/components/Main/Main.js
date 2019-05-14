@@ -73,7 +73,7 @@ class Main extends React.Component {
           <option>Are</option>
         </datalist>
         <div>
-          <h2>Results</h2>
+          <h2>{this.props.searchPath}</h2>
           <ul>{this.props.routesList}</ul>
         </div>
       </main>
