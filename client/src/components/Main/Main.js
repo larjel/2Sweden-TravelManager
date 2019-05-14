@@ -72,6 +72,10 @@ class Main extends React.Component {
           <option>Falun</option>
           <option>Are</option>
         </datalist>
+        <div>
+          <h2>Results</h2>
+          <ul>{this.props.routesList}</ul>
+        </div>
       </main>
     )
   }

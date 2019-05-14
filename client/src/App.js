@@ -74,8 +74,9 @@ class App extends Component {
       <div className='wrapper'>
         <Header />
         <Navbar />
-        <Main handleSearchSubmit={this.handleSearchSubmit} />
-        <Sidebar routesList={routes} />
+        <Main handleSearchSubmit={this.handleSearchSubmit} routesList={routes} />
+        {/* Todo: <Sidebar routeDetails={routeDetails} />*/}
+        <Sidebar />
         <Footer />
       </div>
     )

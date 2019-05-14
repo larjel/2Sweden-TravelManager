@@ -7,7 +7,7 @@ class Sidebar extends React.Component {
 
     render() {
         return (
-            <aside className="side">{this.props.routesList}</aside>
+            <aside className="side">Sidebar - Route details</aside>
         )
     }
 }
