@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+.main-footer {
+    grid-area: footer;
+    background: #006699;
+    /*
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100% */
+  }
+
+.logo2 {
+    width: 10%;
+    float: right;
+  }
+
+  .twitter {
+    width: 10%;
+    float: left;
+  }
+
+.footerText {
+  color: #ffcc00;
+  position: relative;
+  text-align: center;
+  font-family: Lato;
+  top: 7.5vh;
+  font-variant: small-caps;
+  letter-spacing: 3px;
+ 
+}
