@@ -70,7 +70,6 @@ class App extends Component {
       })
       : null
 
-    const data = this.state.routes;
     return (
       <div className='wrapper'>
         <Header />
