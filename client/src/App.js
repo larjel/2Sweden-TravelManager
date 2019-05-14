@@ -1,5 +1,10 @@
 import React, { Component } from 'react'
 import Tables from './components/Tables'
+import Header from './components/Header/Header'
+import Navbar from './components/Navbar/Navbar'
+import Main from './components/Main/Main'
+import Sidebar from './components/Sidebar/Sidebar'
+import Footer from './components/Footer/Footer'
 
 class App extends Component {
   constructor(props) {
@@ -34,7 +39,8 @@ class App extends Component {
 
   handleSearchSubmit = event => {
     event.preventDefault()
-
+    var search1 = event.target.elements.search1.value;
+    var search2 = event.target.elements.destination.value;
     this.getRoutes(this.state.searchValue1, this.state.searchValue2)
       .then(data => {
         this.setState({
@@ -80,63 +86,19 @@ class App extends Component {
 
     const data = this.state.routes;
     return (
-      <div className='App'>
-        <h3>Choose desired travel route!</h3>
-        <form className="formLayout" onSubmit={this.handleSearchSubmit}>
-
-          <input
-            onChange={e => this.setState({ searchValue1: e.target.value })}
-            className="input"
-            type='text'
-            name='search1'
-            placeholder='From...'
-            required="required"
-          />
-          <input
-            onChange={e => this.setState({ searchValue2: e.target.value })}
-            className="input"
-            list="destinations"
-            id="destination"
-            name='destination'
-            placeholder='To...'
-            required="required"
-          />
-          <div className="inputFields">
-            {/*
-            <label className="label" htmlFor="fromDate">Departure date</label>
-            <input
-              onChange={e => this.setState({ fromDate: e.target.value })}
-              className="input"
-              id="fromDate"
-              type="date"
-              max="2025-01-01" min="2024-01-01"
-              required="required">
-            </input>
-            <label className="label" htmlFor="toDate">Going home date</label>
-            <input
-              onChange={e => this.setState({ toDate: e.target.value })}
-              className="input"
-              id="toDate"
-              type="date"
-              max="2025-01-01" min="2024-01-01"
-              required="required">
-            </input>
-            */}
-            <button type="submit" style={{ margin: '0 0 0 190px' }}>Search</button>
-            <button type="button" style={{ margin: '0 0 0 20px' }} onClick={this.refreshPage}>New search</button>
-          </div>
-        </form>
-        <datalist id="destinations">
-          <option>Stockholm</option>
-          <option>Falun</option>
-          <option>Are</option>
-        </datalist>
+      <div className='wrapper'>
+        <Header></Header>
+        <Navbar></Navbar>
+      <Main>
         <div>
           {/*<Tables routes={data.routes} />*/}
           <h2>Results</h2>
           <ul>{routes}</ul>
         </div>
-      </div>
+        </Main>
+        <Sidebar></Sidebar>
+        <Footer></Footer>
+      </div>  
     )
   }
 }
