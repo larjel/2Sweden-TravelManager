@@ -25,7 +25,10 @@ class App extends Component {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ fromPlace: fromPlace, toPlace: toPlace + ',Sweden' })
+      body: JSON.stringify({
+        fromPlace: fromPlace, toPlace: toPlace + ',Sweden',
+        currencyCode: 'SEK', languageCode: 'en'
+      })
     })
     let data = await response.json()
     return data
