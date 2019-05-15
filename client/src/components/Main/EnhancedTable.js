@@ -193,7 +193,7 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 3,
   },
   table: {
-    minWidth: 1020,
+    minWidth: 800,
   },
   tableWrapper: {
     overflowX: 'auto',
@@ -201,21 +201,25 @@ const styles = theme => ({
 });
 
 class EnhancedTable extends React.Component {
-  state = {
-    order: 'asc',
-    orderBy: 'route',
-    selected: [],
-    data: [
-      createData('Fly to Stockholm', 3, 2023, 600, 2800),
-      createData('Fly to Stockholm Bromma', 5.2, 1991, 950, 6500),
-      createData('Train, bus', 35, 2645, 1428, 2970),
-      createData('Train, bus, night train', 33, 2674, 1797, 3557),
-      createData('Bus', 48.6, 3320, null, null),
-      createData('Night train, train', 37, 2909, 2397, 4274)
-    ],
-    page: 0,
-    rowsPerPage: 5,
-  };
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      order: 'asc',
+      orderBy: 'route',
+      selected: [],
+      /*data: [
+        createData('Fly to Stockholm', 3, 2023, 600, 2800),
+        createData('Fly to Stockholm Bromma', 5.2, 1991, 950, 6500),
+        createData('Train, bus', 35, 2645, 1428, 2970),
+        createData('Train, bus, night train', 33, 2674, 1797, 3557),
+        createData('Bus', 48.6, 3320, null, null),
+        createData('Night train, train', 37, 2909, 2397, 4274)
+      ],*/
+      page: 0,
+      rowsPerPage: 5,
+    }
+  }
 
   handleRequestSort = (event, property) => {
     const orderBy = property;
@@ -268,8 +272,30 @@ class EnhancedTable extends React.Component {
   isSelected = id => this.state.selected.indexOf(id) !== -1;
 
   render() {
+
+    let data = null;
+    const searchResponse = this.props.searchResponse;
+    if (Array.isArray(searchResponse.routes) && searchResponse.routes.length > 0) {
+      //searchPath = this.state.searchPath;
+      data = searchResponse.routes.map((route, i) => {
+        const currencyCode = searchResponse.currencyCode;
+        //const totalDuration = utils.convertMinutesToDayHourMin(route.totalDuration);
+        const totalDurationHours = Math.floor(route.totalDuration / 60);
+        const prices = route.indicativePrices;
+        let priceLow = 0;
+        let priceHigh = 0;
+        if (Array.isArray(prices)) {
+          priceLow = prices[0].priceLow;
+          priceHigh = prices[0].priceHigh;
+        }
+        return createData(route.name, totalDurationHours, Math.round(route.distance), priceLow, priceHigh);
+      })
+    } else {
+      return (null);
+    }
+
     const { classes } = this.props;
-    const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
+    const { order, orderBy, selected, rowsPerPage, page } = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
     return (

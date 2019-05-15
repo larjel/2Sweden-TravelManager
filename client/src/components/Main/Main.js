@@ -1,6 +1,7 @@
 import React from 'react';
 import "./Main.css";
 import EnhancedTable from './EnhancedTable';
+import * as apiModule from '../../utils/api.js'
 
 class Main extends React.Component {
 
@@ -8,7 +9,10 @@ class Main extends React.Component {
     super(props)
     this.state = {
       searchValue1: '',
-      searchValue2: ''
+      searchValue2: '',
+      searchResponse: {},
+      searchPath: null,
+      errorMsg: null
     }
   }
 
@@ -17,9 +21,22 @@ class Main extends React.Component {
     window.location.reload();
   }
 
-  handleSearchSubmit = event => {
+  handleSearchSubmit = (event) => {
     event.preventDefault()
-    this.props.handleSearchSubmit(this.state.searchValue1, this.state.searchValue2);
+    const searchValue1 = this.state.searchValue1;
+    const searchValue2 = this.state.searchValue2;
+    apiModule.getRoutes(searchValue1, searchValue2)
+      .then(data => {
+        this.setState({
+          searchResponse: data,
+          searchPath: searchValue1 + ' -> ' + searchValue2
+        })
+      })
+      .catch(err =>
+        this.setState({
+          errorMsg: err
+        })
+      )
   }
 
   render() {
@@ -74,11 +91,7 @@ class Main extends React.Component {
           <option>Falun</option>
           <option>Are</option>
         </datalist>
-        <EnhancedTable />
-        <div>
-          <h2>{this.props.searchPath}</h2>
-          <ul>{this.props.routesList}</ul>
-        </div>
+        <EnhancedTable searchResponse={this.state.searchResponse} />
       </main>
     )
   }
