@@ -1,5 +1,7 @@
-import React from 'react'
+import React from 'react';
 import "./Main.css";
+import EnhancedTable from './EnhancedTable';
+
 class Main extends React.Component {
 
   constructor(props) {
@@ -72,6 +74,7 @@ class Main extends React.Component {
           <option>Falun</option>
           <option>Are</option>
         </datalist>
+        <EnhancedTable />
         <div>
           <h2>{this.props.searchPath}</h2>
           <ul>{this.props.routesList}</ul>

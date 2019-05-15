@@ -1,2 +1,4 @@
 # Ignore the lock file that may be generated if 'npm install' is run here by mistake
 /package-lock.json
+# Ignore node_modules folder if 'npm install <library>' is run here by mistake
+node_modules/
