@@ -21,7 +21,7 @@ class App extends Component {
   Sends a request to backend with POST-method.
    */
   getRoutes = async (fromPlace, toPlace) => {
-    let response = await fetch('api/getSearchResults/', {
+    let response = await fetch('http://localhost:5000/api/getSearchResults/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

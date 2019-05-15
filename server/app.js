@@ -26,6 +26,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
+// CORS
+// Install CORS first: npm install cors --save
+var cors = require('cors')
+
+app.use(cors()) // Use this after the variable declaration
+app.options('*', cors());
+// ---------------------
+
 /* Routes */
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
