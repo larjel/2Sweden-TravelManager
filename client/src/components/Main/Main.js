@@ -2,14 +2,16 @@ import React from 'react';
 import "./Main.css";
 import EnhancedTable from './EnhancedTable';
 import * as apiModule from '../../utils/api.js'
+import Select from 'react-select';
+import CreatableSelect from 'react-select/lib/Creatable';
 
 class Main extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      searchValue1: '',
-      searchValue2: '',
+      searchValue1: null,
+      searchValue2: null,
       searchResponse: {},
       searchPath: null,
       errorMsg: null
@@ -23,8 +25,8 @@ class Main extends React.Component {
 
   handleSearchSubmit = (event) => {
     event.preventDefault()
-    const searchValue1 = this.state.searchValue1;
-    const searchValue2 = this.state.searchValue2;
+    const searchValue1 = this.state.searchValue1.value;
+    const searchValue2 = this.state.searchValue2.value;
     apiModule.getRoutes(searchValue1, searchValue2)
       .then(data => {
         this.setState({
@@ -39,11 +41,34 @@ class Main extends React.Component {
       )
   }
 
+  handleChangeSearch1 = (searchValue1) => {
+    this.setState({ searchValue1 });
+    console.log('Origin selected:', searchValue1);
+  }
+
+  handleChangeSearch2 = (searchValue2) => {
+    this.setState({ searchValue2 });
+    console.log('Destination selected:', searchValue2);
+  }
+
   render() {
+    const destinationOptions = [
+      { value: 'Stockholm', label: 'Stockholm' },
+      { value: 'Falun', label: 'Falun' },
+      { value: 'Are', label: 'Åre' }
+    ];
+
+    const originOptions = [
+      { value: 'Rome', label: 'Rome' },
+      { value: 'Tokyo', label: 'Tokyo' },
+      { value: 'Berlin', label: 'Berlin' }
+    ];
+
     return (
       <main className="content">
         <h3>Choose desired travel route!</h3>
         <form className="formLayout" onSubmit={this.handleSearchSubmit}>
+          {/*
           <input
             onChange={e => this.setState({ searchValue1: e.target.value })}
             className="input"
@@ -61,6 +86,24 @@ class Main extends React.Component {
             placeholder='To...'
             required="required"
           />
+            */}
+          <div>
+            <CreatableSelect
+              escapeClearsValue={false}
+              isClearable={false}
+              placeholder='From...'
+              value={this.state.searchValue1}
+              onChange={this.handleChangeSearch1}
+              options={originOptions}
+            />
+            <Select
+              placeholder='To...'
+              isSearchable={false}
+              value={this.state.searchValue2}
+              onChange={this.handleChangeSearch2}
+              options={destinationOptions}
+            />
+          </div>
           <div className="inputFields">
             {/*
             <label className="label" htmlFor="fromDate">Departure date</label>
@@ -82,8 +125,7 @@ class Main extends React.Component {
               required="required">
             </input>
             */}
-            <button type="submit" style={{ margin: '0 0 0 190px' }}>Search</button>
-            <button type="button" style={{ margin: '0 0 0 20px' }} onClick={this.refreshPage}>New search</button>
+            <button type="submit" style={{ float: 'right' }}>Search</button>
           </div>
         </form>
         <datalist id="destinations">
