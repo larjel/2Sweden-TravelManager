@@ -149,7 +149,7 @@ let EnhancedTableToolbar = props => {
         ) : (
             <Typography variant="h6" id="tableTitle">
               {tableTitle}
-          </Typography>
+            </Typography>
           )}
       </div>
       <div className={classes.spacer} />
@@ -270,10 +270,8 @@ class EnhancedTable extends React.Component {
     let tableTitle = null;
     const searchResponse = this.props.searchResponse;
     if (Array.isArray(searchResponse.routes) && searchResponse.routes.length > 0) {
-      //searchPath = this.state.searchPath;
       const currencyCode = ' (' + searchResponse.currencyCode + ')';
       data = searchResponse.routes.map((route, i) => {
-        //const totalDuration = utils.convertMinutesToDayHourMin(route.totalDuration);
         const totalDurationHours = Math.floor(route.totalDuration / 60);
         const prices = route.indicativePrices;
         let priceLow = 0;
@@ -289,8 +287,8 @@ class EnhancedTable extends React.Component {
         { id: 'route', numeric: false, disablePadding: false, label: 'Route' },
         { id: 'duration', numeric: true, disablePadding: false, label: 'Total Duration (h)' },
         { id: 'distance', numeric: true, disablePadding: false, label: 'Distance (km)' },
-        { id: 'lowestprice', numeric: true, disablePadding: false, label: 'Min Price' + currencyCode},
-        { id: 'highestprice', numeric: true, disablePadding: false, label: 'Max Price' + currencyCode}
+        { id: 'lowestprice', numeric: true, disablePadding: false, label: 'Min Price' + currencyCode },
+        { id: 'highestprice', numeric: true, disablePadding: false, label: 'Max Price' + currencyCode }
       ];
 
       tableTitle = this.props.searchPath;
