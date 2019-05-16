@@ -20,9 +20,9 @@ import FilterListIcon from '@material-ui/icons/FilterList';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 
 let counter = 0;
-function createData(route, duration, distance, lowestprice, highestprice) {
+function createData(route, duration, lowestprice, highestprice) {
   counter += 1;
-  return { id: counter, route, duration, distance, lowestprice, highestprice };
+  return { id: counter, route, duration, lowestprice, highestprice };
 }
 
 function desc(a, b, orderBy) {
@@ -185,7 +185,7 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 3,
   },
   table: {
-    minWidth: 800,
+    minWidth: 400,
   },
   tableWrapper: {
     overflowX: 'auto',
@@ -278,7 +278,9 @@ class EnhancedTable extends React.Component {
     let tableTitle = null;
     const searchResponse = this.props.searchResponse;
     if (Array.isArray(searchResponse.routes) && searchResponse.routes.length > 0) {
+
       const currencyCode = ' (' + searchResponse.currencyCode + ')';
+
       data = searchResponse.routes.map((route, i) => {
         const totalDurationHours = this.truncateDecimals(route.totalDuration / 60, 1);
         const prices = route.indicativePrices;
@@ -288,13 +290,12 @@ class EnhancedTable extends React.Component {
           priceLow = prices[0].priceLow;
           priceHigh = prices[0].priceHigh;
         }
-        return createData(route.name, totalDurationHours, Math.round(route.distance), priceLow, priceHigh);
+        return createData(route.name, totalDurationHours, priceLow, priceHigh);
       })
 
       rows = [
         { id: 'route', numeric: false, disablePadding: false, label: 'Route' },
         { id: 'duration', numeric: true, disablePadding: false, label: 'Time (hours)' },
-        { id: 'distance', numeric: true, disablePadding: false, label: 'Distance (km)' },
         { id: 'lowestprice', numeric: true, disablePadding: false, label: 'Min Price' + currencyCode },
         { id: 'highestprice', numeric: true, disablePadding: false, label: 'Max Price' + currencyCode }
       ];
@@ -343,7 +344,6 @@ class EnhancedTable extends React.Component {
                       </TableCell>
                       <TableCell>{n.route}</TableCell>
                       <TableCell align="right">{n.duration}</TableCell>
-                      <TableCell align="right">{n.distance}</TableCell>
                       <TableCell align="right">{n.lowestprice}</TableCell>
                       <TableCell align="right">{n.highestprice}</TableCell>
                     </TableRow>
@@ -351,7 +351,7 @@ class EnhancedTable extends React.Component {
                 })}
               {emptyRows > 0 && (
                 <TableRow style={{ height: 49 * emptyRows }}>
-                  <TableCell colSpan={6} />
+                  <TableCell colSpan={5} />
                 </TableRow>
               )}
             </TableBody>
