@@ -263,6 +263,14 @@ class EnhancedTable extends React.Component {
 
   isSelected = id => this.state.selected.indexOf(id) !== -1;
 
+  truncateDecimals = function (number, digits) {
+    var multiplier = Math.pow(10, digits),
+      adjustedNum = number * multiplier,
+      truncatedNum = Math[adjustedNum < 0 ? 'ceil' : 'floor'](adjustedNum);
+
+    return truncatedNum / multiplier;
+  };
+
   render() {
 
     let rows = null;
@@ -272,7 +280,7 @@ class EnhancedTable extends React.Component {
     if (Array.isArray(searchResponse.routes) && searchResponse.routes.length > 0) {
       const currencyCode = ' (' + searchResponse.currencyCode + ')';
       data = searchResponse.routes.map((route, i) => {
-        const totalDurationHours = Math.floor(route.totalDuration / 60);
+        const totalDurationHours = this.truncateDecimals(route.totalDuration / 60, 1);
         const prices = route.indicativePrices;
         let priceLow = 0;
         let priceHigh = 0;
@@ -285,7 +293,7 @@ class EnhancedTable extends React.Component {
 
       rows = [
         { id: 'route', numeric: false, disablePadding: false, label: 'Route' },
-        { id: 'duration', numeric: true, disablePadding: false, label: 'Total Duration (h)' },
+        { id: 'duration', numeric: true, disablePadding: false, label: 'Time (hours)' },
         { id: 'distance', numeric: true, disablePadding: false, label: 'Distance (km)' },
         { id: 'lowestprice', numeric: true, disablePadding: false, label: 'Min Price' + currencyCode },
         { id: 'highestprice', numeric: true, disablePadding: false, label: 'Max Price' + currencyCode }
