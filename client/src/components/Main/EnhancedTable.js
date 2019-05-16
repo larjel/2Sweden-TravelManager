@@ -49,21 +49,13 @@ function getSorting(order, orderBy) {
   return order === 'desc' ? (a, b) => desc(a, b, orderBy) : (a, b) => -desc(a, b, orderBy);
 }
 
-const rows = [
-  { id: 'route', numeric: false, disablePadding: false, label: 'Route' },
-  { id: 'duration', numeric: true, disablePadding: false, label: 'Total Duration (h)' },
-  { id: 'distance', numeric: true, disablePadding: false, label: 'Distance (km)' },
-  { id: 'lowestprice', numeric: true, disablePadding: false, label: 'Min Price (SEK)' },
-  { id: 'highestprice', numeric: true, disablePadding: false, label: 'Max Price (SEK)' }
-];
-
 class EnhancedTableHead extends React.Component {
   createSortHandler = property => event => {
     this.props.onRequestSort(event, property);
   };
 
   render() {
-    const { onSelectAllClick, order, orderBy, numSelected, rowCount } = this.props;
+    const { rows, onSelectAllClick, order, orderBy, numSelected, rowCount } = this.props;
 
     return (
       <TableHead>
@@ -141,7 +133,7 @@ const toolbarStyles = theme => ({
 });
 
 let EnhancedTableToolbar = props => {
-  const { numSelected, classes } = props;
+  const { tableTitle, numSelected, classes } = props;
 
   return (
     <Toolbar
@@ -156,7 +148,7 @@ let EnhancedTableToolbar = props => {
           </Typography>
         ) : (
             <Typography variant="h6" id="tableTitle">
-              Rome -> Stockholm
+              {tableTitle}
           </Typography>
           )}
       </div>
@@ -273,12 +265,14 @@ class EnhancedTable extends React.Component {
 
   render() {
 
+    let rows = null;
     let data = null;
+    let tableTitle = null;
     const searchResponse = this.props.searchResponse;
     if (Array.isArray(searchResponse.routes) && searchResponse.routes.length > 0) {
       //searchPath = this.state.searchPath;
+      const currencyCode = ' (' + searchResponse.currencyCode + ')';
       data = searchResponse.routes.map((route, i) => {
-        const currencyCode = searchResponse.currencyCode;
         //const totalDuration = utils.convertMinutesToDayHourMin(route.totalDuration);
         const totalDurationHours = Math.floor(route.totalDuration / 60);
         const prices = route.indicativePrices;
@@ -290,6 +284,17 @@ class EnhancedTable extends React.Component {
         }
         return createData(route.name, totalDurationHours, Math.round(route.distance), priceLow, priceHigh);
       })
+
+      rows = [
+        { id: 'route', numeric: false, disablePadding: false, label: 'Route' },
+        { id: 'duration', numeric: true, disablePadding: false, label: 'Total Duration (h)' },
+        { id: 'distance', numeric: true, disablePadding: false, label: 'Distance (km)' },
+        { id: 'lowestprice', numeric: true, disablePadding: false, label: 'Min Price' + currencyCode},
+        { id: 'highestprice', numeric: true, disablePadding: false, label: 'Max Price' + currencyCode}
+      ];
+
+      tableTitle = this.props.searchPath;
+
     } else {
       return (null);
     }
@@ -300,10 +305,11 @@ class EnhancedTable extends React.Component {
 
     return (
       <Paper className={classes.root}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+        <EnhancedTableToolbar numSelected={selected.length} tableTitle={tableTitle} />
         <div className={classes.tableWrapper}>
           <Table className={classes.table} aria-labelledby="tableTitle">
             <EnhancedTableHead
+              rows={rows}
               numSelected={selected.length}
               order={order}
               orderBy={orderBy}

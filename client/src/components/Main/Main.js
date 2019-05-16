@@ -91,7 +91,7 @@ class Main extends React.Component {
           <option>Falun</option>
           <option>Are</option>
         </datalist>
-        <EnhancedTable searchResponse={this.state.searchResponse} />
+        <EnhancedTable searchResponse={this.state.searchResponse} searchPath={this.state.searchPath} />
       </main>
     )
   }
