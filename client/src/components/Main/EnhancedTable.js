@@ -12,17 +12,13 @@ import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-import Checkbox from '@material-ui/core/Checkbox';
-import IconButton from '@material-ui/core/IconButton';
 import Tooltip from '@material-ui/core/Tooltip';
-import DeleteIcon from '@material-ui/icons/Delete';
-import FilterListIcon from '@material-ui/icons/FilterList';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 
 let counter = 0;
-function createData(route, duration, distance, lowestprice, highestprice) {
+function createData(route, duration, lowestprice, highestprice) {
   counter += 1;
-  return { id: counter, route, duration, distance, lowestprice, highestprice };
+  return { id: counter, route, duration, lowestprice, highestprice };
 }
 
 function desc(a, b, orderBy) {
@@ -49,32 +45,17 @@ function getSorting(order, orderBy) {
   return order === 'desc' ? (a, b) => desc(a, b, orderBy) : (a, b) => -desc(a, b, orderBy);
 }
 
-const rows = [
-  { id: 'route', numeric: false, disablePadding: false, label: 'Route' },
-  { id: 'duration', numeric: true, disablePadding: false, label: 'Total Duration (h)' },
-  { id: 'distance', numeric: true, disablePadding: false, label: 'Distance (km)' },
-  { id: 'lowestprice', numeric: true, disablePadding: false, label: 'Min Price (SEK)' },
-  { id: 'highestprice', numeric: true, disablePadding: false, label: 'Max Price (SEK)' }
-];
-
 class EnhancedTableHead extends React.Component {
   createSortHandler = property => event => {
     this.props.onRequestSort(event, property);
   };
 
   render() {
-    const { onSelectAllClick, order, orderBy, numSelected, rowCount } = this.props;
+    const { rows, order, orderBy, numSelected, rowCount } = this.props;
 
     return (
       <TableHead>
         <TableRow>
-          <TableCell padding="checkbox">
-            <Checkbox
-              indeterminate={numSelected > 0 && numSelected < rowCount}
-              checked={numSelected === rowCount}
-              onChange={onSelectAllClick}
-            />
-          </TableCell>
           {rows.map(
             row => (
               <TableCell
@@ -109,7 +90,6 @@ class EnhancedTableHead extends React.Component {
 EnhancedTableHead.propTypes = {
   numSelected: PropTypes.number.isRequired,
   onRequestSort: PropTypes.func.isRequired,
-  onSelectAllClick: PropTypes.func.isRequired,
   order: PropTypes.string.isRequired,
   orderBy: PropTypes.string.isRequired,
   rowCount: PropTypes.number.isRequired,
@@ -141,7 +121,7 @@ const toolbarStyles = theme => ({
 });
 
 let EnhancedTableToolbar = props => {
-  const { numSelected, classes } = props;
+  const { tableTitle, numSelected, classes } = props;
 
   return (
     <Toolbar
@@ -156,25 +136,12 @@ let EnhancedTableToolbar = props => {
           </Typography>
         ) : (
             <Typography variant="h6" id="tableTitle">
-              Rome -> Stockholm
-          </Typography>
+              {tableTitle}
+            </Typography>
           )}
       </div>
       <div className={classes.spacer} />
       <div className={classes.actions}>
-        {numSelected > 0 ? (
-          <Tooltip title="Delete">
-            <IconButton aria-label="Delete">
-              <DeleteIcon />
-            </IconButton>
-          </Tooltip>
-        ) : (
-            <Tooltip title="Filter list">
-              <IconButton aria-label="Filter list">
-                <FilterListIcon />
-              </IconButton>
-            </Tooltip>
-          )}
       </div>
     </Toolbar>
   );
@@ -193,7 +160,7 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 3,
   },
   table: {
-    minWidth: 1020,
+    minWidth: 400,
   },
   tableWrapper: {
     overflowX: 'auto',
@@ -201,21 +168,25 @@ const styles = theme => ({
 });
 
 class EnhancedTable extends React.Component {
-  state = {
-    order: 'asc',
-    orderBy: 'route',
-    selected: [],
-    data: [
-      createData('Fly to Stockholm', 3, 2023, 600, 2800),
-      createData('Fly to Stockholm Bromma', 5.2, 1991, 950, 6500),
-      createData('Train, bus', 35, 2645, 1428, 2970),
-      createData('Train, bus, night train', 33, 2674, 1797, 3557),
-      createData('Bus', 48.6, 3320, null, null),
-      createData('Night train, train', 37, 2909, 2397, 4274)
-    ],
-    page: 0,
-    rowsPerPage: 5,
-  };
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      order: 'asc',
+      orderBy: 'route',
+      selected: [],
+      /*data: [
+        createData('Fly to Stockholm', 3, 2023, 600, 2800),
+        createData('Fly to Stockholm Bromma', 5.2, 1991, 950, 6500),
+        createData('Train, bus', 35, 2645, 1428, 2970),
+        createData('Train, bus, night train', 33, 2674, 1797, 3557),
+        createData('Bus', 48.6, 3320, null, null),
+        createData('Night train, train', 37, 2909, 2397, 4274)
+      ],*/
+      page: 0,
+      rowsPerPage: 5,
+    }
+  }
 
   handleRequestSort = (event, property) => {
     const orderBy = property;
@@ -228,31 +199,12 @@ class EnhancedTable extends React.Component {
     this.setState({ order, orderBy });
   };
 
-  handleSelectAllClick = event => {
-    if (event.target.checked) {
-      this.setState(state => ({ selected: state.data.map(n => n.id) }));
-      return;
-    }
-    this.setState({ selected: [] });
-  };
-
   handleClick = (event, id) => {
     const { selected } = this.state;
     const selectedIndex = selected.indexOf(id);
     let newSelected = [];
 
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, id);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
-      );
-    }
+    console.log('ROW CLICKED!!!')
 
     this.setState({ selected: newSelected });
   };
@@ -267,21 +219,63 @@ class EnhancedTable extends React.Component {
 
   isSelected = id => this.state.selected.indexOf(id) !== -1;
 
+  truncateDecimals = function (number, digits) {
+    var multiplier = Math.pow(10, digits),
+      adjustedNum = number * multiplier,
+      truncatedNum = Math[adjustedNum < 0 ? 'ceil' : 'floor'](adjustedNum);
+
+    return truncatedNum / multiplier;
+  };
+
   render() {
+
+    let rows = null;
+    let data = null;
+    let tableTitle = null;
+    const searchResponse = this.props.searchResponse;
+    if (Array.isArray(searchResponse.routes) && searchResponse.routes.length > 0) {
+
+      const currencyCode = ' (' + searchResponse.currencyCode + ')';
+
+      data = searchResponse.routes.map((route, i) => {
+        const totalDurationHours = this.truncateDecimals(route.totalDuration / 60, 1);
+        const prices = route.indicativePrices;
+        let priceLow = 0;
+        let priceHigh = 0;
+        if (Array.isArray(prices)) {
+          priceLow = prices[0].priceLow;
+          priceHigh = prices[0].priceHigh;
+        }
+        return createData(route.name, totalDurationHours, priceLow, priceHigh);
+      })
+
+      rows = [
+        { id: 'route', numeric: false, disablePadding: false, label: 'Route' },
+        { id: 'duration', numeric: true, disablePadding: false, label: 'Time (hours)' },
+        { id: 'lowestprice', numeric: true, disablePadding: false, label: 'Min Price' + currencyCode },
+        { id: 'highestprice', numeric: true, disablePadding: false, label: 'Max Price' + currencyCode }
+      ];
+
+      tableTitle = this.props.searchPath;
+
+    } else {
+      return (null);
+    }
+
     const { classes } = this.props;
-    const { data, order, orderBy, selected, rowsPerPage, page } = this.state;
+    const { order, orderBy, selected, rowsPerPage, page } = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
     return (
       <Paper className={classes.root}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+        <EnhancedTableToolbar numSelected={selected.length} tableTitle={tableTitle} />
         <div className={classes.tableWrapper}>
           <Table className={classes.table} aria-labelledby="tableTitle">
             <EnhancedTableHead
+              rows={rows}
               numSelected={selected.length}
               order={order}
               orderBy={orderBy}
-              onSelectAllClick={this.handleSelectAllClick}
               onRequestSort={this.handleRequestSort}
               rowCount={data.length}
             />
@@ -294,18 +288,12 @@ class EnhancedTable extends React.Component {
                     <TableRow
                       hover
                       onClick={event => this.handleClick(event, n.id)}
-                      role="checkbox"
-                      aria-checked={isSelected}
                       tabIndex={-1}
                       key={n.id}
                       selected={isSelected}
                     >
-                      <TableCell padding="checkbox">
-                        <Checkbox checked={isSelected} />
-                      </TableCell>
                       <TableCell>{n.route}</TableCell>
                       <TableCell align="right">{n.duration}</TableCell>
-                      <TableCell align="right">{n.distance}</TableCell>
                       <TableCell align="right">{n.lowestprice}</TableCell>
                       <TableCell align="right">{n.highestprice}</TableCell>
                     </TableRow>
@@ -313,7 +301,7 @@ class EnhancedTable extends React.Component {
                 })}
               {emptyRows > 0 && (
                 <TableRow style={{ height: 49 * emptyRows }}>
-                  <TableCell colSpan={6} />
+                  <TableCell colSpan={5} />
                 </TableRow>
               )}
             </TableBody>
