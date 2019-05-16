@@ -25,13 +25,11 @@ class Main extends React.Component {
 
   handleSearchSubmit = (event) => {
     event.preventDefault()
-    const searchValue1 = this.state.searchValue1.value;
-    const searchValue2 = this.state.searchValue2.value;
-    apiModule.getRoutes(searchValue1, searchValue2)
+    apiModule.getRoutes(this.state.searchValue1.value, this.state.searchValue2.value)
       .then(data => {
         this.setState({
           searchResponse: data,
-          searchPath: searchValue1 + ' -> ' + searchValue2
+          searchPath: this.state.searchValue1.label + ' -> ' + this.state.searchValue2.label
         })
       })
       .catch(err =>
