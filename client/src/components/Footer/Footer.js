@@ -5,12 +5,12 @@ import twitter from './sweTwitter.jpg'
 
 class Footer extends React.Component {
     render() {
-        return(
+        return (
             <footer className="main-footer">
-            <img className="logo2" src={logo} alt="Logo"></img>
-            <img className="twitter" src={twitter} alt="TwitterLogo"></img>
-            <p className="footerText">
-            Christian Jigling | Lars Jelleryd | Stefan Ohlsson | Ida Maria Sollo | Ahmed
+                <img className="logo2" src={logo} alt="Logo"></img>
+                <img className="twitter" src={twitter} alt="TwitterLogo"></img>
+                <p className="footerText">
+                    Christian Jigling | Lars Jelleryd | Stefan Ohlsson | Ida Maria Sollo | Ahmed Ismail
             </p>
             </footer>
         )
