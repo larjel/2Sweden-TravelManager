@@ -14,6 +14,18 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Tooltip from '@material-ui/core/Tooltip';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
+import "./Main.css";
+import { blue } from '@material-ui/core/colors';
+
+const CustomTableCell = withStyles(theme => ({
+  head: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  body: {
+    fontSize: 14,
+  },
+}))(TableCell);
 
 let counter = 0;
 function createData(route, duration, lowestprice, highestprice) {
@@ -54,11 +66,12 @@ class EnhancedTableHead extends React.Component {
     const { rows, order, orderBy, numSelected, rowCount } = this.props;
 
     return (
-      <TableHead>
+      <TableHead className="tableBlue">
         <TableRow>
           {rows.map(
             row => (
               <TableCell
+                className="tableHead"
                 key={row.id}
                 align={row.numeric ? 'right' : 'left'}
                 padding={row.disablePadding ? 'none' : 'default'}
@@ -98,6 +111,7 @@ EnhancedTableHead.propTypes = {
 const toolbarStyles = theme => ({
   root: {
     paddingRight: theme.spacing.unit,
+    backgroundColor: '#006699',
   },
   highlight:
     theme.palette.type === 'light'
@@ -125,7 +139,7 @@ let EnhancedTableToolbar = props => {
 
   return (
     <Toolbar
-      className={classNames(classes.root, {
+      className={classNames(classes.root, classes.head, {
         [classes.highlight]: numSelected > 0,
       })}
     >
@@ -156,11 +170,12 @@ EnhancedTableToolbar = withStyles(toolbarStyles)(EnhancedTableToolbar);
 
 const styles = theme => ({
   root: {
-    width: '100%',
+    width: '60%',
     marginTop: theme.spacing.unit * 3,
   },
   table: {
     minWidth: 400,
+    maxWidth: 600,
   },
   tableWrapper: {
     overflowX: 'auto',
@@ -267,9 +282,10 @@ class EnhancedTable extends React.Component {
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
     return (
+      <div className="searchContainer">
       <Paper className={classes.root}>
         <EnhancedTableToolbar numSelected={selected.length} tableTitle={tableTitle} />
-        <div className={classes.tableWrapper}>
+        <div className={classes.tableWrapper} >
           <Table className={classes.table} aria-labelledby="tableTitle">
             <EnhancedTableHead
               rows={rows}
@@ -308,6 +324,7 @@ class EnhancedTable extends React.Component {
           </Table>
         </div>
         <TablePagination
+          className="tableBlue"
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
           count={data.length}
@@ -323,6 +340,7 @@ class EnhancedTable extends React.Component {
           onChangeRowsPerPage={this.handleChangeRowsPerPage}
         />
       </Paper>
+      </div>
     );
   }
 }
