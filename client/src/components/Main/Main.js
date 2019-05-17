@@ -2,6 +2,7 @@ import React from 'react';
 import "./Main.css";
 import EnhancedTable from './EnhancedTable';
 import * as apiModule from '../../utils/api.js'
+import * as utils from '../../utils/utils.js'
 import Select from 'react-select';
 import CreatableSelect from 'react-select/lib/Creatable';
 
@@ -50,17 +51,8 @@ class Main extends React.Component {
   }
 
   render() {
-    const destinationOptions = [
-      { value: 'Stockholm', label: 'Stockholm' },
-      { value: 'Falun', label: 'Falun' },
-      { value: 'Are', label: 'Åre' }
-    ];
-
-    const originOptions = [
-      { value: 'Rome', label: 'Rome' },
-      { value: 'Tokyo', label: 'Tokyo' },
-      { value: 'Berlin', label: 'Berlin' }
-    ];
+    const destinationOptions = utils.getDestinationList();
+    const originOptions = utils.getOriginList();
 
     return (
       <main className="content">
@@ -118,7 +110,7 @@ class Main extends React.Component {
               required="required">
             </input>
             */}
-            
+
           </div>
         </form>
         <EnhancedTable className="resultTable" searchResponse={this.state.searchResponse} searchPath={this.state.searchPath} />

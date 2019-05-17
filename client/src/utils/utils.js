@@ -15,3 +15,40 @@ export function convertMinutesToDayHourMin(minutes) {
         return 'Unknown';
     }
 }
+
+export function getDestinationList(minutes) {
+    const destinationOptions = [
+        { value: 'Stockholm, Sweden', label: 'Stockholm' },
+        { value: 'Falun, Sweden', label: 'Falun' },
+        { value: 'Are, Sweden', label: 'Åre' }
+    ];
+    return destinationOptions;
+}
+
+export function getOriginList(minutes) {
+    const originCities = [
+        'Rome, Italy',
+        'Tokyo, Japan',
+        'Berlin, Germany',
+        'Sydney, Australia',
+        'Helsinki, Finland',
+        'Athens, Greece',
+        'Copenhagen, Denmark',
+        'Beijing, China',
+        'Kabul, Afghanistan',
+        'Tirana, Albania',
+        'Algiers, Algeria',
+        'Andorra la Vella, Andorra',
+        'Luanda, Angola',
+        'Saint Johns, Antigua and Barbuda',
+        'Buenos Aires, Argentina',
+        'Yerevan, Armenia',
+        'Canberra, Australia',
+        'Vienna, Austria',
+    ]
+
+    const originOptions = originCities.map(e => {
+        return { value: e, label: e }
+    })
+    return originOptions;
+}
