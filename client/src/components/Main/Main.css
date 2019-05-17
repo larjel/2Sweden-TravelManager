@@ -1,5 +1,40 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
 .content {
   grid-area: content;
   background: #ffcc00;
   
+}
+
+.searchBox {
+  width: 20%;
+}
+
+.searchContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.searchHeader {
+  font-family: Raleway;
+  text-align: center;
+  font-weight: bold;
+}
+
+.resultTable {
+  width: 50%;
+}
+
+.tableHead {
+  background-color: #ffcc00;
+  color: black;
+}
+
+.tableBlue {
+  background-color: #006699;
+}
+
+.textCenter {
+  text-align: center;
 }

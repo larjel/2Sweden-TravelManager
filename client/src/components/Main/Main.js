@@ -64,7 +64,8 @@ class Main extends React.Component {
 
     return (
       <main className="content">
-        <h3>Choose desired travel route!</h3>
+        <h3 className="searchHeader">Choose desired travel route!</h3>
+        <div></div>
         <form className="formLayout" onSubmit={this.handleSearchSubmit}>
           {/*
           <input
@@ -85,8 +86,9 @@ class Main extends React.Component {
             required="required"
           />
             */}
-          <div>
+          <div className="searchContainer">
             <CreatableSelect
+              className="searchBox"
               escapeClearsValue={false}
               isClearable={false}
               placeholder='From...'
@@ -95,12 +97,14 @@ class Main extends React.Component {
               options={originOptions}
             />
             <Select
+              className="searchBox"
               placeholder='To...'
               isSearchable={false}
               value={this.state.searchValue2}
               onChange={this.handleChangeSearch2}
               options={destinationOptions}
             />
+            <button type="submit" style={{ float: 'right' }}>Search</button>
           </div>
           <div className="inputFields">
             {/*
@@ -113,25 +117,11 @@ class Main extends React.Component {
               max="2025-01-01" min="2024-01-01"
               required="required">
             </input>
-            <label className="label" htmlFor="toDate">Going home date</label>
-            <input
-              onChange={e => this.setState({ toDate: e.target.value })}
-              className="input"
-              id="toDate"
-              type="date"
-              max="2025-01-01" min="2024-01-01"
-              required="required">
-            </input>
             */}
-            <button type="submit" style={{ float: 'right' }}>Search</button>
+            
           </div>
         </form>
-        <datalist id="destinations">
-          <option>Stockholm</option>
-          <option>Falun</option>
-          <option>Are</option>
-        </datalist>
-        <EnhancedTable searchResponse={this.state.searchResponse} searchPath={this.state.searchPath} />
+        <EnhancedTable className="resultTable" searchResponse={this.state.searchResponse} searchPath={this.state.searchPath} />
       </main>
     )
   }
