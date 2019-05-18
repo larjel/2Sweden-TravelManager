@@ -1,4 +1,5 @@
 
+//----------------------------------------------------------------------------
 export function convertMinutesToDayHourMin(minutes) {
     if (minutes) {
         let days = Math.floor(minutes / (24 * 60));
@@ -16,6 +17,7 @@ export function convertMinutesToDayHourMin(minutes) {
     }
 }
 
+//----------------------------------------------------------------------------
 export function getDestinationList(minutes) {
     const destinationOptions = [
         { value: 'Stockholm, Sweden', label: 'Stockholm' },
@@ -25,6 +27,7 @@ export function getDestinationList(minutes) {
     return destinationOptions;
 }
 
+//----------------------------------------------------------------------------
 export function getOriginList(minutes) {
     const originCities = [
         'Rome, Italy',

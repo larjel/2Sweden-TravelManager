@@ -4,10 +4,11 @@ import EnhancedTable from './EnhancedTable';
 import * as apiModule from '../../utils/api.js'
 import * as utils from '../../utils/utils.js'
 import Select from 'react-select';
-import CreatableSelect from 'react-select/lib/Creatable';
+import AsyncSelect from 'react-select/lib/Async';
 
 class Main extends React.Component {
 
+  //----------------------------------------------------------------------------
   constructor(props) {
     super(props)
     this.state = {
@@ -15,15 +16,13 @@ class Main extends React.Component {
       searchValue2: null,
       searchResponse: {},
       searchPath: null,
+      autocompletePlaces: [],
+      autocompletePlacesInProgress: false,
       errorMsg: null
     }
   }
 
-  refreshPage = () => {
-    console.log("Refresh page");
-    window.location.reload();
-  }
-
+  //----------------------------------------------------------------------------
   handleSearchSubmit = (event) => {
     event.preventDefault()
     apiModule.getRoutes(this.state.searchValue1.value, this.state.searchValue2.value)
@@ -40,16 +39,67 @@ class Main extends React.Component {
       )
   }
 
-  handleChangeSearch1 = (searchValue1) => {
-    this.setState({ searchValue1 });
-    console.log('Origin selected:', searchValue1);
+  //----------------------------------------------------------------------------
+  handleChangeSearch1inp = (searchValue1) => {
+    console.log('Input change:', searchValue1);
+    if (searchValue1) {
+      this.setState({ searchValue1 });      
+    }
   }
 
+  //----------------------------------------------------------------------------
+  handleChangeSearch1chg = (searchValue1) => {
+    console.log('Selection change:', searchValue1);
+    this.setState({ searchValue1 });
+  }
+
+  //----------------------------------------------------------------------------
   handleChangeSearch2 = (searchValue2) => {
     this.setState({ searchValue2 });
     console.log('Destination selected:', searchValue2);
   }
 
+  //----------------------------------------------------------------------------
+  loadPlaces = (inputValue) => {
+    console.log('loadPlaces input: ' + inputValue);
+    if (inputValue.length < 3) {
+      this.setState({
+        autocompletePlaces: [],
+        autocompletePlacesInProgress: false
+      })
+    } else if (!this.state.autocompletePlacesInProgress) {
+      this.setState({
+        autocompletePlacesInProgress: true
+      })
+      apiModule.getAutocomplete(inputValue)
+        .then(data => {
+          if (Array.isArray(data.places)) {
+            const matchingPlaces = data.places.map(e => {
+              return { value: e.longName, label: e.longName }
+            })
+            this.setState({
+              autocompletePlaces: matchingPlaces,
+              autocompletePlacesInProgress: false
+            })
+          }
+        })
+        .catch(err =>
+          this.setState({
+            errorMsg: err,
+            autocompletePlacesInProgress: false
+          })
+        )
+    }
+    console.log('AUTOLIST: ', this.state.autocompletePlaces);
+    return this.state.autocompletePlaces;
+  };
+
+  //----------------------------------------------------------------------------
+  loadOptions = (inputValue, callback) => {
+    callback(this.loadPlaces(inputValue));
+  };
+
+  //----------------------------------------------------------------------------
   render() {
     const destinationOptions = utils.getDestinationList();
     const originOptions = utils.getOriginList();
@@ -79,14 +129,18 @@ class Main extends React.Component {
           />
             */}
           <div className="searchContainer">
-            <CreatableSelect
+            <AsyncSelect
               className="searchBox"
-              escapeClearsValue={false}
-              isClearable={false}
+              cacheOptions={true}
+              isSearchable={true}
+              loadOptions={this.loadOptions}
+              defaultOptions={originOptions}
+              onInputChange={this.handleChangeSearch1inp}
+              onChange={this.handleChangeSearch1chg}
+              escapeClearsValue={true}
+              isClearable={true}
               placeholder='From...'
               value={this.state.searchValue1}
-              onChange={this.handleChangeSearch1}
-              options={originOptions}
             />
             <Select
               className="searchBox"

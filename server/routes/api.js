@@ -17,6 +17,13 @@ function getRome2RioSearchBaseUrl() {
 }
 
 //----------------------------------------------------------------------------
+function getRome2RioAutocompleteBaseUrl() {
+  const key = process.env.ROME_2_RIO_KEY
+  const url = `http://free.rome2rio.com/api/1.4/json/Autocomplete?key=${key}`
+  return url;
+}
+
+//----------------------------------------------------------------------------
 // Make a HTTP GET-Request
 function httpGetRequest(url, res) {
   axios
@@ -61,6 +68,7 @@ router.post('/getLocations', (req, res) => {
 })
 
 //----------------------------------------------------------------------------
+// Rome2Rio Search API Call
 // See request info here: https://www.rome2rio.com/documentation/1-4/search/
 //----------------------------------------------------------------------------
 router.post('/getSearchResults', (req, res) => {
@@ -74,6 +82,21 @@ router.post('/getSearchResults', (req, res) => {
     // Limit the request severly (many noXXX) for faster response and less data to handle. May alter this further on.
     // (Example: Rome->Stockholm. Response is shrunk from 217946 bytes for full response to 36100 bytes for the limited.)
     + '&noFerry&noCar&noBikeshare&noRideshare&noTowncar&noCommuter&noSpecial&noMinorStart&noMinorEnd&noPath&noStop&noAirLeg'
+
+  console.log('Request: ' + url)
+
+  httpGetRequest(url, res);
+})
+
+//----------------------------------------------------------------------------
+// Rome2Rio Autocomplete API Call
+// See request info here: https://www.rome2rio.com/documentation/1-4/autocomplete/
+//----------------------------------------------------------------------------
+router.post('/getAutocomplete', (req, res) => {
+  const textToAutocomplete = req.body.textToAutocomplete
+
+  const baseUrl = getRome2RioAutocompleteBaseUrl()
+  const url = `${baseUrl}&query=${textToAutocomplete}`
 
   console.log('Request: ' + url)
 
