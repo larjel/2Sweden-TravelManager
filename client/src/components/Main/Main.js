@@ -24,26 +24,28 @@ class Main extends React.Component {
 
   //----------------------------------------------------------------------------
   handleSearchSubmit = (event) => {
-    event.preventDefault()
-    apiModule.getRoutes(this.state.searchValue1.value, this.state.searchValue2.value)
-      .then(data => {
-        this.setState({
-          searchResponse: data,
-          searchPath: this.state.searchValue1.label + ' -> ' + this.state.searchValue2.label
+    event.preventDefault();
+    if (this.state.searchValue1 && this.state.searchValue2) {
+      apiModule.getRoutes(this.state.searchValue1.value, this.state.searchValue2.value)
+        .then(data => {
+          this.setState({
+            searchResponse: data,
+            searchPath: this.state.searchValue1.label + ' -> ' + this.state.searchValue2.label
+          })
         })
-      })
-      .catch(err =>
-        this.setState({
-          errorMsg: err
-        })
-      )
+        .catch(err =>
+          this.setState({
+            errorMsg: err
+          })
+        )
+    }
   }
 
   //----------------------------------------------------------------------------
   handleChangeSearch1inp = (searchValue1) => {
     console.log('Input change:', searchValue1);
     if (searchValue1) {
-      this.setState({ searchValue1 });      
+      this.setState({ searchValue1 });
     }
   }
 
