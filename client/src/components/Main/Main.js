@@ -18,6 +18,7 @@ class Main extends React.Component {
       searchPath: null,
       autocompletePlaces: [],
       autocompletePlacesInProgress: false,
+      currencyCode: null,
       errorMsg: null
     }
   }
@@ -25,8 +26,8 @@ class Main extends React.Component {
   //----------------------------------------------------------------------------
   handleSearchSubmit = (event) => {
     event.preventDefault();
-    if (this.state.searchValue1 && this.state.searchValue2) {
-      apiModule.getRoutes(this.state.searchValue1.value, this.state.searchValue2.value)
+    if (this.state.searchValue1 && this.state.searchValue2 && this.state.currencyCode) {
+      apiModule.getRoutes(this.state.searchValue1.value, this.state.searchValue2.value, this.state.currencyCode.value)
         .then(data => {
           this.setState({
             searchResponse: data,
@@ -59,6 +60,12 @@ class Main extends React.Component {
   handleChangeSearch2 = (searchValue2) => {
     this.setState({ searchValue2 });
     console.log('Destination selected:', searchValue2);
+  }
+
+  //----------------------------------------------------------------------------
+  handleCurrency = (currencyCode) => {
+    this.setState({ currencyCode });
+    console.log('Currency code:', currencyCode);
   }
 
   //----------------------------------------------------------------------------
@@ -105,31 +112,13 @@ class Main extends React.Component {
   render() {
     const destinationOptions = utils.getDestinationList();
     const originOptions = utils.getOriginList();
+    const currencyOptions = utils.getCurrencyList();
 
     return (
       <main className="content">
         <h3 className="searchHeader">Choose desired travel route!</h3>
         <div></div>
         <form className="formLayout" onSubmit={this.handleSearchSubmit}>
-          {/*
-          <input
-            onChange={e => this.setState({ searchValue1: e.target.value })}
-            className="input"
-            type='text'
-            name='search1'
-            placeholder='From...'
-            required="required"
-          />
-          <input
-            onChange={e => this.setState({ searchValue2: e.target.value })}
-            className="input"
-            list="destinations"
-            id="destination"
-            name='destination'
-            placeholder='To...'
-            required="required"
-          />
-            */}
           <div className="searchContainer">
             <AsyncSelect
               className="searchBox"
@@ -153,6 +142,14 @@ class Main extends React.Component {
               options={destinationOptions}
             />
             <button type="submit" style={{ float: 'right' }}>Search</button>
+            <Select
+              className="searchBox"
+              placeholder='Currency'
+              isSearchable={false}
+              value={this.state.currencyCode}
+              onChange={this.handleCurrency}
+              options={currencyOptions}
+            />
           </div>
           <div className="inputFields">
             {/*

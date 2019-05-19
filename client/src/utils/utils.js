@@ -18,7 +18,7 @@ export function convertMinutesToDayHourMin(minutes) {
 }
 
 //----------------------------------------------------------------------------
-export function getDestinationList(minutes) {
+export function getDestinationList() {
     const destinationOptions = [
         { value: 'Stockholm, Sweden', label: 'Stockholm' },
         { value: 'Falun, Sweden', label: 'Falun' },
@@ -28,25 +28,18 @@ export function getDestinationList(minutes) {
 }
 
 //----------------------------------------------------------------------------
-export function getOriginList(minutes) {
+export function getOriginList() {
     const originCities = [
-        'Rome, Italy',
-        'Tokyo, Japan',
-        'Berlin, Germany',
-        'Sydney, Australia',
-        'Helsinki, Finland',
         'Athens, Greece',
-        'Copenhagen, Denmark',
         'Beijing, China',
-        'Kabul, Afghanistan',
-        'Tirana, Albania',
-        'Algiers, Algeria',
-        'Andorra la Vella, Andorra',
-        'Luanda, Angola',
-        'Saint Johns, Antigua and Barbuda',
+        'Berlin, Germany',
         'Buenos Aires, Argentina',
-        'Yerevan, Armenia',
         'Canberra, Australia',
+        'Copenhagen, Denmark',
+        'Helsinki, Finland',
+        'Rome, Italy',
+        'Sydney, Australia',
+        'Tokyo, Japan',
         'Vienna, Austria',
     ]
 
@@ -54,4 +47,18 @@ export function getOriginList(minutes) {
         return { value: e, label: e }
     })
     return originOptions;
+}
+
+//----------------------------------------------------------------------------
+export function getCurrencyList() {
+    const currencies = [
+        'USD',
+        'SEK',
+        'EUR',
+    ]
+
+    const currencyOptions = currencies.map(e => {
+        return { value: e, label: e }
+    })
+    return currencyOptions;
 }
