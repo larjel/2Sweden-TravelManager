@@ -14,7 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import Tooltip from '@material-ui/core/Tooltip';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
-import "./Main.css";
+//import "./Main.css";
 import { blue } from '@material-ui/core/colors';
 import * as utils from '../../utils/utils.js'
 
@@ -31,9 +31,9 @@ const CustomTableCell = withStyles(theme => ({
 
 //----------------------------------------------------------------------------
 let counter = 0;
-function createData(route, duration, transferCount, lowestprice, highestprice, routeArrayIndex) {
+function createData(transport, duration, lowestprice, highestprice, routeArrayIndex) {
   counter += 1;
-  return { id: counter, route, duration, transferCount, lowestprice, highestprice, routeArrayIndex };
+  return { id: counter, transport, duration, lowestprice, highestprice, routeArrayIndex };
 }
 
 //----------------------------------------------------------------------------
@@ -64,7 +64,7 @@ function getSorting(order, orderBy) {
 }
 
 //----------------------------------------------------------------------------
-class EnhancedTableHead extends React.Component {
+class DetailsTableHead extends React.Component {
   createSortHandler = property => event => {
     this.props.onRequestSort(event, property);
   };
@@ -109,7 +109,7 @@ class EnhancedTableHead extends React.Component {
 }
 
 //----------------------------------------------------------------------------
-EnhancedTableHead.propTypes = {
+DetailsTableHead.propTypes = {
   numSelected: PropTypes.number.isRequired,
   onRequestSort: PropTypes.func.isRequired,
   order: PropTypes.string.isRequired,
@@ -145,7 +145,7 @@ const toolbarStyles = theme => ({
 });
 
 //----------------------------------------------------------------------------
-let EnhancedTableToolbar = props => {
+let DetailsTableToolbar = props => {
   const { tableTitle, numSelected, classes } = props;
 
   return (
@@ -173,13 +173,13 @@ let EnhancedTableToolbar = props => {
 };
 
 //----------------------------------------------------------------------------
-EnhancedTableToolbar.propTypes = {
+DetailsTableToolbar.propTypes = {
   classes: PropTypes.object.isRequired,
   numSelected: PropTypes.number.isRequired,
 };
 
 //----------------------------------------------------------------------------
-EnhancedTableToolbar = withStyles(toolbarStyles)(EnhancedTableToolbar);
+DetailsTableToolbar = withStyles(toolbarStyles)(DetailsTableToolbar);
 
 //----------------------------------------------------------------------------
 const styles = theme => ({
@@ -197,13 +197,13 @@ const styles = theme => ({
 });
 
 //----------------------------------------------------------------------------
-class EnhancedTable extends React.Component {
+class DetailsTable extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
       order: 'asc',
-      orderBy: 'route',
+      orderBy: 'transport',
       selected: [],
       page: 0,
       rowsPerPage: 5,
@@ -225,16 +225,19 @@ class EnhancedTable extends React.Component {
   //--------------------------------------------------------------------------
   handleClick = (event, id, data) => {
 
+    //this.setState(state => ({ selected: data.map(n => n.id) }));
+
+    //const { selected } = this.state;
+    //const selectedIndex = s.slicexOf(id);
+    //let newSelected = [];
+
     console.log('ROW CLICKED!!!');
     console.log('Data: ', data);
     console.log('ID: ', id);
 
-    if (Array.isArray(data)) {
-      console.log('data is Array');
-      const clickedRow = data.find(n => n.id == id);
-      console.log('clickedRow: ', clickedRow);
-      this.props.routeDetails(this.props.searchResponse, clickedRow.routeArrayIndex);
-    }
+    //this.props.routeDetails(this.props.searchResponse, )
+
+    //this.setState({ selected: newSelected });
   };
 
   //--------------------------------------------------------------------------
@@ -257,36 +260,43 @@ class EnhancedTable extends React.Component {
     let data = null;
     let tableTitle = null;
     const searchResponse = this.props.searchResponse;
-    if (searchResponse && Array.isArray(searchResponse.routes) && searchResponse.routes.length > 0) {
+    const routeArrayIndex = this.props.routeArrayIndex;
+    if (searchResponse && Array.isArray(searchResponse.routes)
+      && searchResponse.routes.length > 0 && routeArrayIndex >= 0) {
+
+      const detailedRoute = searchResponse.routes[routeArrayIndex];
 
       const currencyCode = ' (' + searchResponse.currencyCode + ')';
 
-      data = searchResponse.routes.map((route, index) => {
-        const totalDurationHours = utils.truncateDecimals(route.totalDuration / 60, 1);
-        const prices = route.indicativePrices;
-        let priceLow = null;
-        let priceHigh = null;
-        let transferCount = null;
-        if (Array.isArray(prices)) {
-          priceLow = prices[0].priceLow;
-          priceHigh = prices[0].priceHigh;
-        }
-        if (Array.isArray(route.segments)) {
-          transferCount = route.segments.length;
-        }
-        return createData(route.name, totalDurationHours, transferCount, priceLow, priceHigh, index);
-      })
+      const vehicles = Array.isArray(searchResponse.vehicles) ? searchResponse.vehicles : null;
+
+      if (Array.isArray(detailedRoute.segments)) {
+        data = detailedRoute.segments.map((segment, index) => {
+          const transport = vehicles ? vehicles[segment.vehicle].name : segment.segmentKind;
+          const transitDuration = utils.truncateDecimals(segment.transitDuration / 60, 1);
+          const prices = segment.indicativePrices;
+          let priceLow = null;
+          let priceHigh = null;
+          if (Array.isArray(prices)) {
+            priceLow = prices[0].priceLow;
+            priceHigh = prices[0].priceHigh;
+          }
+
+          return createData(transport, transitDuration, priceLow, priceHigh, index);
+        })
+      } else {
+        return (null);
+      }
 
       rows = [
-        { id: 'route', numeric: false, disablePadding: false, label: 'Route' },
+        { id: 'transport', numeric: false, disablePadding: false, label: 'Transport' },
         { id: 'duration', numeric: true, disablePadding: false, label: 'Time (hours)' },
-        { id: 'transferCount', numeric: true, disablePadding: false, label: 'Transfers' },
         { id: 'lowestprice', numeric: true, disablePadding: false, label: 'Min Price' + currencyCode },
         { id: 'highestprice', numeric: true, disablePadding: false, label: 'Max Price' + currencyCode },
         { id: 'routeArrayIndex', numeric: true, disablePadding: false, label: 'Hidden', hidden: true }
       ];
 
-      tableTitle = this.props.searchPath;
+      tableTitle = detailedRoute.name;
 
     } else {
       return (null);
@@ -299,10 +309,10 @@ class EnhancedTable extends React.Component {
     return (
       <div className="searchContainer">
         <Paper className={classes.root}>
-          <EnhancedTableToolbar numSelected={selected.length} tableTitle={tableTitle} />
+          <DetailsTableToolbar numSelected={selected.length} tableTitle={tableTitle} />
           <div className={classes.tableWrapper} >
             <Table className={classes.table} aria-labelledby="tableTitle">
-              <EnhancedTableHead
+              <DetailsTableHead
                 rows={rows}
                 numSelected={selected.length}
                 order={order}
@@ -323,9 +333,8 @@ class EnhancedTable extends React.Component {
                         key={n.id}
                         selected={isSelected}
                       >
-                        <TableCell>{n.route}</TableCell>
+                        <TableCell>{n.transport}</TableCell>
                         <TableCell align="right">{n.duration}</TableCell>
-                        <TableCell align="right">{n.transferCount}</TableCell>
                         <TableCell align="right">{n.lowestprice}</TableCell>
                         <TableCell align="right" >{n.highestprice}</TableCell>
                         <TableCell align="right" hidden={true}>{n.routeArrayIndex}</TableCell>
@@ -363,9 +372,9 @@ class EnhancedTable extends React.Component {
 }
 
 //----------------------------------------------------------------------------
-EnhancedTable.propTypes = {
+DetailsTable.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
 //----------------------------------------------------------------------------
-export default withStyles(styles)(EnhancedTable);
+export default withStyles(styles)(DetailsTable);

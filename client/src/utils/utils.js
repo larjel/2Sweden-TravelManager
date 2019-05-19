@@ -18,6 +18,15 @@ export function convertMinutesToDayHourMin(minutes) {
 }
 
 //----------------------------------------------------------------------------
+export function truncateDecimals(number, digits) {
+    var multiplier = Math.pow(10, digits),
+        adjustedNum = number * multiplier,
+        truncatedNum = Math[adjustedNum < 0 ? 'ceil' : 'floor'](adjustedNum);
+
+    return truncatedNum / multiplier;
+};
+
+//----------------------------------------------------------------------------
 export function getDestinationList() {
     const destinationOptions = [
         { value: 'Stockholm, Sweden', label: 'Stockholm' },
