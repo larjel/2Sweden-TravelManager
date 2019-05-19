@@ -13,7 +13,6 @@
 }
 
 body {
-  padding: 1em;
   background: #e5e5e5;
   font: 13px/1.4 Geneva, 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
 }
@@ -60,7 +59,6 @@ input[type="date"] {
 
 .wrapper>* {
   border: 2px solid black;
-  border-radius: 5px;
   padding: 5px;
 }
 
@@ -74,7 +72,7 @@ nav ul {
 
 .wrapper {
   display: grid;
-  grid-gap: 10px;
+  grid-gap: 5px;
   grid-template-areas: 
   "header"
   "nav"
@@ -89,13 +87,27 @@ nav ul {
     grid-template-areas: 
     "header  header"
     "nav     nav" 
-    "content sidebar" 
+    "content content"
+    "sidebar sidebar" 
     "footer  footer";
   }
   
 }
 
-@media (min-width: 700px) {
+@media (min-width: 1200px) {
+  .wrapper {
+    grid-template-columns: 1fr 4fr 1fr;
+    grid-template-areas: 
+    "header header header"
+    "nav nav nav"
+    "content content sidebar"
+    "content content sidebar"
+    "footer footer footer"
+  }
+
+}
+
+@media (min-width: 1600px) {
   .wrapper {
     grid-template-columns: 1fr 4fr 1fr;
     grid-template-areas: 

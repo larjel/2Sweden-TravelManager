@@ -25,8 +25,35 @@
   position: relative;
   text-align: center;
   font-family: Lato;
-  top: 7.5vh;
   font-variant: small-caps;
-  letter-spacing: 3px;
+  letter-spacing: 1.5px;
+  font-size: 5px;
+  top: 3vh;
  
+}
+
+@media (min-width: 500px) {
+  .footerText {
+    font-size: 10px;
+  }
+  
+}
+
+@media (min-width: 1200px) {
+  .footerText {
+    font-size: 13px;
+    top: 8vh;
+  }
+
+}
+
+@media (min-width: 1600px) {
+  .footerText {
+    top: 8vh;
+    letter-spacing: 3px;
+    font-size: 15px;
+    
+   
+  }
+
 }

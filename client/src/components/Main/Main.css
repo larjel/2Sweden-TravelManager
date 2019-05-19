@@ -38,3 +38,20 @@
 .textCenter {
   text-align: center;
 }
+
+@media (min-width: 300px) {
+  .searchHeader {
+    font-size: 20px
+  }
+}
+
+@media (min-width: 1200px) {
+  
+}
+
+@media (min-width: 1600px) {
+  .searchHeader {
+    font-size: 30px
+  }
+
+}

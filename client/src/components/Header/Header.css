@@ -4,6 +4,8 @@
 .main-head {
     grid-area: header;
     background: #006699;
+    text-align: center;
+    
 }
   
 .logo {
@@ -11,15 +13,22 @@
   float: left;
 }
 
+.twitter2 {
+  width: 10%;
+  float: right;
+}
+
+.div {
+
+}
+
 .headerText {
   color: #ffcc00;
-  position: relative;
-  text-align: center;
-  top: 1.5vh;
   font-family: Raleway;
+  position: relative;
   font-size: 20px;
   font-weight: 600;
-  text-shadow:  5px 5px 0 rgb(0, 0, 0);
+  text-shadow:  3.5px 3.5px 0 rgb(0, 0, 0);
   letter-spacing: 2px;
 }
 
@@ -35,9 +44,20 @@
   } 
 }
 
-@media (min-width: 700px) {
+@media (min-width: 1200px) {
   .headerText {
-  top: 4vh;
   font-size: 35px;
+
   }
+}
+
+@media (min-width: 1600px) {
+  .headerText {
+    top: 6vh;
+    font-size: 45px;
+  }
+  .underText {
+    font-size: 18px;
+  }
+
 }
