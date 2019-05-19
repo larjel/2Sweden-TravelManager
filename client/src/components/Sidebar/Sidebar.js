@@ -1,5 +1,6 @@
 import React from 'react'
 import "./Sidebar.css"
+import DetailsTable from './DetailsTable';
 
 class Sidebar extends React.Component {
     constructor(props) {
@@ -8,7 +9,12 @@ class Sidebar extends React.Component {
 
     render() {
         return (
-            <aside className="side">Sidebar - Route details</aside>
+            <aside className="side">
+                <DetailsTable className="resultTable"
+                    searchResponse={this.props.searchResponse}
+                    routeArrayIndex={this.props.routeArrayIndex}
+                />
+            </aside>
         )
     }
 }

@@ -27,6 +27,9 @@ class Main extends React.Component {
   handleSearchSubmit = (event) => {
     event.preventDefault();
     if (this.state.searchValue1 && this.state.searchValue2 && this.state.currencyCode) {
+      // Clear any search details from previous search
+      this.props.routeDetails(null, -1); 
+
       apiModule.getRoutes(this.state.searchValue1.value, this.state.searchValue2.value, this.state.currencyCode.value)
         .then(data => {
           this.setState({
@@ -166,7 +169,11 @@ class Main extends React.Component {
 
           </div>
         </form>
-        <EnhancedTable className="resultTable" searchResponse={this.state.searchResponse} searchPath={this.state.searchPath} />
+        <EnhancedTable className="resultTable"
+          searchResponse={this.state.searchResponse}
+          searchPath={this.state.searchPath}
+          routeDetails={this.props.routeDetails}
+        />
       </main>
     )
   }
