@@ -268,9 +268,11 @@ class DetailsTable extends React.Component {
 
       const currencyCode = ' (' + searchResponse.currencyCode + ')';
 
+      const vehicles = Array.isArray(searchResponse.vehicles) ? searchResponse.vehicles : null;
+
       if (Array.isArray(detailedRoute.segments)) {
         data = detailedRoute.segments.map((segment, index) => {
-          const transport = segment.segmentKind;
+          const transport = vehicles ? vehicles[segment.vehicle].name : segment.segmentKind;
           const transitDuration = utils.truncateDecimals(segment.transitDuration / 60, 1);
           const prices = segment.indicativePrices;
           let priceLow = null;
@@ -279,6 +281,7 @@ class DetailsTable extends React.Component {
             priceLow = prices[0].priceLow;
             priceHigh = prices[0].priceHigh;
           }
+
           return createData(transport, transitDuration, priceLow, priceHigh, index);
         })
       } else {
