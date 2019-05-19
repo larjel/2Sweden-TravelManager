@@ -3,22 +3,29 @@ const serverAddress = 'localhost'
 const serverPort = 5000
 
 //----------------------------------------------------------------------------
-const getApiURL = (uri) => {
+const createApiURL = (uri) => {
     return 'http://' + serverAddress + ':' + serverPort + '/api/' + uri
+}
+
+//----------------------------------------------------------------------------
+const createMessage = (content) => {
+    return {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(content)
+    }
 }
 
 //----------------------------------------------------------------------------
 export const getAutocomplete = async (textToAutocomplete) => {
     // Sends a request to backend with POST-method.
-    let response = await fetch(getApiURL('getAutocomplete'), {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
+    let response = await fetch(createApiURL('getAutocomplete'),
+        createMessage({
             textToAutocomplete: textToAutocomplete
         })
-    })
+    )
     let data = await response.json()
     return data
 }
@@ -26,18 +33,14 @@ export const getAutocomplete = async (textToAutocomplete) => {
 //----------------------------------------------------------------------------
 export const getRoutes = async (fromPlace, toPlace, currencyCode = 'SEK') => {
     // Sends a request to backend with POST-method.
-    let response = await fetch(getApiURL('getSearchResults'), {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
+    let response = await fetch(createApiURL('getSearchResults'),
+        createMessage({
             fromPlace: fromPlace,
             toPlace: toPlace,
             currencyCode: currencyCode,
             languageCode: 'en'
         })
-    })
+    )
     let data = await response.json()
     return data
 }
