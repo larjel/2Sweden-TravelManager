@@ -16,6 +16,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 import { lighten } from '@material-ui/core/styles/colorManipulator';
 import "./Main.css";
 import { blue } from '@material-ui/core/colors';
+import * as utils from '../../utils/utils.js'
 
 const CustomTableCell = withStyles(theme => ({
   head: {
@@ -234,14 +235,6 @@ class EnhancedTable extends React.Component {
 
   isSelected = id => this.state.selected.indexOf(id) !== -1;
 
-  truncateDecimals = function (number, digits) {
-    var multiplier = Math.pow(10, digits),
-      adjustedNum = number * multiplier,
-      truncatedNum = Math[adjustedNum < 0 ? 'ceil' : 'floor'](adjustedNum);
-
-    return truncatedNum / multiplier;
-  };
-
   render() {
 
     let rows = null;
@@ -253,7 +246,7 @@ class EnhancedTable extends React.Component {
       const currencyCode = ' (' + searchResponse.currencyCode + ')';
 
       data = searchResponse.routes.map((route, i) => {
-        const totalDurationHours = this.truncateDecimals(route.totalDuration / 60, 1);
+        const totalDurationHours = utils.truncateDecimals(route.totalDuration / 60, 1);
         const prices = route.indicativePrices;
         let priceLow = null;
         let priceHigh = null;
@@ -288,64 +281,64 @@ class EnhancedTable extends React.Component {
 
     return (
       <div className="searchContainer">
-      <Paper className={classes.root}>
-        <EnhancedTableToolbar numSelected={selected.length} tableTitle={tableTitle} />
-        <div className={classes.tableWrapper} >
-          <Table className={classes.table} aria-labelledby="tableTitle">
-            <EnhancedTableHead
-              rows={rows}
-              numSelected={selected.length}
-              order={order}
-              orderBy={orderBy}
-              onRequestSort={this.handleRequestSort}
-              rowCount={data.length}
-            />
-            <TableBody>
-              {stableSort(data, getSorting(order, orderBy))
-                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map(n => {
-                  const isSelected = this.isSelected(n.id);
-                  return (
-                    <TableRow
-                      hover
-                      onClick={event => this.handleClick(event, n.id)}
-                      tabIndex={-1}
-                      key={n.id}
-                      selected={isSelected}
-                    >
-                      <TableCell>{n.route}</TableCell>
-                      <TableCell align="right">{n.duration}</TableCell>
-                      <TableCell align="right">{n.transferCount}</TableCell>
-                      <TableCell align="right">{n.lowestprice}</TableCell>
-                      <TableCell align="right">{n.highestprice}</TableCell>
-                    </TableRow>
-                  );
-                })}
-              {emptyRows > 0 && (
-                <TableRow style={{ height: 49 * emptyRows }}>
-                  <TableCell colSpan={6} />
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </div>
-        <TablePagination
-          className="tableBlue"
-          rowsPerPageOptions={[5, 10, 25]}
-          component="div"
-          count={data.length}
-          rowsPerPage={rowsPerPage}
-          page={page}
-          backIconButtonProps={{
-            'aria-label': 'Previous Page',
-          }}
-          nextIconButtonProps={{
-            'aria-label': 'Next Page',
-          }}
-          onChangePage={this.handleChangePage}
-          onChangeRowsPerPage={this.handleChangeRowsPerPage}
-        />
-      </Paper>
+        <Paper className={classes.root}>
+          <EnhancedTableToolbar numSelected={selected.length} tableTitle={tableTitle} />
+          <div className={classes.tableWrapper} >
+            <Table className={classes.table} aria-labelledby="tableTitle">
+              <EnhancedTableHead
+                rows={rows}
+                numSelected={selected.length}
+                order={order}
+                orderBy={orderBy}
+                onRequestSort={this.handleRequestSort}
+                rowCount={data.length}
+              />
+              <TableBody>
+                {stableSort(data, getSorting(order, orderBy))
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map(n => {
+                    const isSelected = this.isSelected(n.id);
+                    return (
+                      <TableRow
+                        hover
+                        onClick={event => this.handleClick(event, n.id)}
+                        tabIndex={-1}
+                        key={n.id}
+                        selected={isSelected}
+                      >
+                        <TableCell>{n.route}</TableCell>
+                        <TableCell align="right">{n.duration}</TableCell>
+                        <TableCell align="right">{n.transferCount}</TableCell>
+                        <TableCell align="right">{n.lowestprice}</TableCell>
+                        <TableCell align="right">{n.highestprice}</TableCell>
+                      </TableRow>
+                    );
+                  })}
+                {emptyRows > 0 && (
+                  <TableRow style={{ height: 49 * emptyRows }}>
+                    <TableCell colSpan={6} />
+                  </TableRow>
+                )}
+              </TableBody>
+            </Table>
+          </div>
+          <TablePagination
+            className="tableBlue"
+            rowsPerPageOptions={[5, 10, 25]}
+            component="div"
+            count={data.length}
+            rowsPerPage={rowsPerPage}
+            page={page}
+            backIconButtonProps={{
+              'aria-label': 'Previous Page',
+            }}
+            nextIconButtonProps={{
+              'aria-label': 'Next Page',
+            }}
+            onChangePage={this.handleChangePage}
+            onChangeRowsPerPage={this.handleChangeRowsPerPage}
+          />
+        </Paper>
       </div>
     );
   }
