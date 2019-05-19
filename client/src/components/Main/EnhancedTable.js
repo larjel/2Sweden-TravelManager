@@ -28,9 +28,9 @@ const CustomTableCell = withStyles(theme => ({
 }))(TableCell);
 
 let counter = 0;
-function createData(route, duration, lowestprice, highestprice) {
+function createData(route, duration, transferCount, lowestprice, highestprice) {
   counter += 1;
-  return { id: counter, route, duration, lowestprice, highestprice };
+  return { id: counter, route, duration, transferCount, lowestprice, highestprice };
 }
 
 function desc(a, b, orderBy) {
@@ -255,18 +255,23 @@ class EnhancedTable extends React.Component {
       data = searchResponse.routes.map((route, i) => {
         const totalDurationHours = this.truncateDecimals(route.totalDuration / 60, 1);
         const prices = route.indicativePrices;
-        let priceLow = 0;
-        let priceHigh = 0;
+        let priceLow = null;
+        let priceHigh = null;
+        let transferCount = null;
         if (Array.isArray(prices)) {
           priceLow = prices[0].priceLow;
           priceHigh = prices[0].priceHigh;
         }
-        return createData(route.name, totalDurationHours, priceLow, priceHigh);
+        if (Array.isArray(route.segments)) {
+          transferCount = route.segments.length;
+        }
+        return createData(route.name, totalDurationHours, transferCount, priceLow, priceHigh);
       })
 
       rows = [
         { id: 'route', numeric: false, disablePadding: false, label: 'Route' },
         { id: 'duration', numeric: true, disablePadding: false, label: 'Time (hours)' },
+        { id: 'transferCount', numeric: true, disablePadding: false, label: 'Transfers' },
         { id: 'lowestprice', numeric: true, disablePadding: false, label: 'Min Price' + currencyCode },
         { id: 'highestprice', numeric: true, disablePadding: false, label: 'Max Price' + currencyCode }
       ];
@@ -310,6 +315,7 @@ class EnhancedTable extends React.Component {
                     >
                       <TableCell>{n.route}</TableCell>
                       <TableCell align="right">{n.duration}</TableCell>
+                      <TableCell align="right">{n.transferCount}</TableCell>
                       <TableCell align="right">{n.lowestprice}</TableCell>
                       <TableCell align="right">{n.highestprice}</TableCell>
                     </TableRow>
@@ -317,7 +323,7 @@ class EnhancedTable extends React.Component {
                 })}
               {emptyRows > 0 && (
                 <TableRow style={{ height: 49 * emptyRows }}>
-                  <TableCell colSpan={5} />
+                  <TableCell colSpan={6} />
                 </TableRow>
               )}
             </TableBody>
