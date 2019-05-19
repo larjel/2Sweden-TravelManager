@@ -1,4 +1,5 @@
 
+//----------------------------------------------------------------------------
 export function convertMinutesToDayHourMin(minutes) {
     if (minutes) {
         let days = Math.floor(minutes / (24 * 60));
@@ -14,4 +15,50 @@ export function convertMinutesToDayHourMin(minutes) {
     } else {
         return 'Unknown';
     }
+}
+
+//----------------------------------------------------------------------------
+export function getDestinationList() {
+    const destinationOptions = [
+        { value: 'Stockholm, Sweden', label: 'Stockholm' },
+        { value: 'Falun, Sweden', label: 'Falun' },
+        { value: 'Are, Sweden', label: 'Åre' }
+    ];
+    return destinationOptions;
+}
+
+//----------------------------------------------------------------------------
+export function getOriginList() {
+    const originCities = [
+        'Athens, Greece',
+        'Beijing, China',
+        'Berlin, Germany',
+        'Buenos Aires, Argentina',
+        'Canberra, Australia',
+        'Copenhagen, Denmark',
+        'Helsinki, Finland',
+        'Rome, Italy',
+        'Sydney, Australia',
+        'Tokyo, Japan',
+        'Vienna, Austria',
+    ]
+
+    const originOptions = originCities.map(e => {
+        return { value: e, label: e }
+    })
+    return originOptions;
+}
+
+//----------------------------------------------------------------------------
+export function getCurrencyList() {
+    const currencies = [
+        'USD',
+        'SEK',
+        'EUR',
+    ]
+
+    const currencyOptions = currencies.map(e => {
+        return { value: e, label: e }
+    })
+    return currencyOptions;
 }
