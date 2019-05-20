@@ -11,7 +11,7 @@ class Header extends React.Component {
                 <img className="twitter2" src={twitter} alt="TwitterLogo"></img>
                 <h1 className="headerText">
                     WELCOME 2 SWEDEN
-                    <h4 className="underText">WINTER OLYMPIC GAMES 2024</h4>
+                <p className="underText">WINTER OLYMPIC GAMES 2024</p>
                 </h1>
             </header>
         )

@@ -184,12 +184,11 @@ DetailsTableToolbar = withStyles(toolbarStyles)(DetailsTableToolbar);
 //----------------------------------------------------------------------------
 const styles = theme => ({
   root: {
-    width: '60%',
     marginTop: theme.spacing.unit * 3,
   },
   table: {
     minWidth: 400,
-    maxWidth: 600,
+    maxWidth: 400,
   },
   tableWrapper: {
     overflowX: 'auto',

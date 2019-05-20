@@ -73,7 +73,7 @@ class EnhancedTableHead extends React.Component {
     const { rows, order, orderBy, numSelected, rowCount } = this.props;
 
     return (
-      <TableHead className="tableBlue">
+      <TableHead>
         <TableRow>
           {rows.map(
             row => (
@@ -121,6 +121,7 @@ EnhancedTableHead.propTypes = {
 const toolbarStyles = theme => ({
   root: {
     paddingRight: theme.spacing.unit,
+    // CHANGE THE TABLE HEAD COLOR
     backgroundColor: '#006699',
   },
   highlight:
@@ -184,12 +185,11 @@ EnhancedTableToolbar = withStyles(toolbarStyles)(EnhancedTableToolbar);
 //----------------------------------------------------------------------------
 const styles = theme => ({
   root: {
-    width: '60%',
     marginTop: theme.spacing.unit * 3,
   },
   table: {
     minWidth: 400,
-    maxWidth: 600,
+    maxWidth: 400,
   },
   tableWrapper: {
     overflowX: 'auto',
