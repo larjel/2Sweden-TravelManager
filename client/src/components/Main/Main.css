@@ -11,6 +11,10 @@
   width: 20%;
 }
 
+.currencyBox {
+  width: 9%;
+}
+
 .searchContainer {
   display: flex;
   justify-content: center;

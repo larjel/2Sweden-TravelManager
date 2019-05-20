@@ -10,6 +10,7 @@ class Sidebar extends React.Component {
     render() {
         return (
             <aside className="side">
+                <h5 className="sidebarHeader">Detailed Route</h5>
                 <DetailsTable className="resultTable"
                     searchResponse={this.props.searchResponse}
                     routeArrayIndex={this.props.routeArrayIndex}

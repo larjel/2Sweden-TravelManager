@@ -120,7 +120,6 @@ class Main extends React.Component {
     return (
       <main className="content">
         <h3 className="searchHeader">Choose desired travel route!</h3>
-        <div></div>
         <form className="formLayout" onSubmit={this.handleSearchSubmit}>
           <div className="searchContainer">
             <AsyncSelect
@@ -144,15 +143,15 @@ class Main extends React.Component {
               onChange={this.handleChangeSearch2}
               options={destinationOptions}
             />
-            <button type="submit" style={{ float: 'right' }}>Search</button>
             <Select
-              className="searchBox"
+              className="currencyBox"
               placeholder='Currency'
               isSearchable={false}
               value={this.state.currencyCode}
               onChange={this.handleCurrency}
               options={currencyOptions}
             />
+            <button type="submit" style={{ float: 'right' }}>Search</button>
           </div>
           <div className="inputFields">
             {/*

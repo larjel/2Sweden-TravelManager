@@ -2,3 +2,7 @@
     grid-area: sidebar;
     background: #006699;
   }
+
+  .sidebarHeader {
+    text-align: center;
+  }
