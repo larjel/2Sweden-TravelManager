@@ -34,7 +34,7 @@ class App extends Component {
     return (
       <div className='wrapper'>
         <Header />
-        <Navbar />
+    {/* <Navbar /> */}
         <Main routeDetails={this.routeDetails} />
         <Sidebar searchResponse={searchResponse} routeArrayIndex={routeArrayIndex} />
         <Footer />

@@ -5,6 +5,8 @@ import * as apiModule from '../../utils/api.js'
 import * as utils from '../../utils/utils.js'
 import Select from 'react-select';
 import AsyncSelect from 'react-select/lib/Async';
+import sthlm from './sthlmnight.jpg'
+
 
 class Main extends React.Component {
 
@@ -117,8 +119,19 @@ class Main extends React.Component {
     const originOptions = utils.getOriginList();
     const currencyOptions = utils.getCurrencyList();
 
+    var sectionStyle = {
+      width: "100%",
+      height: "700px",
+      backgroundImage: `url(${sthlm})`,
+      gridArea: "content",
+      color: "white",
+      padding: "10px"
+    };
+
+
+
     return (
-      <main className="content">
+      <main style={sectionStyle}>
         <h3 className="searchHeader">Choose desired travel route!</h3>
         <form className="formLayout" onSubmit={this.handleSearchSubmit}>
           <div className="searchContainer">

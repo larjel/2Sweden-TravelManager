@@ -3,20 +3,20 @@
 .main-footer {
     grid-area: footer;
     background: #006699;
-    /*
     position: fixed;
     left: 0;
     bottom: 0;
-    width: 100% */
+    width: 100%;
+    border-top: 6px solid #ffcc00;
   }
 
 .logo2 {
-    width: 10%;
+    width: 6%;
     float: right;
   }
 
   .twitter {
-    width: 10%;
+    width: 6%;
     float: left;
   }
 

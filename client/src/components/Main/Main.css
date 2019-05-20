@@ -3,8 +3,8 @@
 
 .content {
   grid-area: content;
-  background: #ffcc00;
-  
+ /* background: */
+ color: white;
 }
 
 .searchBox {

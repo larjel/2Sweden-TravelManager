@@ -1,7 +1,6 @@
 .main-nav {
     grid-area: nav;
     background: #ffcc00;
-    color: #006699;
     font-weight: bold;
     text-decoration: underline;
   }
