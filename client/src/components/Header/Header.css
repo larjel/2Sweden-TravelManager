@@ -28,7 +28,7 @@ header ul {
 .nav{
   float:right;
   color: #ffcc00;
-  margin-top: 120px;
+  margin-top: 127px;
 }
 
 .yellow {
@@ -66,7 +66,11 @@ header ul {
 @media (min-width: 1200px) {
   .headerText {
   font-size: 20px;
-
+  top: 10vh;  
+  left: -2vw;
+  }
+  .logo {
+    width: 10%;
   }
 }
 

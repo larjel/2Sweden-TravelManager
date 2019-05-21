@@ -52,7 +52,9 @@
 }
 
 @media (min-width: 1200px) {
-  
+  .searchHeader {
+    font-size: 30px;
+  }
 }
 
 @media (min-width: 1600px) {
