@@ -174,6 +174,7 @@ class Main extends React.Component {
           searchPath={this.state.searchPath}
           routeDetails={this.props.routeDetails}
         />
+        <EnhancedTable className="resultTable" searchResponse={this.state.searchResponse} searchPath={this.state.searchPath} />XXX
       </main>
     )
   }

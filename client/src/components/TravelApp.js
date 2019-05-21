@@ -8,6 +8,7 @@ class TravelApp extends React.Component {
         <input type="text" name="fromLocation" placeholder="From..." />
         <input type="text" name="toLocation" placeholder="To..." />
         <button style={{ margin: '0 0 0 20px' }}>Sök</button>
+        
     </form>
     </div>
         )
