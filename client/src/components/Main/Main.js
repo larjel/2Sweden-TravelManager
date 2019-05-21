@@ -125,7 +125,8 @@ class Main extends React.Component {
       backgroundImage: `url(${sthlm})`,
       gridArea: "content",
       color: "white",
-      padding: "20px"
+      padding: "20px",
+      borderBottom: "2px solid black",
     };
 
 

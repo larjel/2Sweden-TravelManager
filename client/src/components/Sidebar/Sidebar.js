@@ -1,6 +1,7 @@
 import React from 'react'
 import "./Sidebar.css"
 import DetailsTable from './DetailsTable';
+/*import sthlm2 from './sthlmnight2.jpg'*/
 
 class Sidebar extends React.Component {
     constructor(props) {
@@ -8,9 +9,19 @@ class Sidebar extends React.Component {
     }
 
     render() {
+        var sectionStyle = {
+            width: "100%",
+         /*   height: "700px",  */
+           /* backgroundImage: `url(${sthlm2})`,*/
+            gridArea: "content",
+            color: "white",
+            padding: "20px",
+            gridArea: "sidebar",
+            borderLeft: "2px ridge black",
+          };
+      
         return (
-            <aside className="side">
-                <h5 className="sidebarHeader">Detailed Route</h5>
+            <aside style={sectionStyle}>
                 <DetailsTable className="resultTable"
                     searchResponse={this.props.searchResponse}
                     routeArrayIndex={this.props.routeArrayIndex}

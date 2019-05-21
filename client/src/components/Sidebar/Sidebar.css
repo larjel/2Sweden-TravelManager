@@ -1,9 +1,3 @@
 .side {
     grid-area: sidebar;
-    border-left: 2px ridge black;
-    background-color: #006699;
-  }
-
-  .sidebarHeader {
-    text-align: center;
   }

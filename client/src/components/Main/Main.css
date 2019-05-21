@@ -3,21 +3,22 @@
 
 .content {
   grid-area: content;
- /* background: */
 }
 
 .searchBox {
   width: 15%;
+  color: black;
 }
 
 .currencyBox {
   width: 7%;
+  color: black;
 }
 
 .searchContainer {
   display: flex;
   justify-content: center;
-  
+  margin: 15px;
 }
 
 .searchHeader {
@@ -31,12 +32,13 @@
 }
 
 .tableHead {
-  background-color: #ffcc00;
+  background-color:#1F427C;
+  opacity: 0.9;
   color: black;
 }
 
 .tableBlue {
-  background-color: #006699;
+  background-image: linear-gradient(to right top, #293f71, #233667, #1d2e5d, #162654, #101e4a);  color: black;
 }
 
 .textCenter {

@@ -3,9 +3,10 @@
 .main-footer {
     grid-area: footer;
     background: #006699;
-    position: fixed;
+    position: sticky;
     left: 0;
     bottom: 0;
+    margin: 0;
     width: 100%;
     border-top: 5px solid #ffcc00;
   }
