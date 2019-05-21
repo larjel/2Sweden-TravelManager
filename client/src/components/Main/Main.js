@@ -125,14 +125,14 @@ class Main extends React.Component {
       backgroundImage: `url(${sthlm})`,
       gridArea: "content",
       color: "white",
-      padding: "10px"
+      padding: "20px"
     };
 
 
 
     return (
       <main style={sectionStyle}>
-        <h3 className="searchHeader">Choose desired travel route!</h3>
+        <h3 className="searchHeader">Choose desired travel route</h3>
         <form className="formLayout" onSubmit={this.handleSearchSubmit}>
           <div className="searchContainer">
             <AsyncSelect

@@ -4,20 +4,20 @@
 .content {
   grid-area: content;
  /* background: */
- color: white;
 }
 
 .searchBox {
-  width: 20%;
+  width: 15%;
 }
 
 .currencyBox {
-  width: 9%;
+  width: 7%;
 }
 
 .searchContainer {
   display: flex;
   justify-content: center;
+  
 }
 
 .searchHeader {

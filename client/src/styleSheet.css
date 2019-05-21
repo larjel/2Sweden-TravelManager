@@ -88,8 +88,9 @@ input[type="date"] {
     grid-template-columns: 1fr 4fr 1fr;
     grid-template-areas: 
     "header header header"
-    "content content sidebar"
-    "content content sidebar"
+    "content content content"
+    "content content content"
+    "sidebar sidebar sidebar"
     "footer footer footer"
   }
 
@@ -100,8 +101,9 @@ input[type="date"] {
     grid-template-columns: 1fr 4fr 1fr;
     grid-template-areas: 
     "header header header"
-    "content content sidebar"
-    "content content sidebar"
+    "content content content"
+    "content content content"
+    "sidebar sidebar sidebar"
     "footer footer footer"
   }
 
