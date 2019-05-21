@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 //import { withGoogleMap, GoogleMap } from 'react-google-maps';
 import { withScriptjs, withGoogleMap, GoogleMap } from 'react-google-maps';
-//<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCbCiMpKPJa_nv-puVQPvt05k1bFQMkU_0"></script>
+//<script src="https://maps.googleapis.com/maps/api/js?key="></script>
 
 class Map extends Component {
 
@@ -9,8 +9,8 @@ class Map extends Component {
   render() {
     const GoogleMapExample = withGoogleMap(props => (
       <GoogleMap
-        // googleMapURL={"https://maps.googleapis.com/maps/api/js?key=AIzaSyCbCiMpKPJa_nv-puVQPvt05k1bFQMkU_0"}
-       defaultCenter={{ lat: 59.33258, lng: 18.0649 }}
+        // googleMapURL={"https://maps.googleapis.com/maps/api/js?key="}
+        defaultCenter={{ lat: 59.33258, lng: 18.0649 }}
         defaultZoom={13}
       >
       </GoogleMap>
