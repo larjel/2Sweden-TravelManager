@@ -13,7 +13,6 @@ class App extends Component {
     this.state = {
       searchResponse: {},
       routeDetailsArrIdx: -1,
-      searchPath: null,
       errorMsg: null
     }
   }
@@ -43,9 +42,9 @@ class App extends Component {
       <div className='wrapper'>
 
         <Header />
-        <Main setRouteDetailsArrIdx={this.setRouteDetailsArrIdx} setSearchResponse={this.setSearchResponse} />
+        <Main searchResponse={searchResponse} setSearchResponse={this.setSearchResponse} setRouteDetailsArrIdx={this.setRouteDetailsArrIdx} />
         <Sidebar searchResponse={searchResponse} routeDetailsArrIdx={routeDetailsArrIdx} />
-        <MapContainer />
+        <MapContainer searchResponse={searchResponse} />
         <Footer />
 
       </div>
