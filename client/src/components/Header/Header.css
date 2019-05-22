@@ -2,24 +2,42 @@
 @import url('https://fonts.googleapis.com/css?family=Lato');
 
 .main-head {
-    grid-area: header;
-    background: #006699;
-    text-align: center;
+  grid-area: header;
+  background: #006699;
+  text-align: center;
+  border-bottom: 5px solid #ffcc00;
 }
+
+header .highlight, header .current a{
+  color:#e8491d;
+  font-weight:bold;
+}
+
+header ul {
+  margin: 0;
+  padding: 0;
+}
+
+.li {
+  display: inline;
+  color: #ffcc00;
+  padding: 0 10px 0 10px;
   
+}
+
+.nav{
+  float:right;
+  color: #ffcc00;
+  margin-top: 127px;
+}
+
+.yellow {
+  color: black;
+}
+
 .logo {
-  width: 10%;
+  width: 7%;
   float: left;
-}
-
-.twitter2 {
-  width: 10%;
-  float: right;
-  opacity: 0;
-}
-
-.div {
-
 }
 
 .headerText {
@@ -28,33 +46,38 @@
   position: relative;
   font-size: 20px;
   font-weight: 600;
-  text-shadow:  3.5px 3.5px 0 rgb(0, 0, 0);
+  text-shadow:  2px 2px 0 rgb(0, 0, 0);
   letter-spacing: 2px;
+  float: left;
+  padding: 50px;
 }
 
-.olympicRings {
-  width: 20%;
-}
 
-
-@media (min-width: 500px) {
+@media (min-width: 300px) {
   .headerText {
-    font-size: 23px;
+    font-size: 25px;
     top: 1.5vh;
   } 
+  .underText {
+    font-size: 15px;
+  }
 }
 
 @media (min-width: 1200px) {
   .headerText {
-  font-size: 35px;
-
+  font-size: 20px;
+  top: 10vh;  
+  left: -2vw;
+  }
+  .logo {
+    width: 10%;
   }
 }
 
 @media (min-width: 1600px) {
   .headerText {
     top: 6vh;
-    font-size: 45px;
+    font-size: 25px;
   }
   .underText {
     font-size: 18px;

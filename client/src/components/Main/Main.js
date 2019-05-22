@@ -5,6 +5,8 @@ import * as apiModule from '../../utils/api.js'
 import * as utils from '../../utils/utils.js'
 import Select from 'react-select';
 import AsyncSelect from 'react-select/lib/Async';
+import sthlm from './sthlmnight.jpg'
+
 
 class Main extends React.Component {
 
@@ -117,10 +119,21 @@ class Main extends React.Component {
     const originOptions = utils.getOriginList();
     const currencyOptions = utils.getCurrencyList();
 
+    var sectionStyle = {
+      width: "100%",
+      height: "700px",
+      backgroundImage: `url(${sthlm})`,
+      gridArea: "content",
+      color: "white",
+      padding: "20px",
+      borderBottom: "2px solid black",
+    };
+
+
+
     return (
-      <main className="content">
-        <h3 className="searchHeader">Choose desired travel route!</h3>
-        <div></div>
+      <main style={sectionStyle}>
+        <h3 className="searchHeader">Choose desired travel route</h3>
         <form className="formLayout" onSubmit={this.handleSearchSubmit}>
           <div className="searchContainer">
             <AsyncSelect
@@ -144,15 +157,15 @@ class Main extends React.Component {
               onChange={this.handleChangeSearch2}
               options={destinationOptions}
             />
-            <button type="submit" style={{ float: 'right' }}>Search</button>
             <Select
-              className="searchBox"
+              className="currencyBox"
               placeholder='Currency'
               isSearchable={false}
               value={this.state.currencyCode}
               onChange={this.handleCurrency}
               options={currencyOptions}
             />
+            <button type="submit" style={{ float: 'right' }}>Search</button>
           </div>
           <div className="inputFields">
             {/*

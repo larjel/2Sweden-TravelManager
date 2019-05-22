@@ -122,8 +122,7 @@ const toolbarStyles = theme => ({
   root: {
     paddingRight: theme.spacing.unit,
     // CHANGE THE TABLE HEAD COLOR
-    backgroundColor: '#006699',
-  },
+    backgroundImage: "linear-gradient(to right top, #315a9d, #295294, #204a8b, #174382, #0b3b79)"  },
   highlight:
     theme.palette.type === 'light'
       ? {
@@ -190,6 +189,7 @@ const styles = theme => ({
   table: {
     minWidth: 400,
     maxWidth: 400,
+    margin: 'auto', 
   },
   tableWrapper: {
     overflowX: 'auto',

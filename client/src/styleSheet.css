@@ -2,10 +2,6 @@
   box-sizing: border-box;
 }
 
-.app {
-  background-color: #ffcc00;
-}
-
 .inputFields {
   padding: 10px;
   width: 100%;
@@ -58,21 +54,11 @@ input[type="date"] {
 }
 
 .wrapper>* {
-  border: 2px solid black;
   padding: 5px;
-}
-
-nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: space-between;
 }
 
 .wrapper {
   display: grid;
-  grid-gap: 5px;
   grid-template-areas: 
   "header"
   "nav"
@@ -86,7 +72,6 @@ nav ul {
     grid-template-columns: 1fr 3fr;
     grid-template-areas: 
     "header  header"
-    "nav     nav" 
     "content content"
     "sidebar sidebar" 
     "footer  footer";
@@ -99,9 +84,9 @@ nav ul {
     grid-template-columns: 1fr 4fr 1fr;
     grid-template-areas: 
     "header header header"
-    "nav nav nav"
-    "content content sidebar"
-    "content content sidebar"
+    "content content content"
+    "content content content"
+    "sidebar sidebar sidebar"
     "footer footer footer"
   }
 
@@ -112,9 +97,9 @@ nav ul {
     grid-template-columns: 1fr 4fr 1fr;
     grid-template-areas: 
     "header header header"
-    "nav nav nav"
-    "content content sidebar"
-    "content content sidebar"
+    "content content content"
+    "content content content"
+    "sidebar sidebar sidebar"
     "footer footer footer"
   }
 
