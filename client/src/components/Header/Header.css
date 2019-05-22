@@ -6,6 +6,7 @@
   background: #006699;
   text-align: center;
   border-bottom: 5px solid #ffcc00;
+  height: 100px;
 }
 
 header .highlight, header .current a{
@@ -28,7 +29,8 @@ header ul {
 .nav{
   float:right;
   color: #ffcc00;
-  margin-top: 127px;
+  margin-top: 67px;
+  margin-right: 10px;
 }
 
 .yellow {
@@ -49,13 +51,14 @@ header ul {
   text-shadow:  2px 2px 0 rgb(0, 0, 0);
   letter-spacing: 2px;
   float: left;
-  padding: 50px;
+  margin-left: 50px;
+  margin-top: -5px;
 }
 
 
 @media (min-width: 300px) {
   .headerText {
-    font-size: 25px;
+    font-size: 20px;
     top: 1.5vh;
   } 
   .underText {
@@ -70,7 +73,7 @@ header ul {
   left: -2vw;
   }
   .logo {
-    width: 10%;
+    width: 6.5%;
   }
 }
 

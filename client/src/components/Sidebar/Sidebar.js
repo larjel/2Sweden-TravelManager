@@ -1,7 +1,7 @@
 import React from 'react'
 import "./Sidebar.css"
 import DetailsTable from './DetailsTable';
-/*import sthlm2 from './sthlmnight2.jpg'*/
+import 'font-awesome/css/font-awesome.min.css';
 
 class Sidebar extends React.Component {
     constructor(props) {
@@ -22,10 +22,15 @@ class Sidebar extends React.Component {
       
         return (
             <aside style={sectionStyle}>
+                <i className="fab fa-react"></i>
+                <div className="wrapper">
+                <i className="fab fa-react"></i>
                 <DetailsTable className="resultTable"
                     searchResponse={this.props.searchResponse}
                     routeArrayIndex={this.props.routeArrayIndex}
                 />
+                <div className="push"></div>
+                </div>
             </aside>
         )
     }

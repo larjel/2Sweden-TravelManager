@@ -55,6 +55,12 @@
   .searchHeader {
     font-size: 30px;
   }
+  .searchBox {
+    width: 18%;
+  }
+  .currencyBox {
+    width: 10%;
+  }
 }
 
 @media (min-width: 1600px) {
