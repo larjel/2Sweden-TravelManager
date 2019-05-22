@@ -64,6 +64,9 @@ export function getCurrencyList() {
         'USD',
         'SEK',
         'EUR',
+        'NOK',
+        'GPD',
+        'DKK'
     ]
 
     const currencyOptions = currencies.map(e => {
