@@ -12,33 +12,40 @@ class App extends Component {
     super(props)
     this.state = {
       searchResponse: {},
-      routeArrayIndex: -1,
+      routeDetailsArrIdx: -1,
       searchPath: null,
       errorMsg: null
     }
   }
 
   //----------------------------------------------------------------------------
-  routeDetails = (searchResponse, routeArrayIndex) => {
-    console.log('Route details set, Array index: ', routeArrayIndex);
+  setSearchResponse = (searchResponse) => {
+    console.log('App: Search response set');
     this.setState({
-      searchResponse: searchResponse,
-      routeArrayIndex: routeArrayIndex
+      searchResponse: searchResponse
+    });
+  }
+
+  //----------------------------------------------------------------------------
+  setRouteDetailsArrIdx = (routeDetailsArrIdx) => {
+    console.log('App: Route details set, Array index: ', routeDetailsArrIdx);
+    this.setState({
+      routeDetailsArrIdx: routeDetailsArrIdx
     });
   }
 
   //----------------------------------------------------------------------------
   render() {
     const searchResponse = this.state.searchResponse;
-    const routeArrayIndex = this.state.routeArrayIndex;
+    const routeDetailsArrIdx = this.state.routeDetailsArrIdx;
 
     return (
       <div className='wrapper'>
 
         <Header />
-        <Main routeDetails={this.routeDetails} />
-        <Sidebar searchResponse={searchResponse} routeArrayIndex={routeArrayIndex} />
- 		<MapContainer />
+        <Main setRouteDetailsArrIdx={this.setRouteDetailsArrIdx} setSearchResponse={this.setSearchResponse} />
+        <Sidebar searchResponse={searchResponse} routeDetailsArrIdx={routeDetailsArrIdx} />
+        <MapContainer />
         <Footer />
 
       </div>

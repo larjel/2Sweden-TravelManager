@@ -95,7 +95,8 @@ const toolbarStyles = theme => ({
   root: {
     paddingRight: theme.spacing.unit,
     // CHANGE THE TABLE HEAD COLOR
-    backgroundImage: "linear-gradient(to right top, #315a9d, #295294, #204a8b, #174382, #0b3b79)"  },
+    backgroundImage: "linear-gradient(to right top, #315a9d, #295294, #204a8b, #174382, #0b3b79)"
+  },
   highlight:
     theme.palette.type === 'light'
       ? {
@@ -162,7 +163,7 @@ const styles = theme => ({
   table: {
     minWidth: 400,
     maxWidth: 400,
-    margin: 'auto', 
+    margin: 'auto',
   },
   tableWrapper: {
     overflowX: 'auto',
@@ -206,7 +207,7 @@ class EnhancedTable extends React.Component {
       console.log('data is Array');
       const clickedRow = data.find(n => n.id == id);
       console.log('clickedRow: ', clickedRow);
-      this.props.routeDetails(this.props.searchResponse, clickedRow.routeArrayIndex);
+      this.props.setRouteDetailsArrIdx(clickedRow.routeArrayIndex);
     }
   };
 

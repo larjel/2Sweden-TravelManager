@@ -11,20 +11,20 @@ class Sidebar extends React.Component {
     render() {
         var sectionStyle = {
             width: "100%",
-         /*   height: "700px",  */
-           /* backgroundImage: `url(${sthlm2})`,*/
+            /*   height: "700px",  */
+            /* backgroundImage: `url(${sthlm2})`,*/
             gridArea: "content",
             color: "white",
             padding: "20px",
             gridArea: "sidebar",
             borderLeft: "2px ridge black",
-          };
-      
+        };
+
         return (
             <aside style={sectionStyle}>
                 <DetailsTable className="resultTable"
                     searchResponse={this.props.searchResponse}
-                    routeArrayIndex={this.props.routeArrayIndex}
+                    routeDetailsArrIdx={this.props.routeDetailsArrIdx}
                 />
             </aside>
         )

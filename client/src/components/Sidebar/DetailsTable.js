@@ -232,9 +232,9 @@ class DetailsTable extends React.Component {
     let data = null;
     let tableTitle = null;
     const searchResponse = this.props.searchResponse;
-    const routeArrayIndex = this.props.routeArrayIndex;
-    if (searchResponse && Array.isArray(searchResponse.routes)
-      && searchResponse.routes.length > 0 && routeArrayIndex >= 0) {
+    const routeArrayIndex = this.props.routeDetailsArrIdx;
+    if (routeArrayIndex >= 0 && searchResponse && Array.isArray(searchResponse.routes)
+      && searchResponse.routes.length > 0) {
 
       const detailedRoute = searchResponse.routes[routeArrayIndex];
 
