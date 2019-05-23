@@ -26,7 +26,7 @@ class Sidebar extends React.Component {
                 <i className="fab fa-react"></i>
                 <DetailsTable className="resultTable"
                     searchResponse={this.props.searchResponse}
-                    routeArrayIndex={this.props.routeArrayIndex}
+                    routeDetailsArrIdx={this.props.routeDetailsArrIdx}
                 />
                 <MapContainer/>
                 <div className="push"></div>
