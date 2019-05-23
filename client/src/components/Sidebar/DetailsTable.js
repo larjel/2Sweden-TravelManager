@@ -96,7 +96,7 @@ DetailsTableHead.propTypes = {
 const toolbarStyles = theme => ({
   root: {
     paddingRight: theme.spacing.unit,
-    backgroundColor: '#006699',
+    backgroundImage: "linear-gradient(to right top, #315a9d, #295294, #204a8b, #174382, #0b3b79)"
   },
   highlight:
     theme.palette.type === 'light'
