@@ -1,7 +1,9 @@
 import React from 'react'
 import "./Sidebar.css"
 import DetailsTable from './DetailsTable';
-import 'font-awesome/css/font-awesome.min.css';
+import Map from '../Map/Map';
+import { MapContainer } from '../Map/MapContainer';
+
 
 class Sidebar extends React.Component {
     constructor(props) {
@@ -11,13 +13,10 @@ class Sidebar extends React.Component {
     render() {
         var sectionStyle = {
             width: "100%",
-         /*   height: "700px",  */
-           /* backgroundImage: `url(${sthlm2})`,*/
             gridArea: "content",
             color: "white",
             padding: "20px",
             gridArea: "sidebar",
-            borderLeft: "2px ridge black",
           };
       
         return (
@@ -29,6 +28,7 @@ class Sidebar extends React.Component {
                     searchResponse={this.props.searchResponse}
                     routeArrayIndex={this.props.routeArrayIndex}
                 />
+                <MapContainer/>
                 <div className="push"></div>
                 </div>
             </aside>

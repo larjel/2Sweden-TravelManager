@@ -73,11 +73,13 @@ class DetailsTableHead extends React.Component {
     const { rows, order, orderBy, numSelected, rowCount } = this.props;
 
     return (
+      // Change Colour on table
       <TableHead className="tableBlue">
         <TableRow>
           {rows.map(
             row => (
               <TableCell
+              // Change Colour on table
                 className="tableHead"
                 key={row.id}
                 align={row.numeric ? 'right' : 'left'}

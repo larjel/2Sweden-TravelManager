@@ -4,20 +4,21 @@
     grid-area: footer;
     background: #006699;
     left: 0;
-    bottom: 0;
+    bottom: 0px;
     margin: 0;
     width: 100%;
     border-top: 5px solid #ffcc00;
     height: 100px;
+    margin-bottom: 0px;
   }
 
 .logo2 {
-    width: 6%;
+    width: 4.5%;
     float: right;
   }
 
   .twitter {
-    width: 6%;
+    width: 4.5%;
     float: left;
   }
 
@@ -29,7 +30,8 @@
   font-variant: small-caps;
   letter-spacing: 1.5px;
   font-size: 5px;
-  top: 3vh;
+  margin-top: 40px;
+
  
 }
 
@@ -43,18 +45,21 @@
 @media (min-width: 1200px) {
   .footerText {
     font-size: 13px;
-    top: 8vh;
   }
 
 }
 
 @media (min-width: 1600px) {
   .footerText {
-    top: 8vh;
     letter-spacing: 3px;
-    font-size: 15px;
-    
-   
+  }
+
+  .logo2 {
+    width: 4.5%;
+  }
+  
+  .twitter {
+    width: 4.5%;
   }
 
 }

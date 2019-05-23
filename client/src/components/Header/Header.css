@@ -38,7 +38,7 @@ header ul {
 }
 
 .logo {
-  width: 7%;
+  width: 4.5%;
   float: left;
 }
 
@@ -52,7 +52,7 @@ header ul {
   letter-spacing: 2px;
   float: left;
   margin-left: 50px;
-  margin-top: -5px;
+  margin-top: -4px;
 }
 
 
@@ -82,8 +82,9 @@ header ul {
     top: 6vh;
     font-size: 25px;
   }
-  .underText {
-    font-size: 18px;
+
+  .logo {
+    width: 4.5%;
   }
 
 }
