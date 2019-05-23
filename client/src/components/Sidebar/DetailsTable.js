@@ -31,9 +31,9 @@ const CustomTableCell = withStyles(theme => ({
 
 //----------------------------------------------------------------------------
 let counter = 0;
-function createData(transport, duration, lowestprice, highestprice, routeArrayIndex) {
+function createData(transport, departure, arrival, duration, lowestprice, highestprice, routeArrayIndex) {
   counter += 1;
-  return { id: counter, transport, duration, lowestprice, highestprice, routeArrayIndex };
+  return { id: counter, transport, departure, arrival, duration, lowestprice, highestprice, routeArrayIndex };
 }
 
 //----------------------------------------------------------------------------
@@ -52,7 +52,7 @@ class DetailsTableHead extends React.Component {
           {rows.map(
             row => (
               <TableCell
-              // Change Colour on table
+                // Change Colour on table
                 className="tableHead"
                 key={row.id}
                 align={row.numeric ? 'right' : 'left'}
@@ -246,17 +246,29 @@ class DetailsTable extends React.Component {
 
       if (Array.isArray(detailedRoute.segments)) {
         data = detailedRoute.segments.map((segment, index) => {
-          const transport = vehicles ? vehicles[segment.vehicle].name : segment.segmentKind;
+          let transport = vehicles ? vehicles[segment.vehicle].name : segment.segmentKind;
           const transitDuration = utils.truncateDecimals(segment.transitDuration / 60, 1);
           const prices = segment.indicativePrices;
           let priceLow = null;
           let priceHigh = null;
+          let departure = '';
+          let arrival = '';
           if (Array.isArray(prices)) {
             priceLow = prices[0].priceLow;
             priceHigh = prices[0].priceHigh;
           }
 
-          return createData(transport, transitDuration, priceLow, priceHigh, index);
+          if (Array.isArray(searchResponse.places) && searchResponse.places.length > 0) {
+            const depPlaceIdx = segment.depPlace;
+            const arrPlaceIdx = segment.arrPlace;
+
+            const code = searchResponse.places[depPlaceIdx].code ? ', ' + searchResponse.places[depPlaceIdx].code : '';
+
+            departure = searchResponse.places[depPlaceIdx].shortName + code;
+            arrival = searchResponse.places[arrPlaceIdx].shortName + code;
+          }
+
+          return createData(transport, departure, arrival, transitDuration, priceLow, priceHigh, index);
         })
       } else {
         return (null);
@@ -264,6 +276,8 @@ class DetailsTable extends React.Component {
 
       rows = [
         { id: 'transport', numeric: false, disablePadding: false, label: 'Transport' },
+        { id: 'departure', numeric: false, disablePadding: false, label: 'Departing' },
+        { id: 'arrival', numeric: false, disablePadding: false, label: 'Arriving' },
         { id: 'duration', numeric: true, disablePadding: false, label: 'Time (hours)' },
         { id: 'lowestprice', numeric: true, disablePadding: false, label: 'Min Price' + currencyCode },
         { id: 'highestprice', numeric: true, disablePadding: false, label: 'Max Price' + currencyCode },
@@ -308,6 +322,8 @@ class DetailsTable extends React.Component {
                         selected={isSelected}
                       >
                         <TableCell>{n.transport}</TableCell>
+                        <TableCell>{n.departure}</TableCell>
+                        <TableCell>{n.arrival}</TableCell>
                         <TableCell align="right">{n.duration}</TableCell>
                         <TableCell align="right">{n.lowestprice}</TableCell>
                         <TableCell align="right" >{n.highestprice}</TableCell>
@@ -317,7 +333,7 @@ class DetailsTable extends React.Component {
                   })}
                 {emptyRows > 0 && (
                   <TableRow style={{ height: 49 * emptyRows }}>
-                    <TableCell colSpan={6} />
+                    <TableCell colSpan={8} />
                   </TableRow>
                 )}
               </TableBody>
