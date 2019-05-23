@@ -17,6 +17,7 @@ import { lighten } from '@material-ui/core/styles/colorManipulator';
 import "./Main.css";
 import { blue } from '@material-ui/core/colors';
 import * as utils from '../../utils/utils.js'
+import { Link, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
 //----------------------------------------------------------------------------
 const CustomTableCell = withStyles(theme => ({
@@ -202,6 +203,8 @@ class EnhancedTable extends React.Component {
     console.log('ROW CLICKED!!!');
     console.log('Data: ', data);
     console.log('ID: ', id);
+
+    scroll.scrollTo(300);
 
     if (Array.isArray(data)) {
       console.log('data is Array');

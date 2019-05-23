@@ -26,8 +26,13 @@ header ul {
   padding: 0 10px 0 10px;
 }
 
-.navbar {
+.myNavbar {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
   justify-content: flex-end;
+  padding: .5rem 1rem;
   margin-top: 30px;
   /*
   float: right;
@@ -61,7 +66,7 @@ header ul {
   margin-top: -3px;
 }
 
-.navbar a:hover {
+.myNavbar a:hover {
   color: #ffcc00;
   text-decoration: none;
 }
@@ -112,13 +117,13 @@ header ul {
 }
 
 @media (max-width: 1010px) {
-  .navbar {
+  .myNavbar {
     margin-top: 5px;
   }
 }
 
 @media (min-width: 1200px) and (max-width: 1599px) {
-  .navbar {
+  .myNavbar {
     margin-top: 54px;
   }
   .headerText {
@@ -134,7 +139,7 @@ header ul {
 }
 
 @media (min-width: 1600px) {
-  .navbar {
+  .myNavbar {
     margin-top: 54px;
   }
   .headerText {

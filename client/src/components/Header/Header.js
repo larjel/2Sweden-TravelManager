@@ -13,7 +13,7 @@ class Header extends React.Component {
                 <h1 className="headerText">
                     WINTER OLYMPIC GAMES 2024
                 </h1>
-                <nav className="navbar">
+                <nav className="myNavbar">
                     <ul className="ul">
                         <li className="current li" ><a className="active" href="#"><GoHome /> Home</a></li>
                         <li className="li" ><a href="#"><GoSearch /> New trip</a></li>
