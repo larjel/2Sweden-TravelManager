@@ -3,8 +3,6 @@ import Header from './components/Header/Header'
 import Main from './components/Main/Main'
 import Sidebar from './components/Sidebar/Sidebar'
 import Footer from './components/Footer/Footer'
-import Map from './components/Map/Map'
-import { MapContainer } from './components/Map/MapContainer'
 
 //------------------------------------------------------------------------------
 class App extends Component {
@@ -43,7 +41,6 @@ class App extends Component {
         <Header />
         <Main searchResponse={searchResponse} setSearchResponse={this.setSearchResponse} setRouteDetailsArrIdx={this.setRouteDetailsArrIdx} />
         <Sidebar searchResponse={searchResponse} routeDetailsArrIdx={routeDetailsArrIdx} />
-        <MapContainer searchResponse={searchResponse} />
         <Footer />
       </div>
     )
