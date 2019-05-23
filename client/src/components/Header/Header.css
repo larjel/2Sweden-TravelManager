@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 @import url('https://fonts.googleapis.com/css?family=Lato');
-
 .main-head {
   grid-area: header;
   background-color: #006699;
@@ -9,7 +8,7 @@
   height: 100px;
 }
 
-header .highlight, header .current a, .li a{
+header .highlight, header .current a, .li a {
   color: azure;
   text-decoration: none;
 }
@@ -19,25 +18,25 @@ header ul {
   float: right;
   margin: 0;
   padding: 0;
-  
 }
 
 .li {
   display: inline;
   color: #ffcc00;
   padding: 0 10px 0 10px;
-  
 }
 
-.navbar{
-  float:right;
+.navbar {
+  justify-content: flex-end;
+  margin-top: 30px;
+  /*
+  float: right;
   background-color: #006699;
   color: #ffcc00;
-  margin-top: 57px;
   margin-right: 2px;
   margin-bottom: 0;
   position: absolute;
-  
+  */
 }
 
 .yellow {
@@ -55,7 +54,7 @@ header ul {
   position: relative;
   font-size: 20px;
   font-weight: 600;
-  text-shadow:  2px 2px 0 rgb(0, 0, 0);
+  text-shadow: 2px 2px 0 rgb(0, 0, 0);
   letter-spacing: 2px;
   float: left;
   margin-left: 50px;
@@ -67,13 +66,12 @@ header ul {
   text-decoration: none;
 }
 
-
 @media (min-width: 300px) and (max-width: 399px) {
   .headerText {
     font-size: 15px;
     margin-top: -40px;
     left: 15px;
-  } 
+  }
   .main-head {
     height: 75px;
     border-bottom: 3px solid #ffcc00;
@@ -88,7 +86,7 @@ header ul {
     font-size: 17px;
     margin-top: 42px;
     margin-left: 10px;
-  } 
+  }
   .main-head {
     height: 75px;
     border-bottom: 4px solid #ffcc00;
@@ -103,7 +101,7 @@ header ul {
     font-size: 17px;
     margin-top: 42px;
     margin-left: 10px;
-  } 
+  }
   .main-head {
     height: 75px;
     border-bottom: 4px solid #ffcc00;
@@ -113,10 +111,19 @@ header ul {
   }
 }
 
-@media (min-width: 1200px)and (max-width: 1599px)  {
+@media (max-width: 1010px) {
+  .navbar {
+    margin-top: 5px;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1599px) {
+  .navbar {
+    margin-top: 54px;
+  }
   .headerText {
-  font-size: 20px;
-  margin-top: 61px;
+    font-size: 20px;
+    margin-top: 61px;
   }
   .logo {
     width: 6.5%;
@@ -127,11 +134,13 @@ header ul {
 }
 
 @media (min-width: 1600px) {
+  .navbar {
+    margin-top: 54px;
+  }
   .headerText {
     margin-top: 61px;
     font-size: 20px;
   }
-
   .logo {
     width: 4.5%;
   }
