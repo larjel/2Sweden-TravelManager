@@ -44,10 +44,29 @@
 .textCenter {
   text-align: center;
 }
-
 @media (min-width: 300px) {
   .searchHeader {
     font-size: 20px
+  }
+  .searchBox {
+    width: 50%;
+  }
+  .currencyBox {
+    width: 50%;
+  }
+}
+
+
+
+@media (min-width: 400px) {
+  .searchHeader {
+    font-size: 20px
+  }
+  .searchBox {
+    width: 30%;
+  }
+  .currencyBox {
+    width: 25%;
   }
 }
 
@@ -55,11 +74,16 @@
   .searchHeader {
     font-size: 30px;
   }
+  .searchBox {
+    width: 15%;
+  }
+  .currencyBox {
+    width: 8%;
+  }
 }
 
 @media (min-width: 1600px) {
   .searchHeader {
     font-size: 30px
   }
-
 }
