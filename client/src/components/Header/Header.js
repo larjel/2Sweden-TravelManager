@@ -22,8 +22,7 @@ class Header extends React.Component {
                         <li className="li" ><a href="#news"><GoThumbsup /> Recommendations</a></li>
                   </ul>  
 
-            </nav>
-                
+                </nav>
             </header>
         )
     }

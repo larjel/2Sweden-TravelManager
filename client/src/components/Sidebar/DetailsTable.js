@@ -37,33 +37,6 @@ function createData(transport, duration, lowestprice, highestprice, routeArrayIn
 }
 
 //----------------------------------------------------------------------------
-function desc(a, b, orderBy) {
-  if (b[orderBy] < a[orderBy]) {
-    return -1;
-  }
-  if (b[orderBy] > a[orderBy]) {
-    return 1;
-  }
-  return 0;
-}
-
-//----------------------------------------------------------------------------
-function stableSort(array, cmp) {
-  const stabilizedThis = array.map((el, index) => [el, index]);
-  stabilizedThis.sort((a, b) => {
-    const order = cmp(a[0], b[0]);
-    if (order !== 0) return order;
-    return a[1] - b[1];
-  });
-  return stabilizedThis.map(el => el[0]);
-}
-
-//----------------------------------------------------------------------------
-function getSorting(order, orderBy) {
-  return order === 'desc' ? (a, b) => desc(a, b, orderBy) : (a, b) => -desc(a, b, orderBy);
-}
-
-//----------------------------------------------------------------------------
 class DetailsTableHead extends React.Component {
   createSortHandler = property => event => {
     this.props.onRequestSort(event, property);
@@ -261,9 +234,9 @@ class DetailsTable extends React.Component {
     let data = null;
     let tableTitle = null;
     const searchResponse = this.props.searchResponse;
-    const routeArrayIndex = this.props.routeArrayIndex;
-    if (searchResponse && Array.isArray(searchResponse.routes)
-      && searchResponse.routes.length > 0 && routeArrayIndex >= 0) {
+    const routeArrayIndex = this.props.routeDetailsArrIdx;
+    if (routeArrayIndex >= 0 && searchResponse && Array.isArray(searchResponse.routes)
+      && searchResponse.routes.length > 0) {
 
       const detailedRoute = searchResponse.routes[routeArrayIndex];
 
@@ -322,7 +295,7 @@ class DetailsTable extends React.Component {
                 rowCount={data.length}
               />
               <TableBody>
-                {stableSort(data, getSorting(order, orderBy))
+                {utils.stableSort(data, utils.getSorting(order, orderBy))
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map(n => {
                     const isSelected = this.isSelected(n.id);

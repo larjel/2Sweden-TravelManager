@@ -37,33 +37,6 @@ function createData(route, duration, transferCount, lowestprice, highestprice, r
 }
 
 //----------------------------------------------------------------------------
-function desc(a, b, orderBy) {
-  if (b[orderBy] < a[orderBy]) {
-    return -1;
-  }
-  if (b[orderBy] > a[orderBy]) {
-    return 1;
-  }
-  return 0;
-}
-
-//----------------------------------------------------------------------------
-function stableSort(array, cmp) {
-  const stabilizedThis = array.map((el, index) => [el, index]);
-  stabilizedThis.sort((a, b) => {
-    const order = cmp(a[0], b[0]);
-    if (order !== 0) return order;
-    return a[1] - b[1];
-  });
-  return stabilizedThis.map(el => el[0]);
-}
-
-//----------------------------------------------------------------------------
-function getSorting(order, orderBy) {
-  return order === 'desc' ? (a, b) => desc(a, b, orderBy) : (a, b) => -desc(a, b, orderBy);
-}
-
-//----------------------------------------------------------------------------
 class EnhancedTableHead extends React.Component {
   createSortHandler = property => event => {
     this.props.onRequestSort(event, property);
@@ -122,7 +95,8 @@ const toolbarStyles = theme => ({
   root: {
     paddingRight: theme.spacing.unit,
     // CHANGE THE TABLE HEAD COLOR
-    backgroundImage: "linear-gradient(to right top, #315a9d, #295294, #204a8b, #174382, #0b3b79)"  },
+    backgroundImage: "linear-gradient(to right top, #315a9d, #295294, #204a8b, #174382, #0b3b79)"
+  },
   highlight:
     theme.palette.type === 'light'
       ? {
@@ -189,7 +163,7 @@ const styles = theme => ({
   table: {
     minWidth: 400,
     maxWidth: 400,
-    margin: 'auto', 
+    margin: 'auto',
   },
   tableWrapper: {
     overflowX: 'auto',
@@ -233,7 +207,7 @@ class EnhancedTable extends React.Component {
       console.log('data is Array');
       const clickedRow = data.find(n => n.id == id);
       console.log('clickedRow: ', clickedRow);
-      this.props.routeDetails(this.props.searchResponse, clickedRow.routeArrayIndex);
+      this.props.setRouteDetailsArrIdx(clickedRow.routeArrayIndex);
     }
   };
 
@@ -311,7 +285,7 @@ class EnhancedTable extends React.Component {
                 rowCount={data.length}
               />
               <TableBody>
-                {stableSort(data, getSorting(order, orderBy))
+                {utils.stableSort(data, utils.getSorting(order, orderBy))
                   .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                   .map(n => {
                     const isSelected = this.isSelected(n.id);
