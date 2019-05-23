@@ -28,6 +28,8 @@ class Main extends React.Component {
   handleSearchSubmit = (event) => {
     event.preventDefault();
     if (this.state.searchValue1 && this.state.searchValue2 && this.state.currencyCode) {
+      // Clear previous search response in App, which will cause all components to clear their contents
+      this.props.setSearchResponse(null);
       // Clear any search details from previous search
       this.props.setRouteDetailsArrIdx(-1);
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import "./Sidebar.css"
 import DetailsTable from './DetailsTable';
-import MapContainer from '../Map/MapContainer';
+// import MapContainer from '../Map/MapContainer';
 
 
 class Sidebar extends React.Component {
@@ -27,7 +27,7 @@ class Sidebar extends React.Component {
                         searchResponse={this.props.searchResponse}
                         routeDetailsArrIdx={this.props.routeDetailsArrIdx}
                     />
-                    <MapContainer searchResponse={this.props.searchResponse} />
+                    {/* <MapContainer searchResponse={this.props.searchResponse} /> */}
                     <div className="push"></div>
                 </div>
             </aside>

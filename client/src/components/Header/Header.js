@@ -14,13 +14,13 @@ class Header extends React.Component {
                     WINTER OLYMPIC GAMES 2024
                 </h1>
                 <nav className="navbar">
-                <ul className="ul">
-                        <li className="current li" ><a class="active" href="#"><GoHome/> Home</a></li>
-                        <li className="li" ><a href="#"><GoSearch/> New trip</a></li>
-                        <li className="li" ><a href="#"><GoInfo/> Information</a></li>
+                    <ul className="ul">
+                        <li className="current li" ><a className="active" href="#"><GoHome /> Home</a></li>
+                        <li className="li" ><a href="#"><GoSearch /> New trip</a></li>
+                        <li className="li" ><a href="#"><GoInfo /> Information</a></li>
                         <li className="li" ><a href="#news"><GoLocation /> Locations</a></li>
                         <li className="li" ><a href="#news"><GoThumbsup /> Recommendations</a></li>
-                  </ul>  
+                    </ul>
 
                 </nav>
             </header>
