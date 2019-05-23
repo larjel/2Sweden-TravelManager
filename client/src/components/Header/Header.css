@@ -38,7 +38,7 @@ header ul {
 }
 
 .logo {
-  width: 4.5%;
+  width: 15%;
   float: left;
 }
 
@@ -52,17 +52,38 @@ header ul {
   letter-spacing: 2px;
   float: left;
   margin-left: 50px;
-  margin-top: -4px;
+  margin-top: -3px;
 }
-
 
 @media (min-width: 300px) {
   .headerText {
-    font-size: 20px;
-    top: 1.5vh;
-  } 
-  .underText {
     font-size: 15px;
+    margin-top: -40px;
+    left: 15px;
+  } 
+  .main-head {
+    height: 75px;
+    border-bottom: 3px solid #ffcc00;
+  }
+  .logo {
+    width: 17%;
+  }
+}
+
+@media (min-width: 400px) {
+  .headerText {
+    font-size: 17px;
+    margin-top: 42px;
+    margin-left: 10px;
+  } 
+  .main-head {
+    height: 75px;
+  }
+  .main-head {
+    border-bottom: 4px solid #ffcc00;
+  }
+  .logo {
+    width: 15%;
   }
 }
 

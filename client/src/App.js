@@ -34,13 +34,12 @@ class App extends Component {
 
     return (
       <div className='wrapper'>
-
         <Header />
         <Main routeDetails={this.routeDetails} />
         <Sidebar searchResponse={searchResponse} routeArrayIndex={routeArrayIndex} />
+        <MapContainer/>
         <Footer />
       </div>
-
     )
   }
 }
