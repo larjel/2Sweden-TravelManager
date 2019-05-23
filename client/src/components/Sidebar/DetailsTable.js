@@ -31,9 +31,9 @@ const CustomTableCell = withStyles(theme => ({
 
 //----------------------------------------------------------------------------
 let counter = 0;
-function createData(transport, departure, arrival, duration, lowestprice, highestprice, routeArrayIndex) {
+function createData(leg, transport, departure, arrival, duration, lowestprice, highestprice, routeArrayIndex) {
   counter += 1;
-  return { id: counter, transport, departure, arrival, duration, lowestprice, highestprice, routeArrayIndex };
+  return { id: counter, leg, transport, departure, arrival, duration, lowestprice, highestprice, routeArrayIndex };
 }
 
 //----------------------------------------------------------------------------
@@ -177,7 +177,7 @@ class DetailsTable extends React.Component {
     super(props)
     this.state = {
       order: 'asc',
-      orderBy: 'transport',
+      orderBy: 'leg',
       selected: [],
       page: 0,
       rowsPerPage: 5,
@@ -249,6 +249,7 @@ class DetailsTable extends React.Component {
           let transport = vehicles ? vehicles[segment.vehicle].name : segment.segmentKind;
           const transitDuration = utils.truncateDecimals(segment.transitDuration / 60, 1);
           const prices = segment.indicativePrices;
+          const leg = index + 1;
           let priceLow = null;
           let priceHigh = null;
           let departure = '';
@@ -268,13 +269,14 @@ class DetailsTable extends React.Component {
             arrival = searchResponse.places[arrPlaceIdx].shortName + code;
           }
 
-          return createData(transport, departure, arrival, transitDuration, priceLow, priceHigh, index);
+          return createData(leg, transport, departure, arrival, transitDuration, priceLow, priceHigh, index);
         })
       } else {
         return (null);
       }
 
       rows = [
+        { id: 'leg', numeric: true, disablePadding: false, label: 'Leg' },
         { id: 'transport', numeric: false, disablePadding: false, label: 'Transport' },
         { id: 'departure', numeric: false, disablePadding: false, label: 'Departing' },
         { id: 'arrival', numeric: false, disablePadding: false, label: 'Arriving' },
@@ -321,6 +323,7 @@ class DetailsTable extends React.Component {
                         key={n.id}
                         selected={isSelected}
                       >
+                        <TableCell>{n.leg}</TableCell>
                         <TableCell>{n.transport}</TableCell>
                         <TableCell>{n.departure}</TableCell>
                         <TableCell>{n.arrival}</TableCell>
