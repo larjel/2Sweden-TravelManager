@@ -32,13 +32,13 @@
 }
 
 .tableHead {
-  background-color:#1F427C;
-  opacity: 0.9;
   color: black;
+  background-color: white;
 }
 
 .tableBlue {
-  background-image: linear-gradient(to right top, #293f71, #233667, #1d2e5d, #162654, #101e4a);  color: black;
+  background-image: linear-gradient(to right top, #315a9d, #295294, #204a8b, #174382, #0b3b79);
+  color: black;
 }
 
 .textCenter {
@@ -55,8 +55,6 @@
     width: 50%;
   }
 }
-
-
 
 @media (min-width: 400px) {
   .searchHeader {
