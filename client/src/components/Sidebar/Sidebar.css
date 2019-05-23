@@ -1,3 +1,15 @@
 .side {
     grid-area: sidebar;
   }
+
+  .wrapper {
+    min-height: 100%;
+  }
+
+.push {
+  height: 100px;
+}
+
+.googleMap {
+  
+}

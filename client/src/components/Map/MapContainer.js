@@ -10,7 +10,7 @@ export class MapContainer extends Component {
 
   render() {
     return (
-      <Map google={this.props.google} zoom={14}
+      <Map className="googleMap" google={this.props.google} zoom={14}
 
         initialCenter={{
           lat: latitude,
