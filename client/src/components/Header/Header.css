@@ -3,20 +3,23 @@
 
 .main-head {
   grid-area: header;
-  background: #006699;
+  background-color: #006699;
   text-align: center;
   border-bottom: 5px solid #ffcc00;
   height: 100px;
 }
 
-header .highlight, header .current a{
-  color:#e8491d;
-  font-weight:bold;
+header .highlight, header .current a, .li a{
+  color: azure;
+  text-decoration: none;
 }
 
 header ul {
+  background-color: #006699;
+  float: right;
   margin: 0;
   padding: 0;
+  
 }
 
 .li {
@@ -26,11 +29,15 @@ header ul {
   
 }
 
-.nav{
+.navbar{
   float:right;
+  background-color: #006699;
   color: #ffcc00;
-  margin-top: 67px;
-  margin-right: 10px;
+  margin-top: 57px;
+  margin-right: 2px;
+  margin-bottom: 0;
+  position: absolute;
+  
 }
 
 .yellow {
@@ -54,6 +61,12 @@ header ul {
   margin-left: 50px;
   margin-top: -3px;
 }
+
+.navbar a:hover {
+  color: #ffcc00;
+  text-decoration: none;
+}
+
 
 @media (min-width: 300px) and (max-width: 399px) {
   .headerText {

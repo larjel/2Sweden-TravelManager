@@ -4,7 +4,7 @@ import Main from './components/Main/Main'
 import Sidebar from './components/Sidebar/Sidebar'
 import Footer from './components/Footer/Footer'
 import Map from './components/Map/Map'
-import { MapContainer } from './components/Map/MapContainer'
+import MapContainer from './components/Map/MapContainer'
 
 //------------------------------------------------------------------------------
 class App extends Component {
