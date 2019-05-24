@@ -102,13 +102,9 @@ class DetailsTable extends React.Component {
   isSelected = id => this.state.selected.indexOf(id) !== -1;
 
   //--------------------------------------------------------------------------
-  render() {
+  parseInputDataForTable = (searchResponse, routeArrayIndex) => {
+    const tableData = { rows: null, data: [], tableTitle: null };
 
-    let rows = null;
-    let data = null;
-    let tableTitle = null;
-    const searchResponse = this.props.searchResponse;
-    const routeArrayIndex = this.props.routeDetailsArrIdx;
     if (routeArrayIndex >= 0 && searchResponse && Array.isArray(searchResponse.routes)
       && searchResponse.routes.length > 0) {
 
@@ -119,7 +115,7 @@ class DetailsTable extends React.Component {
       const vehicles = Array.isArray(searchResponse.vehicles) ? searchResponse.vehicles : null;
 
       if (Array.isArray(detailedRoute.segments)) {
-        data = detailedRoute.segments.map((segment, index) => {
+        tableData.data = detailedRoute.segments.map((segment, index) => {
           let transport = vehicles ? vehicles[segment.vehicle].name : segment.segmentKind;
           const transitDuration = utils.truncateDecimals(segment.transitDuration / 60, 1);
           const prices = segment.indicativePrices;
@@ -145,28 +141,35 @@ class DetailsTable extends React.Component {
 
           return createData(leg, transport, departure, arrival, transitDuration, priceLow, priceHigh, index);
         })
-      } else {
-        return (null);
+
+        tableData.rows = [
+          { id: 'leg', numeric: true, disablePadding: false, label: 'Leg' },
+          { id: 'transport', numeric: false, disablePadding: false, label: 'Transport' },
+          { id: 'departure', numeric: false, disablePadding: false, label: 'Departing' },
+          { id: 'arrival', numeric: false, disablePadding: false, label: 'Arriving' },
+          { id: 'duration', numeric: true, disablePadding: false, label: 'Time (hours)' },
+          { id: 'lowestprice', numeric: true, disablePadding: false, label: 'Min Price' + currencyCode },
+          { id: 'highestprice', numeric: true, disablePadding: false, label: 'Max Price' + currencyCode },
+          { id: 'routeArrayIndex', numeric: true, disablePadding: false, label: 'Hidden', hidden: true }
+        ];
+
+        tableData.tableTitle = detailedRoute.name;
       }
-
-      rows = [
-        { id: 'leg', numeric: true, disablePadding: false, label: 'Leg' },
-        { id: 'transport', numeric: false, disablePadding: false, label: 'Transport' },
-        { id: 'departure', numeric: false, disablePadding: false, label: 'Departing' },
-        { id: 'arrival', numeric: false, disablePadding: false, label: 'Arriving' },
-        { id: 'duration', numeric: true, disablePadding: false, label: 'Time (hours)' },
-        { id: 'lowestprice', numeric: true, disablePadding: false, label: 'Min Price' + currencyCode },
-        { id: 'highestprice', numeric: true, disablePadding: false, label: 'Max Price' + currencyCode },
-        { id: 'routeArrayIndex', numeric: true, disablePadding: false, label: 'Hidden', hidden: true }
-      ];
-
-      tableTitle = detailedRoute.name;
-
-    } else {
-      return (null);
     }
 
-    const { classes } = this.props;
+    return tableData;      
+  }
+  
+  //--------------------------------------------------------------------------
+  render() {
+
+    const { classes, searchResponse, routeDetailsArrIdx } = this.props;
+    const { rows, data, tableTitle } = this.parseInputDataForTable(searchResponse, routeDetailsArrIdx);
+
+    if (!rows) {
+      return (null);
+    }
+    
     const { order, orderBy, selected, rowsPerPage, page } = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 

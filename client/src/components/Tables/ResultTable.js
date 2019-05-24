@@ -102,17 +102,14 @@ class ResultTable extends React.Component {
   isSelected = id => this.state.selected.indexOf(id) !== -1;
 
   //--------------------------------------------------------------------------
-  render() {
+  parseInputDataForTable = (searchResponse, searchPath) => {
+    const tableData = { rows: null, data: [], tableTitle: null };
 
-    let rows = null;
-    let data = null;
-    let tableTitle = null;
-    const searchResponse = this.props.searchResponse;
     if (searchResponse && Array.isArray(searchResponse.routes) && searchResponse.routes.length > 0) {
 
       const currencyCode = ' (' + searchResponse.currencyCode + ')';
 
-      data = searchResponse.routes.map((route, index) => {
+      tableData.data = searchResponse.routes.map((route, index) => {
         const totalDurationHours = utils.truncateDecimals(route.totalDuration / 60, 1);
         const prices = route.indicativePrices;
         let priceLow = null;
@@ -128,7 +125,7 @@ class ResultTable extends React.Component {
         return createData(route.name, totalDurationHours, transferCount, priceLow, priceHigh, index);
       })
 
-      rows = [
+      tableData.rows = [
         { id: 'route', numeric: false, disablePadding: false, label: 'Route' },
         { id: 'duration', numeric: true, disablePadding: false, label: 'Time (hours)' },
         { id: 'transferCount', numeric: true, disablePadding: false, label: 'Transfers' },
@@ -137,13 +134,22 @@ class ResultTable extends React.Component {
         { id: 'routeArrayIndex', numeric: true, disablePadding: false, label: 'Hidden', hidden: true }
       ];
 
-      tableTitle = this.props.searchPath;
+      tableData.tableTitle = searchPath;
+    }
 
-    } else {
+    return tableData;      
+  }
+
+  //--------------------------------------------------------------------------
+  render() {
+
+    const { classes, searchResponse, searchPath} = this.props;
+    const { rows, data, tableTitle } = this.parseInputDataForTable(searchResponse, searchPath);
+
+    if (!rows) {
       return (null);
     }
 
-    const { classes } = this.props;
     const { order, orderBy, selected, rowsPerPage, page } = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
