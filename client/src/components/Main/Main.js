@@ -1,6 +1,6 @@
 import React from 'react';
 import "./Main.css";
-import SearchResultTable from '../Tables/SearchResultTable';
+import ResultTable from '../Tables/ResultTable';
 import * as apiModule from '../../utils/api.js'
 import * as utils from '../../utils/utils.js'
 import Select from 'react-select';
@@ -184,7 +184,7 @@ class Main extends React.Component {
 
           </div>
         </form>
-        <SearchResultTable className="resultTable"
+        <ResultTable className="resultTable"
           searchResponse={this.props.searchResponse}
           searchPath={this.state.searchPath}
           setRouteDetailsArrIdx={this.props.setRouteDetailsArrIdx}

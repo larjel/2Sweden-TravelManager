@@ -47,7 +47,7 @@ const styles = theme => ({
 });
 
 //----------------------------------------------------------------------------
-class SearchResultTable extends React.Component {
+class ResultTable extends React.Component {
 
   constructor(props) {
     super(props)
@@ -214,9 +214,9 @@ class SearchResultTable extends React.Component {
 }
 
 //----------------------------------------------------------------------------
-SearchResultTable.propTypes = {
+ResultTable.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
 //----------------------------------------------------------------------------
-export default withStyles(styles)(SearchResultTable);
+export default withStyles(styles)(ResultTable);
