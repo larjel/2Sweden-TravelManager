@@ -1,22 +1,16 @@
 import React from 'react';
-import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
-import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
-import TableSortLabel from '@material-ui/core/TableSortLabel';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
-import Tooltip from '@material-ui/core/Tooltip';
-import { lighten } from '@material-ui/core/styles/colorManipulator';
-import "./Main.css";
-import { blue } from '@material-ui/core/colors';
+import "../Main/Main.css";
 import * as utils from '../../utils/utils.js'
+import EnhancedTableHead from './Components/EnhancedTableHead';
+import EnhancedTableToolbar from './Components/EnhancedTableToolbar';
 import { Link, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
 
 //----------------------------------------------------------------------------
@@ -38,125 +32,6 @@ function createData(route, duration, transferCount, lowestprice, highestprice, r
 }
 
 //----------------------------------------------------------------------------
-class EnhancedTableHead extends React.Component {
-  createSortHandler = property => event => {
-    this.props.onRequestSort(event, property);
-  };
-
-  render() {
-    const { rows, order, orderBy, numSelected, rowCount } = this.props;
-
-    return (
-      <TableHead>
-        <TableRow>
-          {rows.map(
-            row => (
-              <TableCell
-                className="tableHead"
-                key={row.id}
-                align={row.numeric ? 'right' : 'left'}
-                padding={row.disablePadding ? 'none' : 'default'}
-                sortDirection={orderBy === row.id ? order : false}
-                hidden={row.hidden}
-              >
-                <Tooltip
-                  title="Sort"
-                  placement={row.numeric ? 'bottom-end' : 'bottom-start'}
-                  enterDelay={300}
-                >
-                  <TableSortLabel
-                    active={orderBy === row.id}
-                    direction={order}
-                    onClick={this.createSortHandler(row.id)}
-                  >
-                    {row.label}
-                  </TableSortLabel>
-                </Tooltip>
-              </TableCell>
-            ),
-            this,
-          )}
-        </TableRow>
-      </TableHead>
-    );
-  }
-}
-
-//----------------------------------------------------------------------------
-EnhancedTableHead.propTypes = {
-  numSelected: PropTypes.number.isRequired,
-  onRequestSort: PropTypes.func.isRequired,
-  order: PropTypes.string.isRequired,
-  orderBy: PropTypes.string.isRequired,
-  rowCount: PropTypes.number.isRequired,
-};
-
-//----------------------------------------------------------------------------
-const toolbarStyles = theme => ({
-  root: {
-    paddingRight: theme.spacing.unit,
-    // CHANGE THE TABLE HEAD COLOR
-    backgroundImage: "linear-gradient(to right top, #315a9d, #295294, #204a8b, #174382, #0b3b79)"
-  },
-  highlight:
-    theme.palette.type === 'light'
-      ? {
-        color: theme.palette.secondary.main,
-        backgroundColor: lighten(theme.palette.secondary.light, 0.85),
-      }
-      : {
-        color: theme.palette.text.primary,
-        backgroundColor: theme.palette.secondary.dark,
-      },
-  spacer: {
-    flex: '1 1 100%',
-  },
-  actions: {
-    color: theme.palette.text.secondary,
-  },
-  title: {
-    flex: '0 0 auto',
-  },
-});
-
-//----------------------------------------------------------------------------
-let EnhancedTableToolbar = props => {
-  const { tableTitle, numSelected, classes } = props;
-
-  return (
-    <Toolbar
-      className={classNames(classes.root, classes.head, {
-        [classes.highlight]: numSelected > 0,
-      })}
-    >
-      <div className={classes.title}>
-        {numSelected > 0 ? (
-          <Typography color="inherit" variant="subtitle1">
-            {numSelected} selected
-          </Typography>
-        ) : (
-            <Typography variant="h6" id="tableTitle">
-              {tableTitle}
-            </Typography>
-          )}
-      </div>
-      <div className={classes.spacer} />
-      <div className={classes.actions}>
-      </div>
-    </Toolbar>
-  );
-};
-
-//----------------------------------------------------------------------------
-EnhancedTableToolbar.propTypes = {
-  classes: PropTypes.object.isRequired,
-  numSelected: PropTypes.number.isRequired,
-};
-
-//----------------------------------------------------------------------------
-EnhancedTableToolbar = withStyles(toolbarStyles)(EnhancedTableToolbar);
-
-//----------------------------------------------------------------------------
 const styles = theme => ({
   root: {
     marginTop: theme.spacing.unit * 3,
@@ -172,7 +47,7 @@ const styles = theme => ({
 });
 
 //----------------------------------------------------------------------------
-class EnhancedTable extends React.Component {
+class SearchResultTable extends React.Component {
 
   constructor(props) {
     super(props)
@@ -339,9 +214,9 @@ class EnhancedTable extends React.Component {
 }
 
 //----------------------------------------------------------------------------
-EnhancedTable.propTypes = {
+SearchResultTable.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
 //----------------------------------------------------------------------------
-export default withStyles(styles)(EnhancedTable);
+export default withStyles(styles)(SearchResultTable);

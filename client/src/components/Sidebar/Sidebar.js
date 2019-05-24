@@ -1,6 +1,6 @@
 import React from 'react'
 import "./Sidebar.css"
-import DetailsTable from './DetailsTable';
+import DetailsTable from '../Tables/DetailsTable';
 // import MapContainer from '../Map/MapContainer';
 
 
