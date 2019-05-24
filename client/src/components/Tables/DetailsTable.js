@@ -133,10 +133,11 @@ class DetailsTable extends React.Component {
             const depPlaceIdx = segment.depPlace;
             const arrPlaceIdx = segment.arrPlace;
 
-            const code = searchResponse.places[depPlaceIdx].code ? ', ' + searchResponse.places[depPlaceIdx].code : '';
+            const codeDepPlace = searchResponse.places[depPlaceIdx].code ? ', ' + searchResponse.places[depPlaceIdx].code : '';
+            const codeArrPlace = searchResponse.places[arrPlaceIdx].code ? ', ' + searchResponse.places[arrPlaceIdx].code : '';
 
-            departure = searchResponse.places[depPlaceIdx].shortName + code;
-            arrival = searchResponse.places[arrPlaceIdx].shortName + code;
+            departure = searchResponse.places[depPlaceIdx].shortName + codeDepPlace;
+            arrival = searchResponse.places[arrPlaceIdx].shortName + codeArrPlace;
           }
 
           return createData(leg, transport, departure, arrival, transitDuration, priceLow, priceHigh, index);
@@ -157,9 +158,9 @@ class DetailsTable extends React.Component {
       }
     }
 
-    return tableData;      
+    return tableData;
   }
-  
+
   //--------------------------------------------------------------------------
   render() {
 
@@ -169,7 +170,7 @@ class DetailsTable extends React.Component {
     if (!rows) {
       return (null);
     }
-    
+
     const { order, orderBy, selected, rowsPerPage, page } = this.state;
     const emptyRows = rowsPerPage - Math.min(rowsPerPage, data.length - page * rowsPerPage);
 
