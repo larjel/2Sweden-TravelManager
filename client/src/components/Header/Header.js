@@ -3,7 +3,9 @@ import logo from './projektlogga.png'
 import twitter from './sweTwitter.jpg'
 import "./Header.css"
 import { GoSearch, GoInfo, GoLocation, GoHome, GoThumbsup } from 'react-icons/go';
-
+/*const style = {
+    marginTop: "20px"    
+}*/
 class Header extends React.Component {
     render() {
         return (
@@ -16,7 +18,7 @@ class Header extends React.Component {
                 <nav className="myNavbar">
                     <ul className="ul">
                         <li className="current li" ><a className="active" href="#"><GoHome /> Home</a></li>
-                        <li className="li" ><a href="#"><GoSearch /> New trip</a></li>
+                        <li className="li" ><a href="#"><GoSearch /*style={style} *//> New trip</a></li>
                         <li className="li" ><a href="#"><GoInfo /> Information</a></li>
                         <li className="li" ><a href="#news"><GoLocation /> Locations</a></li>
                         <li className="li" ><a href="#news"><GoThumbsup /> Recommendations</a></li>

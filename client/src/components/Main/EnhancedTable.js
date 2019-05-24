@@ -203,7 +203,6 @@ class EnhancedTable extends React.Component {
     console.log('ROW CLICKED!!!');
     console.log('Data: ', data);
     console.log('ID: ', id);
-
     scroll.scrollTo(800);
 
     if (Array.isArray(data)) {

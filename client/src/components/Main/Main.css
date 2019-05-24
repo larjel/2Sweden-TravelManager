@@ -84,4 +84,10 @@
   .searchHeader {
     font-size: 30px
   }
+  .searchBox {
+    width: 15%;
+  }
+  .currencyBox {
+    width: 8%;
+  }
 }
