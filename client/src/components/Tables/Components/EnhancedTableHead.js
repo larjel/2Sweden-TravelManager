@@ -10,56 +10,56 @@ import "../../Main/Main.css";
 
 //----------------------------------------------------------------------------
 class EnhancedTableHead extends React.Component {
-    createSortHandler = property => event => {
-        this.props.onRequestSort(event, property);
-    };
+  createSortHandler = property => event => {
+    this.props.onRequestSort(event, property);
+  };
 
-    render() {
-        const { rows, order, orderBy, numSelected, rowCount } = this.props;
+  render() {
+    const { rows, order, orderBy, numSelected, rowCount } = this.props;
 
-        return (
-            <TableHead>
-                <TableRow>
-                    {rows.map(
-                        row => (
-                            <TableCell
-                                className="tableHead"
-                                key={row.id}
-                                align={row.numeric ? 'right' : 'left'}
-                                padding={row.disablePadding ? 'none' : 'default'}
-                                sortDirection={orderBy === row.id ? order : false}
-                                hidden={row.hidden}
-                            >
-                                <Tooltip
-                                    title="Sort"
-                                    placement={row.numeric ? 'bottom-end' : 'bottom-start'}
-                                    enterDelay={300}
-                                >
-                                    <TableSortLabel
-                                        active={orderBy === row.id}
-                                        direction={order}
-                                        onClick={this.createSortHandler(row.id)}
-                                    >
-                                        {row.label}
-                                    </TableSortLabel>
-                                </Tooltip>
-                            </TableCell>
-                        ),
-                        this,
-                    )}
-                </TableRow>
-            </TableHead>
-        );
-    }
+    return (
+      <TableHead>
+        <TableRow>
+          {rows.map(
+            row => (
+              <TableCell
+                className="tableHead"
+                key={row.id}
+                align={row.numeric ? 'right' : 'left'}
+                padding={row.disablePadding ? 'none' : 'default'}
+                sortDirection={orderBy === row.id ? order : false}
+                hidden={row.hidden}
+              >
+                <Tooltip
+                  title="Sort"
+                  placement={row.numeric ? 'bottom-end' : 'bottom-start'}
+                  enterDelay={300}
+                >
+                  <TableSortLabel
+                    active={orderBy === row.id}
+                    direction={order}
+                    onClick={this.createSortHandler(row.id)}
+                  >
+                    {row.label}
+                  </TableSortLabel>
+                </Tooltip>
+              </TableCell>
+            ),
+            this,
+          )}
+        </TableRow>
+      </TableHead>
+    );
+  }
 }
 
 //----------------------------------------------------------------------------
 EnhancedTableHead.propTypes = {
-    numSelected: PropTypes.number.isRequired,
-    onRequestSort: PropTypes.func.isRequired,
-    order: PropTypes.string.isRequired,
-    orderBy: PropTypes.string.isRequired,
-    rowCount: PropTypes.number.isRequired,
+  numSelected: PropTypes.number.isRequired,
+  onRequestSort: PropTypes.func.isRequired,
+  order: PropTypes.string.isRequired,
+  orderBy: PropTypes.string.isRequired,
+  rowCount: PropTypes.number.isRequired,
 };
 
 //----------------------------------------------------------------------------
