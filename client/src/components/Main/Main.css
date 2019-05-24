@@ -56,7 +56,7 @@
   }
 }
 
-@media (min-width: 400px) {
+@media (min-width: 400px) and (max-width: 1199px) {
   .searchHeader {
     font-size: 20px
   }
@@ -68,7 +68,7 @@
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1200px) and (max-width:1599px) {
   .searchHeader {
     font-size: 30px;
   }
@@ -76,7 +76,7 @@
     width: 15%;
   }
   .currencyBox {
-    width: 8%;
+    width: 9%;
   }
 }
 
