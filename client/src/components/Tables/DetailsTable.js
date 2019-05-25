@@ -9,8 +9,8 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import "../Main/Main.css";
 import * as utils from '../../utils/utils.js'
-import EnhancedTableHead from './Components/EnhancedTableHead';
-import EnhancedTableToolbar from './Components/EnhancedTableToolbar';
+import EnhancedTableHead from './Head/EnhancedTableHead';
+import EnhancedTableToolbar from './Toolbar/EnhancedTableToolbar';
 
 //----------------------------------------------------------------------------
 const CustomTableCell = withStyles(theme => ({
