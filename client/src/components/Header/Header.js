@@ -7,6 +7,13 @@ import { GoSearch, GoInfo, GoLocation, GoHome, GoThumbsup } from 'react-icons/go
     marginTop: "20px"    
 }*/
 class Header extends React.Component {
+
+    handleClick = (e, val) => {
+        e.preventDefault();
+        console.log('The link was clicked. Value: ' + val);
+        this.props.setActiveMainPage(val);
+    };
+
     render() {
         return (
             <header className="main-head">
@@ -17,11 +24,11 @@ class Header extends React.Component {
                 </h1>
                 <nav className="myNavbar">
                     <ul className="ul">
-                        <li className="current li" ><a className="active" href="#"><GoHome /> Home</a></li>
-                        <li className="li" ><a href="#"><GoSearch /*style={style} *//> New trip</a></li>
-                        <li className="li" ><a href="#"><GoInfo /> Information</a></li>
-                        <li className="li" ><a href="#news"><GoLocation /> Locations</a></li>
-                        <li className="li" ><a href="#news"><GoThumbsup /> Recommendations</a></li>
+                        <li className="current li" ><a className="active" href="/" onClick={(e) => this.handleClick(e, 'home')}><GoHome /> Home</a></li>
+                        <li className="li" ><a href="/" onClick={(e) => this.handleClick(e, 'search')}><GoSearch /*style={style} */ /> New trip</a></li>
+                        <li className="li" ><a href="/" onClick={(e) => this.handleClick(e, 'info')}><GoInfo /> Information</a></li>
+                        <li className="li" ><a href="/" onClick={(e) => this.handleClick(e, 'locations')}><GoLocation /> Locations</a></li>
+                        <li className="li" ><a href="/" onClick={(e) => this.handleClick(e, 'recommend')}><GoThumbsup /> Recommendations</a></li>
                     </ul>
 
                 </nav>
