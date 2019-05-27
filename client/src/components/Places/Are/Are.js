@@ -102,7 +102,7 @@ class Are extends Component {
                       src={imgAreBjornen}
                       width={450}
                       height={250}
-                      alt="Åre Björnen picture"
+                      alt="Åre Björnen area"
                     />
                     <figcaption>
                       <h2>About the City of Åre</h2>
