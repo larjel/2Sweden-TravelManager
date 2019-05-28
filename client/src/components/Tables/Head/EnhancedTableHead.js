@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
-import TableRow from '@material-ui/core/TableRow';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import Tooltip from '@material-ui/core/Tooltip';
 import "../../Main/Main.css";
+import CustomTableCell from '../Styling/CustomTableCell';
+import CustomTableRow from '../Styling/CustomTableRow';
 
 //----------------------------------------------------------------------------
 class EnhancedTableHead extends React.Component {
@@ -19,10 +18,10 @@ class EnhancedTableHead extends React.Component {
 
     return (
       <TableHead>
-        <TableRow>
+        <CustomTableRow>
           {rows.map(
             row => (
-              <TableCell
+              <CustomTableCell
                 className="tableHead"
                 key={row.id}
                 align={row.numeric ? 'right' : 'left'}
@@ -43,11 +42,11 @@ class EnhancedTableHead extends React.Component {
                     {row.label}
                   </TableSortLabel>
                 </Tooltip>
-              </TableCell>
+              </CustomTableCell>
             ),
             this,
           )}
-        </TableRow>
+        </CustomTableRow>
       </TableHead>
     );
   }

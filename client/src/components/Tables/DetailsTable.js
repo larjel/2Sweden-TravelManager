@@ -3,25 +3,14 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
 import TablePagination from '@material-ui/core/TablePagination';
-import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import "../Main/Main.css";
 import * as utils from '../../utils/utils.js'
 import EnhancedTableHead from './Head/EnhancedTableHead';
 import EnhancedTableToolbar from './Toolbar/EnhancedTableToolbar';
-
-//----------------------------------------------------------------------------
-const CustomTableCell = withStyles(theme => ({
-  head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  body: {
-    fontSize: 14,
-  },
-}))(TableCell);
+import CustomTableCell from './Styling/CustomTableCell';
+import CustomTableRow from './Styling/CustomTableRow';
 
 //----------------------------------------------------------------------------
 let counter = 0;
@@ -33,7 +22,8 @@ function createData(leg, transport, departure, arrival, duration, lowestprice, h
 //----------------------------------------------------------------------------
 const styles = theme => ({
   root: {
-    marginTop: theme.spacing.unit * 3,
+    //marginTop: theme.spacing.unit * 3,
+    marginTop: '0px',
   },
   table: {
     maxWidth: 300,
@@ -141,14 +131,14 @@ class DetailsTable extends React.Component {
         })
 
         tableData.rows = [
-          { id: 'leg', numeric: true, disablePadding: false, label: 'Leg' },
-          { id: 'transport', numeric: false, disablePadding: false, label: 'Transport' },
-          { id: 'departure', numeric: false, disablePadding: false, label: 'Departing' },
-          { id: 'arrival', numeric: false, disablePadding: false, label: 'Arriving' },
-          { id: 'duration', numeric: true, disablePadding: false, label: 'Time (hours)' },
-          { id: 'lowestprice', numeric: true, disablePadding: false, label: 'Min Price' + currencyCode },
-          { id: 'highestprice', numeric: true, disablePadding: false, label: 'Max Price' + currencyCode },
-          { id: 'routeArrayIndex', numeric: true, disablePadding: false, label: 'Hidden', hidden: true }
+          { id: 'leg', numeric: true, disablePadding: true, label: 'Leg' },
+          { id: 'transport', numeric: false, disablePadding: true, label: 'Transport' },
+          { id: 'departure', numeric: false, disablePadding: true, label: 'Departing' },
+          { id: 'arrival', numeric: false, disablePadding: true, label: 'Arriving' },
+          { id: 'duration', numeric: true, disablePadding: true, label: 'Time (hours)' },
+          { id: 'lowestprice', numeric: true, disablePadding: true, label: 'Min Price' + currencyCode },
+          { id: 'highestprice', numeric: true, disablePadding: true, label: 'Max Price' + currencyCode },
+          { id: 'routeArrayIndex', numeric: true, disablePadding: true, label: 'Hidden', hidden: true }
         ];
 
         tableData.tableTitle = detailedRoute.name;
@@ -191,28 +181,28 @@ class DetailsTable extends React.Component {
                   .map(n => {
                     const isSelected = this.isSelected(n.id);
                     return (
-                      <TableRow
+                      <CustomTableRow
                         hover
                         onClick={event => this.handleClick(event, n.id, data)}
                         tabIndex={-1}
                         key={n.id}
                         selected={isSelected}
                       >
-                        <TableCell>{n.leg}</TableCell>
-                        <TableCell>{n.transport}</TableCell>
-                        <TableCell>{n.departure}</TableCell>
-                        <TableCell>{n.arrival}</TableCell>
-                        <TableCell align="right">{n.duration}</TableCell>
-                        <TableCell align="right">{n.lowestprice}</TableCell>
-                        <TableCell align="right" >{n.highestprice}</TableCell>
-                        <TableCell align="right" hidden={true}>{n.routeArrayIndex}</TableCell>
-                      </TableRow>
+                        <CustomTableCell>{n.leg}</CustomTableCell>
+                        <CustomTableCell>{n.transport}</CustomTableCell>
+                        <CustomTableCell>{n.departure}</CustomTableCell>
+                        <CustomTableCell>{n.arrival}</CustomTableCell>
+                        <CustomTableCell align="right">{n.duration}</CustomTableCell>
+                        <CustomTableCell align="right">{n.lowestprice}</CustomTableCell>
+                        <CustomTableCell align="right" >{n.highestprice}</CustomTableCell>
+                        <CustomTableCell align="right" hidden={true}>{n.routeArrayIndex}</CustomTableCell>
+                      </CustomTableRow>
                     );
                   })}
                 {emptyRows > 0 && (
-                  <TableRow style={{ height: 49 * emptyRows }}>
-                    <TableCell colSpan={8} />
-                  </TableRow>
+                  <CustomTableRow style={{ height: 49 * emptyRows }}>
+                    <CustomTableCell colSpan={8} />
+                  </CustomTableRow>
                 )}
               </TableBody>
             </Table>

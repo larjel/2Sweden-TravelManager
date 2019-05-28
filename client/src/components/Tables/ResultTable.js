@@ -3,26 +3,15 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
 import TablePagination from '@material-ui/core/TablePagination';
-import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import "../Main/Main.css";
 import * as utils from '../../utils/utils.js'
 import EnhancedTableHead from './Head/EnhancedTableHead';
 import EnhancedTableToolbar from './Toolbar/EnhancedTableToolbar';
-import { Link, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
-
-//----------------------------------------------------------------------------
-const CustomTableCell = withStyles(theme => ({
-  head: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  body: {
-    fontSize: 14,
-  },
-}))(TableCell);
+import { animateScroll as scroll } from 'react-scroll'
+import CustomTableCell from './Styling/CustomTableCell';
+import CustomTableRow from './Styling/CustomTableRow';
 
 //----------------------------------------------------------------------------
 let counter = 0;
@@ -126,24 +115,24 @@ class ResultTable extends React.Component {
       })
 
       tableData.rows = [
-        { id: 'route', numeric: false, disablePadding: false, label: 'Route' },
-        { id: 'duration', numeric: true, disablePadding: false, label: 'Time (hours)' },
-        { id: 'transferCount', numeric: true, disablePadding: false, label: 'Transfers' },
-        { id: 'lowestprice', numeric: true, disablePadding: false, label: 'Min Price' + currencyCode },
-        { id: 'highestprice', numeric: true, disablePadding: false, label: 'Max Price' + currencyCode },
-        { id: 'routeArrayIndex', numeric: true, disablePadding: false, label: 'Hidden', hidden: true }
+        { id: 'route', numeric: false, disablePadding: true, label: 'Route' },
+        { id: 'duration', numeric: true, disablePadding: true, label: 'Time (hours)' },
+        { id: 'transferCount', numeric: true, disablePadding: true, label: 'Transfers' },
+        { id: 'lowestprice', numeric: true, disablePadding: true, label: 'Min Price' + currencyCode },
+        { id: 'highestprice', numeric: true, disablePadding: true, label: 'Max Price' + currencyCode },
+        { id: 'routeArrayIndex', numeric: true, disablePadding: true, label: 'Hidden', hidden: true }
       ];
 
       tableData.tableTitle = searchPath;
     }
 
-    return tableData;      
+    return tableData;
   }
 
   //--------------------------------------------------------------------------
   render() {
 
-    const { classes, searchResponse, searchPath} = this.props;
+    const { classes, searchResponse, searchPath } = this.props;
     const { rows, data, tableTitle } = this.parseInputDataForTable(searchResponse, searchPath);
 
     if (!rows) {
@@ -173,26 +162,26 @@ class ResultTable extends React.Component {
                   .map(n => {
                     const isSelected = this.isSelected(n.id);
                     return (
-                      <TableRow
+                      <CustomTableRow
                         hover
                         onClick={event => this.handleClick(event, n.id, data)}
                         tabIndex={-1}
                         key={n.id}
                         selected={isSelected}
                       >
-                        <TableCell>{n.route}</TableCell>
-                        <TableCell align="right">{n.duration}</TableCell>
-                        <TableCell align="right">{n.transferCount}</TableCell>
-                        <TableCell align="right">{n.lowestprice}</TableCell>
-                        <TableCell align="right" >{n.highestprice}</TableCell>
-                        <TableCell align="right" hidden={true}>{n.routeArrayIndex}</TableCell>
-                      </TableRow>
+                        <CustomTableCell>{n.route}</CustomTableCell>
+                        <CustomTableCell align="right">{n.duration}</CustomTableCell>
+                        <CustomTableCell align="right">{n.transferCount}</CustomTableCell>
+                        <CustomTableCell align="right">{n.lowestprice}</CustomTableCell>
+                        <CustomTableCell align="right" >{n.highestprice}</CustomTableCell>
+                        <CustomTableCell align="right" hidden={true}>{n.routeArrayIndex}</CustomTableCell>
+                      </CustomTableRow>
                     );
                   })}
                 {emptyRows > 0 && (
-                  <TableRow style={{ height: 49 * emptyRows }}>
-                    <TableCell colSpan={6} />
-                  </TableRow>
+                  <CustomTableRow style={{ height: 49 * emptyRows }}>
+                    <CustomTableCell colSpan={6} />
+                  </CustomTableRow>
                 )}
               </TableBody>
             </Table>
