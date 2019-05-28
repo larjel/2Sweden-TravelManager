@@ -2,7 +2,7 @@
     grid-area: sidebar;
   }
 
-  .wrapper {
+.wrapper {
     min-height: 100%;
   }
 
@@ -10,6 +10,7 @@
   height: 100px;
 }
 
-.googleMap {
-  
+.flex-container {
+  display: flex;
+  flex-direction: row;
 }

@@ -36,11 +36,8 @@ const styles = theme => ({
     marginTop: theme.spacing.unit * 3,
   },
   table: {
-    minWidth: 400,
-    maxWidth: 400,
-  },
-  tableWrapper: {
-    overflowX: 'auto',
+    maxWidth: 300,
+    height: 350,
   },
 });
 
@@ -222,7 +219,7 @@ class DetailsTable extends React.Component {
           </div>
           <TablePagination
             className="tableBlue"
-            rowsPerPageOptions={[5, 10, 25]}
+            rowsPerPageOptions={[5 /*, 10, 25*/]}
             component="div"
             count={data.length}
             rowsPerPage={rowsPerPage}

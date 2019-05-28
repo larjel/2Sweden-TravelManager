@@ -57,7 +57,7 @@ class App extends Component {
           <>
             <Main searchResponse={searchResponse} setSearchResponse={this.setSearchResponse} setRouteDetailsArrIdx={this.setRouteDetailsArrIdx} />
             <Sidebar searchResponse={searchResponse} routeDetailsArrIdx={routeDetailsArrIdx} />
-            <MapContainer searchResponse={searchResponse} />
+          {/*}  <MapContainer searchResponse={searchResponse} /> */}
           </>
         );
       case 'info':

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import "../../Main/Main.css"
 import "../layout.css"
+import "./Falun.css"
 import imgMaxResDefault from './img/maxresdefault-falun.jpg'
 import imgDalarnaMine from './img/dalarna-sweden-mine-falun.jpg'
 import imgFalun01 from './img/003722-falun.jpg'
@@ -12,7 +12,7 @@ class Falun extends Component {
   render() {
     return (
       <main>
-        <h2>Falun - Northern lights</h2>
+        <h2 className="falunHeader">Falun - Northern lights</h2>
         {/* content */}
         <div className="wrapper row2">
           <div id="container" className="clear">
@@ -43,7 +43,7 @@ class Falun extends Component {
                       <h2>Places to See in falun</h2>
                       <p>
                         The copper mine and mining areas of Falun are part
-                        of the world heritage sites by the United Nations.
+                        of the world heritage sites.
                       </p>
                       <footer className="more">
                         <a href="#footer">Read More »</a>
@@ -61,7 +61,7 @@ class Falun extends Component {
                     />
                     <figcaption>
                       <h2>Transport</h2>
-                      <p>There is a local transport system in the city.</p>
+                      <p>There is a local transport system in the city. It's located at the core of Falun.</p>
                       <footer className="more">
                         <a href="#footer">Read More »</a>
                       </footer>
@@ -79,7 +79,7 @@ class Falun extends Component {
                     <figcaption>
                       <h2>Places to stay in Falun</h2>
                       <p>
-                        You can choose from many hotels to stay at in Falun.
+                        You can choose from many hotels to stay at in Falun. Both central and closer to the events.
                       </p>
                       <footer className="more">
                         <a href="#footer">Read More »</a>
@@ -97,7 +97,7 @@ class Falun extends Component {
               <section id="intro" className="last clear">
                 <article>
                   <figure>
-                    <img src={imgFalun02} width={450} height={250} alt="Falun town" />
+                    <img src={imgFalun02} width={450} height={350} alt="Falun town" />
                     <figcaption>
                       <h2>About the City of Falun</h2>
                       <p>

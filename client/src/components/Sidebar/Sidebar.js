@@ -1,7 +1,7 @@
 import React from 'react'
 import "./Sidebar.css"
 import DetailsTable from '../Tables/DetailsTable';
-// import MapContainer from '../Map/MapContainer';
+import MapContainer from '../Map/MapContainer';
 
 
 class Sidebar extends React.Component {
@@ -14,20 +14,20 @@ class Sidebar extends React.Component {
             width: "100%",
             gridArea: "content",
             color: "white",
-            padding: "20px",
+            padding: "10px",
             gridArea: "sidebar",
         };
 
         return (
             <aside style={sectionStyle}>
-                <i className="fab fa-react"></i>
                 <div className="wrapper">
-                    <i className="fab fa-react"></i>
-                    <DetailsTable className="resultTable"
+                    <div className="flex-container">
+                    <DetailsTable
                         searchResponse={this.props.searchResponse}
                         routeDetailsArrIdx={this.props.routeDetailsArrIdx}
                     />
-                    {/* <MapContainer searchResponse={this.props.searchResponse} /> */}
+                    <MapContainer searchResponse={this.props.searchResponse} />
+                    </div>
                     <div className="push"></div>
                 </div>
             </aside>

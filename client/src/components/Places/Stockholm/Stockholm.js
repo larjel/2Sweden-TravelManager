@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import "../../Main/Main.css"
 import "../layout.css"
+import "./Stockholm.css"
 import imgEurSweden from './img/eur-sweden-stockholm.jpg'
 import imgStockholmView from './img/stockholm-view.jpg'
 import imgForarlosa from './img/forarlosatag.jpg'
@@ -12,7 +12,7 @@ class Stockholm extends Component {
   render() {
     return (
       <main>
-        <h2>Stockholm - Venice of the north</h2>
+        <h2 className="headText">Stockholm - Venice of the north</h2>
         {/* content */}
         <div className="wrapper row2">
           <div id="container" className="clear">
@@ -31,7 +31,7 @@ class Stockholm extends Component {
                     <img src={imgStockholmView} width={290} height={180} alt="Stockholm view" />
                     <figcaption>
                       <h2>Places to See in Stockholm</h2>
-                      <p>Stockholm has a lot of Attractions.</p>
+                      <p>Stockholm has a lot of Attractions. Visit the Old city and much more.</p>
                       <footer className="more">
                         <a href="#footer">Read More »</a>
                       </footer>
@@ -81,13 +81,13 @@ class Stockholm extends Component {
               {/* ########################################################################################## */}
               {/* ########################################################################################## */}
               {/* Introduction */}
-              <section id="intro" className="last clear">
+              <section id="intro">
                 <article>
                   <figure>
                     <img
                       src={imgStockholm1024x681}
                       width={450}
-                      height={250}
+                      height={350}
                       alt="Stockholm view of Stadshuset"
                     />
                     <figcaption>

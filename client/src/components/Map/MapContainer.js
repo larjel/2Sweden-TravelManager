@@ -38,8 +38,13 @@ export class MapContainer extends Component {
     }
     return null;
   }
-
   render() {
+    const style = {
+      width: '50%',
+      height: '50%',
+     
+    }
+
     const routeInfo = this.getCoordinates();
 
     if (!routeInfo) {
@@ -47,7 +52,7 @@ export class MapContainer extends Component {
     }
 
     return (
-      <Map className="googleMap" google={this.props.google}
+      <Map style={style} google={this.props.google}
         zoom={1.8} initialCenter={{ lat: routeInfo.latDest, lng: routeInfo.lngDest }}
       >
 

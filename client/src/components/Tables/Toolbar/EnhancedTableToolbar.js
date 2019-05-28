@@ -22,7 +22,7 @@ const toolbarStyles = theme => ({
       }
       : {
         color: theme.palette.text.primary,
-        backgroundColor: theme.palette.secondary.dark,
+       backgroundColor: theme.palette.secondary.dark,
       },
   spacer: {
     flex: '1 1 100%',

@@ -139,12 +139,29 @@ header ul {
   }
 }
 
-@media (min-width: 1600px) {
+@media (min-width: 1600px) and (max-width: 1699px) {
   .myNavbar {
     margin-top: 60px;
   }
   .headerText {
-    margin-top: 61px;
+    margin-top: 63px;
+    font-size: 20px;
+  }
+  .logo {
+    width: 5%;
+  }
+  .main-head {
+    height: 100px;
+    border-bottom: 4px solid #ffcc00;
+  }
+}
+
+@media (min-width: 1700px) {
+  .myNavbar {
+    margin-top: 60px;
+  }
+  .headerText {
+    margin-top: 63px;
     font-size: 20px;
   }
   .logo {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import "../../Main/Main.css"
 import "../layout.css"
+import "./Are.css"
 import imgOffpist from './img/offpist-are-AA-Are.jpg'
 import imgRockberg from './img/crop_media_1254_foto-ola-rockberg-kabin-1-are.jpg'
 import imgStation from './img/station-are.jpg'
@@ -12,7 +12,7 @@ class Are extends Component {
   render() {
     return (
       <main>
-        <h2>Åre - Leading ski resort</h2>
+        <h2 className="headerAre">Åre - Sweden's leading ski resort</h2>
         {/* content */}
         <div className="wrapper row2">
           <div id="container" className="clear">
@@ -43,7 +43,7 @@ class Are extends Component {
                       <h2>Places to See in Åre</h2>
                       <p>
                         Åre's cable car takes you up to 1274 MASL, making
-                        Åreskutan the highest most accessible mountain in
+                        it the highest accessible mountain in
                         Sweden.
                       </p>
                       <footer className="more">
@@ -62,7 +62,7 @@ class Are extends Component {
                     />
                     <figcaption>
                       <h2>Transport</h2>
-                      <p>There is a local transport system in the city.</p>
+                      <p>There is a local transport system in the city. From where you can travel to rest of Sweden</p>
                       <footer className="more">
                         <a href="#footer">Read More »</a>
                       </footer>
@@ -80,7 +80,7 @@ class Are extends Component {
                     <figcaption>
                       <h2>Places to stay in Åre</h2>
                       <p>
-                        You can choose from many hotels to stay at in Åre.
+                        You can choose from many hotels to stay at in Åre. Or maybe a cozy cabin in the middle of the slope.
                       </p>
                       <footer className="more">
                         <a href="#footer">Read More »</a>
@@ -101,7 +101,7 @@ class Are extends Component {
                     <img
                       src={imgAreBjornen}
                       width={450}
-                      height={250}
+                      height={350}
                       alt="Åre Björnen area"
                     />
                     <figcaption>
