@@ -81,7 +81,9 @@ router.post('/getSearchResults', (req, res) => {
   const url = `${baseUrl}&oName=${fromPlace}&dName=${toPlace}&currencyCode=${currencyCode}&languageCode=${languageCode}`
     // Limit the request severly (many noXXX) for faster response and less data to handle. May alter this further on.
     // (Example: Rome->Stockholm. Response is shrunk from 217946 bytes for full response to 36100 bytes for the limited.)
-    + '&noFerry&noCar&noBikeshare&noRideshare&noTowncar&noCommuter&noSpecial&noMinorStart&noMinorEnd&noPath&noStop&noAirLeg'
+    //+ '&noFerry&noCar&noBikeshare&noRideshare&noTowncar&noCommuter&noSpecial&noMinorStart&noMinorEnd&noPath&noStop&noAirLeg'
+
+    + '&noFerry&noCar&noBikeshare&noRideshare&noTowncar&noCommuter&noSpecial&noMinorStart&noMinorEnd&noAirLeg'
 
   console.log('Request: ' + url)
 
