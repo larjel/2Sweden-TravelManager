@@ -167,7 +167,7 @@ class Main extends React.Component {
               onChange={this.handleCurrency}
               options={currencyOptions}
             />
-            <button type="submit" style={{ float: 'right' }}>Search</button>
+            <button className="search-button" type="submit" style={{ float: 'right' }}>Search</button>
           </div>
           <div className="inputFields">
             {/*
