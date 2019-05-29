@@ -7,7 +7,6 @@ import {
   GoogleApiWrapper,
   Polyline
 } from 'google-maps-react';
-import { Map, InfoWindow, Marker, GoogleApiWrapper, Polyline } from 'google-maps-react';
 
 let latitude = 59.33258;
 let longitude = 18.0649;
@@ -21,25 +20,9 @@ console.log(decodePoly(polyline));
 
 const GoMapsKey = `${process.env.REACT_APP_GOOGLE_MAPS_KEY}`;
 
-// Stockholm
-// "lat": 59.33258,
-// "lng": 18.0649,
-
-// Åre
-// "lat": 63.40109,
-// "lng": 13.08222,
-
-// Falun
-// "lat": 60.60357,
-// "lng": 15.62597,
-
-// Rome
-// "lat": 41.90133,
-// "lng": 12.5009,
-
 export class MapContainer extends Component {
 
-  getCoordinates = () => {
+ getCoordinates = () => {
     const searchResponse = this.props.searchResponse;
     if (searchResponse && Array.isArray(searchResponse.places) && searchResponse.places.length >= 2) {
       return {
@@ -52,15 +35,16 @@ export class MapContainer extends Component {
       };
     }
     return null;
-  }
-  
+  }  
+
   render() {
     return (
       <Map google={this.props.google} zoom={6}
 
-    return (
-      <Map style={style} google={this.props.google}
-        zoom={1.8} initialCenter={{ lat: routeInfo.latDest, lng: routeInfo.lngDest }}
+        initialCenter={{
+          lat: latitude,
+          lng: longitude
+        }}
       >
 
         <Polyline
@@ -92,9 +76,9 @@ export class MapContainer extends Component {
 
         <InfoWindow onClose={this.onInfoWindowClose}>
           <div>
-            <h1>{this.state.selectedPlace.name}</h1> 
+            {/* <h1>{this.state.selectedPlace.name}</h1> */}
           </div>
-        </InfoWindow> */}
+        </InfoWindow>
       </Map>
     );
   }
