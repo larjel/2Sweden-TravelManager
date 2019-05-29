@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 @import url('https://fonts.googleapis.com/css?family=Lato');
 
+.search-button {
+  margin: 5px;
+}
+
 .content {
   grid-area: content;
 }
@@ -8,17 +12,21 @@
 .searchBox {
   width: 15%;
   color: black;
+  margin: 5px;
 }
 
 .currencyBox {
   width: 7%;
   color: black;
+  margin: 5px;
 }
 
 .searchContainer {
   display: flex;
   justify-content: center;
+  flex-direction: row;
   margin: 15px;
+  padding: 5px;
 }
 
 .searchHeader {
@@ -45,30 +53,48 @@
   text-align: center;
 }
 @media (min-width: 300px) {
+  .search-button {
+    width: 100%;
+  }
+  .searchContainer {
+    display: flex;
+    flex-direction: column;
+  }
   .searchHeader {
     font-size: 20px
   }
   .searchBox {
-    width: 50%;
+    width: 100%;
   }
   .currencyBox {
-    width: 50%;
+    width: 100%;
   }
 }
 
 @media (min-width: 400px) and (max-width: 1199px) {
+  .search-button {
+    width: 100%;
+  }
+  .searchContainer {
+    display: flex;
+    flex-direction: column;
+  }
   .searchHeader {
     font-size: 20px
   }
   .searchBox {
-    width: 30%;
+    width: 100%;
   }
   .currencyBox {
-    width: 25%;
+    width: 100%;
   }
 }
 
 @media (min-width: 1200px) and (max-width:1599px) {
+  .search-button {
+    width: 10%;
+  }
+  
   .searchHeader {
     font-size: 30px;
   }
@@ -78,6 +104,13 @@
   .currencyBox {
     width: 9%;
   }
+}
+.searchContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  margin: 15px;
+  padding: 5px;
 }
 
 @media (min-width: 1600px) {
