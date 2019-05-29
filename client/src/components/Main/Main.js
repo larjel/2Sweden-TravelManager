@@ -1,6 +1,6 @@
 import React from 'react';
 import "./Main.css";
-import EnhancedTable from './EnhancedTable';
+import ResultTable from '../Tables/ResultTable';
 import * as apiModule from '../../utils/api.js'
 import * as utils from '../../utils/utils.js'
 import Select from 'react-select';
@@ -16,7 +16,6 @@ class Main extends React.Component {
     this.state = {
       searchValue1: null,
       searchValue2: null,
-      searchResponse: {},
       searchPath: null,
       autocompletePlaces: [],
       autocompletePlacesInProgress: false,
@@ -29,15 +28,18 @@ class Main extends React.Component {
   handleSearchSubmit = (event) => {
     event.preventDefault();
     if (this.state.searchValue1 && this.state.searchValue2 && this.state.currencyCode) {
+      // Clear previous search response in App, which will cause all components to clear their contents
+      this.props.setSearchResponse(null);
       // Clear any search details from previous search
-      this.props.routeDetails(null, -1); 
+      this.props.setRouteDetailsArrIdx(-1);
 
       apiModule.getRoutes(this.state.searchValue1.value, this.state.searchValue2.value, this.state.currencyCode.value)
         .then(data => {
           this.setState({
-            searchResponse: data,
             searchPath: this.state.searchValue1.label + ' -> ' + this.state.searchValue2.label
           })
+          // Set the search response in App so it is available to all components
+          this.props.setSearchResponse(data);
         })
         .catch(err =>
           this.setState({
@@ -165,7 +167,7 @@ class Main extends React.Component {
               onChange={this.handleCurrency}
               options={currencyOptions}
             />
-            <button type="submit" style={{ float: 'right' }}>Search</button>
+            <button className="search-button" type="submit" style={{ float: 'right' }}>Search</button>
           </div>
           <div className="inputFields">
             {/*
@@ -182,10 +184,10 @@ class Main extends React.Component {
 
           </div>
         </form>
-        <EnhancedTable className="resultTable"
-          searchResponse={this.state.searchResponse}
+        <ResultTable className="resultTable"
+          searchResponse={this.props.searchResponse}
           searchPath={this.state.searchPath}
-          routeDetails={this.props.routeDetails}
+          setRouteDetailsArrIdx={this.props.setRouteDetailsArrIdx}
         />
       </main>
     )

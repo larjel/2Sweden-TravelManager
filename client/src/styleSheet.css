@@ -2,29 +2,9 @@
   box-sizing: border-box;
 }
 
-.inputFields {
-  padding: 10px;
-  width: 100%;
-  justify-content: space-between;
-}
-
 body {
   background: #e5e5e5;
   font: 13px/1.4 Geneva, 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif;
-}
-
-.label {
-  display: block;
-  color: white;
-}
-
-.input {
-  border: 1px solid #c4c4c4;
-  border-radius: 5px;
-  background-color: #fff;
-  padding: 3px 5px;
-  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.1);
-  width: 190px;
 }
 
 [type="date"] {
@@ -67,7 +47,7 @@ input[type="date"] {
   "footer";
 }
 
-@media (min-width: 500px) {
+@media (min-width: 300px) {
   .wrapper {
     grid-template-columns: 1fr 3fr;
     grid-template-areas: 

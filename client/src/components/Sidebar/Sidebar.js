@@ -1,7 +1,8 @@
 import React from 'react'
 import "./Sidebar.css"
-import DetailsTable from './DetailsTable';
-/*import sthlm2 from './sthlmnight2.jpg'*/
+import DetailsTable from '../Tables/DetailsTable';
+import MapContainer from '../Map/MapContainer';
+
 
 class Sidebar extends React.Component {
     constructor(props) {
@@ -11,21 +12,24 @@ class Sidebar extends React.Component {
     render() {
         var sectionStyle = {
             width: "100%",
-         /*   height: "700px",  */
-           /* backgroundImage: `url(${sthlm2})`,*/
             gridArea: "content",
             color: "white",
-            padding: "20px",
+            padding: "10px",
             gridArea: "sidebar",
-            borderLeft: "2px ridge black",
-          };
-      
+        };
+
         return (
             <aside style={sectionStyle}>
-                <DetailsTable className="resultTable"
-                    searchResponse={this.props.searchResponse}
-                    routeArrayIndex={this.props.routeArrayIndex}
-                />
+                <div className="wrapper">
+                    <div className="flex-container">
+                    <DetailsTable
+                        searchResponse={this.props.searchResponse}
+                        routeDetailsArrIdx={this.props.routeDetailsArrIdx}
+                    />
+                    <MapContainer searchResponse={this.props.searchResponse} />
+                    </div>
+                    <div className="push"></div>
+                </div>
             </aside>
         )
     }

@@ -3,17 +3,20 @@
 
 .main-head {
   grid-area: header;
-  background: #006699;
+  background-color: #006699;
   text-align: center;
   border-bottom: 5px solid #ffcc00;
+  height: 100px;
 }
 
-header .highlight, header .current a{
-  color:#e8491d;
-  font-weight:bold;
+header .highlight, header .current a, .li a {
+  color: azure;
+  text-decoration: none;
 }
 
 header ul {
+  background-color: #006699;
+  float: right;
   margin: 0;
   padding: 0;
 }
@@ -22,13 +25,24 @@ header ul {
   display: inline;
   color: #ffcc00;
   padding: 0 10px 0 10px;
-  
 }
 
-.nav{
-  float:right;
+.myNavbar {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  padding: .5rem 1rem;
+  margin-top: 30px;
+  /*
+  float: right;
+  background-color: #006699;
   color: #ffcc00;
-  margin-top: 127px;
+  margin-right: 2px;
+  margin-bottom: 0;
+  position: absolute;
+  */
 }
 
 .yellow {
@@ -36,7 +50,7 @@ header ul {
 }
 
 .logo {
-  width: 7%;
+  width: 15%;
   float: left;
 }
 
@@ -46,41 +60,115 @@ header ul {
   position: relative;
   font-size: 20px;
   font-weight: 600;
-  text-shadow:  2px 2px 0 rgb(0, 0, 0);
+  text-shadow: 2px 2px 0 rgb(0, 0, 0);
   letter-spacing: 2px;
   float: left;
-  padding: 50px;
+  margin-left: 50px;
+  margin-top: -3px;
 }
 
+.myNavbar a:hover {
+  color: #ffcc00;
+  text-decoration: none;
+}
 
-@media (min-width: 300px) {
+@media (min-width: 300px) and (max-width: 399px) {
   .headerText {
-    font-size: 25px;
-    top: 1.5vh;
-  } 
-  .underText {
     font-size: 15px;
+    margin-top: -40px;
+    left: 15px;
   }
-}
-
-@media (min-width: 1200px) {
-  .headerText {
-  font-size: 20px;
-  top: 10vh;  
-  left: -2vw;
+  .main-head {
+    height: 75px;
+    border-bottom: 3px solid #ffcc00;
   }
   .logo {
-    width: 10%;
+    width: 17%;
   }
 }
 
-@media (min-width: 1600px) {
+@media (min-width: 400px) and (max-width: 699px) {
   .headerText {
-    top: 6vh;
-    font-size: 25px;
+    font-size: 17px;
+    margin-top: 42px;
+    margin-left: 10px;
   }
-  .underText {
-    font-size: 18px;
+  .main-head {
+    height: 75px;
+    border-bottom: 4px solid #ffcc00;
   }
+  .logo {
+    width: 15%;
+  }
+}
 
+@media (min-width: 700px) and (max-width: 1199px) {
+  .headerText {
+    font-size: 17px;
+    margin-top: 42px;
+    margin-left: 10px;
+  }
+  .main-head {
+    height: 75px;
+    border-bottom: 4px solid #ffcc00;
+  }
+  .logo {
+    width: 8%;
+  }
+}
+
+@media (max-width: 1010px) {
+  .myNavbar {
+    margin-top: 5px;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1599px) {
+  .myNavbar {
+    margin-top: 59px;
+  }
+  .headerText {
+    font-size: 20px;
+    margin-top: 61px;
+  }
+  .logo {
+    width: 6.5%;
+  }
+  .main-head {
+    height: 100px;
+  }
+}
+
+@media (min-width: 1600px) and (max-width: 1699px) {
+  .myNavbar {
+    margin-top: 60px;
+  }
+  .headerText {
+    margin-top: 63px;
+    font-size: 20px;
+  }
+  .logo {
+    width: 5%;
+  }
+  .main-head {
+    height: 100px;
+    border-bottom: 4px solid #ffcc00;
+  }
+}
+
+@media (min-width: 1700px) {
+  .myNavbar {
+    margin-top: 60px;
+  }
+  .headerText {
+    margin-top: 63px;
+    font-size: 20px;
+  }
+  .logo {
+    width: 4.5%;
+  }
+  .main-head {
+    height: 100px;
+    border-bottom: 4px solid #ffcc00;
+  }
 }
