@@ -55,8 +55,8 @@ class App extends React.Component {
       
       return(
         <div>
-          <div style={styles.container}>
-            <MenuButton open={this.state.menuOpen} onClick={()=>this.handleMenuClick()} color='white'/>
+          <div style={styles.container} className="ipad-screen">
+            <MenuButton className="ipad-screen" open={this.state.menuOpen} onClick={()=>this.handleMenuClick()} color='white'/>
           </div>
           <Menu open={this.state.menuOpen}>
             {menuItems}
