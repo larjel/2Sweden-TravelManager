@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import GoogleMap from 'google-map-react'
 import decodePolyline from 'decode-google-map-polyline';
 import Marker from './Extras/Marker'
+import { isNumber } from 'util';
 
 const googleMapsKey = `${process.env.REACT_APP_GOOGLE_MAPS_KEY}`;
 
@@ -9,15 +10,18 @@ const polyline = 'k|biJo~emBkf@flAeXfnBmt@l|@oO|EsYxUicAfVg\\jMyu@zf@ez@vgAyy@dp
 
 const polyline2 = 'q_r`KkhjxAeC`DeNjAkTrBiXrCyCwMgKqDiGeJa\\kNaNs@}GtEe_@`Qe~@~f@qYp@wJpa@m[ne@ah@h}@wRvXmy@f}@uW`g@sPpj@kIdc@uSl_BuMbo@gIfYkQ~c@_X`c@oE~Es\\jYmK|KiMlRcqAlgC}`@zl@g|@b~@gDbFmOz[cKdb@yAxKyLh_AmMdq@yPsKuQzVcBvIsWbf@oDt@_InDeO~FsQ|E}R`IpOtj@~FdIxTdShGbOsE|n@Zv_@tGlaAfFzwA~B~cAsCp~BrBlkDdBvxCzBre@`CzW_FjHkXjl@iUdXoOri@kQjX{e@lfAePhW}Ap`@sE~LrLxa@xE`HxLbTpXvh@vF`Z~Ctr@|Plh@xFvh@xF`V~Zhu@|X~b@dDaBzF|a@jKpb@tCvTpFfc@xI~v@|Fxj@tAzT~DjbBJ~c@{EtzCoE`i@wJxp@iHrk@s@jOqFbt@eGjj@}Kxt@iInb@\\`JgCxv@{Lr{@}FzY{I|ZqKnb@oKhk@aMvZuB`zA`Frh@rNh`@bVr`@rFfVnMp{@vNzq@dJ`\\hKlZrKxV|d@hx@rQvf@pVbcA~Gpk@fAdd@i@pr@tFpAl@ViElr@|@hv@y@vH_AhWnEjyCf@xOpAdj@mL~LiMbL_Dhy@wJd}AmLfiDq@~iCcDb_CoDt`ACdg@p@fSxIzuAx@bWpAn`ArOv^`FhSpCxGsBtZuDtf@uCjZP|M}B`GmD~k@uCpCnAlNdCr[zE~mBs@nTgMltA{VvrA}AjMiRl~BqEjz@kRbaBwFlVkQ`a@eYn_A}Q|e@uLdi@cBrw@cDjUkPxw@qEjl@}Bzn@eJv]iDLwHve@mA|PjJfh@fUvw@bKx^`Jxx@`Kvi@hAfLtJht@`In^rG~YpExZvGfl@xAtYzSroBxAfFbO`u@pI`g@tH`TlHx[tNln@nBnWdAnr@_@`_Ag@f{Ak@nWaC~eAoBhb@uCbcAuBna@kIzu@cLp}@qHv]_v@xrBwS|b@w[bj@iR~a@mEnRqKzd@sRtYwl@l`@gXt[_@I_s@zlAoOlR__@pa@}Rt\\aLbk@{P`_AiH`g@_G`u@sCpn@_Gnw@eLvu@mNxZmPlUr@rVkS|v@{BpA'
 
+let MARKERS;
+
 //----------------------------------------------------------------------------
 class Map extends Component {
+
   constructor(props) {
     super(props)
 
     this.state = {
       mapsLoaded: false,
       map: null,
-      maps: null
+      maps: null,
     }
   }
 
@@ -36,7 +40,7 @@ class Map extends Component {
   //--------------------------------------------------------------------------
   fitBounds = (map, maps) => {
     var bounds = new maps.LatLngBounds()
-    for (let marker of this.props.markers) {
+    for (let marker of MARKERS) {
       bounds.extend(
         new maps.LatLng(marker.lat, marker.lng)
       )
@@ -55,31 +59,89 @@ class Map extends Component {
 
   //--------------------------------------------------------------------------
   // Render non geodesic polyline (straight line) */
-  renderPolylines = (markers, map, maps) => {
+  renderPolylines = (map, maps) => {
 
-    let nonGeodesicPolyline = new this.state.maps.Polyline({
-      path: this.props.markers,
+    let nonGeodesicPolyline = new maps.Polyline({
+      path: MARKERS,
       geodesic: false,
       strokeColor: '#00a1e1',
       strokeOpacity: 0.7,
       strokeWeight: 3
     })
-    nonGeodesicPolyline.setMap(this.state.map)
+    nonGeodesicPolyline.setMap(map)
+  }
+
+  //--------------------------------------------------------------------------
+  parseInputDataForMap = (searchResponse, routeDetailsArrIdx, routeSegmentArrIdx) => {
+    const mapData = {
+      parsed: false,
+      markerData: [],
+      depData: { text: null, lat: null, lng: null },
+      destData: { text: null, lat: null, lng: null }
+    };
+
+    if (searchResponse && Array.isArray(searchResponse.routes) && searchResponse.routes.length > 0
+      && Array.isArray(searchResponse.places) && searchResponse.places.length > 0) {
+
+      // Get the main departure and arrival cities and store the coordinates and names for text markers
+      const depPlaceIdx = searchResponse.routes[0].depPlace;
+      const arrPlaceIdx = searchResponse.routes[0].arrPlace;
+
+      const depLat = searchResponse.places[depPlaceIdx].lat;
+      const depLng = searchResponse.places[depPlaceIdx].lng;
+      const depName = searchResponse.places[depPlaceIdx].shortName;
+
+      const destLat = searchResponse.places[arrPlaceIdx].lat;
+      const destLng = searchResponse.places[arrPlaceIdx].lng;
+      const destName = searchResponse.places[arrPlaceIdx].shortName;
+
+      mapData.depData.lat = depLat;
+      mapData.depData.lng = depLng;
+      mapData.depData.text = depName;
+
+      mapData.destData.lat = destLat;
+      mapData.destData.lng = destLng;
+      mapData.destData.text = destName;
+      // =================
+
+      if (routeDetailsArrIdx >= 0 && routeSegmentArrIdx >= 0) {
+        // Todo: Show single segment
+      } else if (routeDetailsArrIdx >= 0) {
+        // Todo: Show complete route (all segements)
+      } else {
+        // Overview, show just departing and arriving locations
+        mapData.markerData = [{ lat: depLat, lng: depLng }, { lat: destLat, lng: destLng }];
+      }
+
+      mapData.parsed = true;
+    }
+
+    return mapData;
   }
 
   //--------------------------------------------------------------------------
   render() {
+
+    const { searchResponse, routeDetailsArrIdx, routeSegmentArrIdx } = this.props;
+    const { parsed, markerData, depData, destData } = this.parseInputDataForMap(searchResponse, routeDetailsArrIdx, routeSegmentArrIdx);
+
+    if (!parsed) {
+      return (null)
+    }
+
+    MARKERS = markerData;
+
     return (
-      <div style={{ height: '50vh', width: '50%' }}>
+      <div style={{ height: '100vh', width: '100%' }}>
         <GoogleMap
           bootstrapURLKeys={{ key: googleMapsKey }}
           yesIWantToUseGoogleMapApiInternals={true}
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
           onGoogleApiLoaded={({ map, maps }) => this.onMapLoaded(map, maps)}>
-          <Marker text={'Åre'} lat={63.40109} lng={13.08222} />
-          <Marker text={'Stockholm'} lat={59.33258} lng={18.0649} />
-          {this.state.mapsLoaded ? this.renderPolylines() : ''}
+          <Marker text={depData.text} lat={depData.lat} lng={depData.lng} />
+          <Marker text={destData.text} lat={destData.lat} lng={destData.lng} />
+          {this.state.mapsLoaded ? this.renderPolylines(this.state.map, this.state.maps) : ''}
         </GoogleMap>
       </div>
     )
@@ -88,7 +150,7 @@ class Map extends Component {
 
 //----------------------------------------------------------------------------
 Map.defaultProps = {
-  markers: decodePolyline(polyline),
+  //markers: decodePolyline(polyline),
   //markers: [
 
   //{ lat: 43.681583, lng: -79.61146 }, //Toronto
@@ -97,7 +159,7 @@ Map.defaultProps = {
   // { lat: 53.42728, lng: -6.24357 }, // Dublin
   //{ lat: 43.681583, lng: -79.61146 } //Toronto
   //],
-  center: [47.367347, 8.5500025],
+  center: [59.33258, 18.0649],
   zoom: 4
 }
 

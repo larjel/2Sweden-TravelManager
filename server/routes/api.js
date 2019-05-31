@@ -83,7 +83,8 @@ router.post('/getSearchResults', (req, res) => {
     // (Example: Rome->Stockholm. Response is shrunk from 217946 bytes for full response to 36100 bytes for the limited.)
     //+ '&noFerry&noCar&noBikeshare&noRideshare&noTowncar&noCommuter&noSpecial&noMinorStart&noMinorEnd&noPath&noStop&noAirLeg'
 
-    + '&noFerry&noCar&noBikeshare&noRideshare&noTowncar&noCommuter&noSpecial&noMinorStart&noMinorEnd&noStop&noAirLeg'
+    //+ '&noFerry&noCar&noBikeshare&noRideshare&noTowncar&noCommuter&noSpecial&noMinorStart&noMinorEnd&noStop&noAirLeg'
+    + '&noBikeshare&noRideshare&noTowncar&noSpecial&noStop'
 
   console.log('Request: ' + url)
 
