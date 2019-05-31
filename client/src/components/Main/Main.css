@@ -123,4 +123,14 @@
   .currencyBox {
     width: 8%;
   }
+  .search-button {
+    width: 10%;
+  }
+  .searchContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin: 15px;
+    padding: 5px;
+  }
 }
