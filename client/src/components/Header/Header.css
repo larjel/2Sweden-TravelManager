@@ -102,11 +102,10 @@ header ul {
   }
 }
 
-@media (min-width: 700px) and (max-width: 1199px) {
+@media (min-width: 700px) and (max-width: 999px) {
   .headerText {
-    font-size: 17px;
-    margin-top: 42px;
-    margin-left: 10px;
+    font-size: 30px;
+    margin-top: 25px;
   }
   .main-head {
     height: 75px;
@@ -117,9 +116,16 @@ header ul {
   }
 }
 
-@media (max-width: 1010px) {
+@media (min-width: 1000px) and (max-width: 1199px) {
   .myNavbar {
     margin-top: 5px;
+  }
+  .headerText {
+    font-size: 45px;
+    margin-top: 30px;
+  }
+  .logo {
+    width: 8%;
   }
 }
 

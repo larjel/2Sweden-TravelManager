@@ -95,7 +95,6 @@
   .search-button {
     width: 10%;
   }
-  
   .searchHeader {
     font-size: 30px;
   }
@@ -107,14 +106,15 @@
     width: 9%;
     margin: 5px;
   }
+  .search-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    margin: 15px;
+    padding: 5px;
+  }
 }
-.search-container {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  margin: 15px;
-  padding: 5px;
-}
+
 
 @media (min-width: 1600px) {
   .searchHeader {
