@@ -31,6 +31,7 @@ class Main extends React.Component {
       // Clear previous search response in App, which will cause all components to clear their contents
       this.props.setSearchResponse(null);
       // Clear any search details from previous search
+      this.props.setRouteSegmentArrIdx(-1);
       this.props.setRouteDetailsArrIdx(-1);
 
       apiModule.getRoutes(this.state.searchValue1.value, this.state.searchValue2.value, this.state.currencyCode.value)
