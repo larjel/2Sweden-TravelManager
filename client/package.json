@@ -19,6 +19,7 @@
     "react-scripts": "3.0.0",
     "react-scroll": "^1.7.11",
     "react-select": "^2.4.3",
+    "react-table": "^6.10.0",
     "reactstrap": "^8.0.0"
   },
   "scripts": {
