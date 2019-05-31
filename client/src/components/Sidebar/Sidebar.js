@@ -2,6 +2,7 @@ import React from 'react'
 import "./Sidebar.css"
 import DetailsTable from '../Tables/DetailsTable';
 import MapContainer from '../Map/MapContainer';
+import Map from '../Map/Map';
 
 
 class Sidebar extends React.Component {
@@ -22,11 +23,11 @@ class Sidebar extends React.Component {
             <aside style={sectionStyle}>
                 <div className="wrapper">
                     <div className="flex-container">
-                    <DetailsTable
-                        searchResponse={this.props.searchResponse}
-                        routeDetailsArrIdx={this.props.routeDetailsArrIdx}
-                    />
-                    <MapContainer searchResponse={this.props.searchResponse} />
+                        <DetailsTable
+                            searchResponse={this.props.searchResponse}
+                            routeDetailsArrIdx={this.props.routeDetailsArrIdx}
+                        />
+                        <Map searchResponse={this.props.searchResponse} />
                     </div>
                     <div className="push"></div>
                 </div>

@@ -8,6 +8,7 @@
     "bootstrap": "^4.3.1",
     "decode-google-map-polyline": "^1.0.1",
     "font-awesome": "^4.7.0",
+    "google-map-react": "^1.1.4",
     "google-maps-react": "^2.0.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
