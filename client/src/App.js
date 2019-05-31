@@ -53,18 +53,20 @@ class App extends Component {
         window.location.reload(); // Refresh page
         return (null);
       case 'home':
+      case 'info':
+      case 'recommend':
         return (
           <>
             <Main searchResponse={searchResponse} setSearchResponse={this.setSearchResponse} setRouteDetailsArrIdx={this.setRouteDetailsArrIdx} />
             <Sidebar searchResponse={searchResponse} routeDetailsArrIdx={routeDetailsArrIdx} />
-          {/*}  <MapContainer searchResponse={searchResponse} /> */}
+            {/*}  <MapContainer searchResponse={searchResponse} /> */}
           </>
         );
-      case 'info':
+      case 'stockholm':
         return <Stockholm />;
-      case 'locations':
+      case 'falun':
         return <Falun />;
-      case 'recommend':
+      case 'are':
         return <Are />;
       default:
         return null;
