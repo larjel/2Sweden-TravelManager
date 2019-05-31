@@ -75,7 +75,7 @@ header ul {
 @media (min-width: 300px) and (max-width: 399px) {
   .headerText {
     font-size: 15px;
-    margin-top: -40px;
+    margin-top: -15px;
     left: 15px;
   }
   .main-head {

@@ -137,7 +137,7 @@ class Main extends React.Component {
       <main style={sectionStyle}>
         <h3 className="searchHeader">Choose desired travel route</h3>
         <form className="formLayout" onSubmit={this.handleSearchSubmit}>
-          <div className="searchContainer">
+          <div className="search-container">
             <AsyncSelect
               className="searchBox"
               cacheOptions={true}
