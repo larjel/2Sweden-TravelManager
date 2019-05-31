@@ -1,0 +1,155 @@
+import React from "react";
+import { animateScroll as scroll } from 'react-scroll'
+import * as utils from '../../utils/utils.js'
+import * as stylers from './stylers.js'
+
+// Import React Table
+import ReactTable from "react-table";
+import "./react-table.css";
+import "./ResultTable.css";
+
+class ResultTable extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+    };
+  }
+
+  //--------------------------------------------------------------------------
+  parseInputDataForTable = (searchResponse, searchPath) => {
+    const tableData = { parsed: false, data: [], tableTitle: null, currencyCode: null };
+
+    if (searchResponse && Array.isArray(searchResponse.routes) && searchResponse.routes.length > 0) {
+
+      tableData.currencyCode = ' (' + searchResponse.currencyCode + ')';
+
+      tableData.data = searchResponse.routes.map((route, index) => {
+        const totalDurationHours = utils.truncateDecimals(route.totalDuration / 60, 1);
+        const prices = route.indicativePrices;
+        let priceLow = null;
+        let priceHigh = null;
+        let transferCount = null;
+        if (Array.isArray(prices)) {
+          priceLow = prices[0].priceLow;
+          priceHigh = prices[0].priceHigh;
+        }
+        if (Array.isArray(route.segments)) {
+          transferCount = route.segments.length;
+        }
+
+        return {
+          route: route.name,
+          duration: totalDurationHours,
+          transferCount: transferCount,
+          priceLow: priceLow,
+          priceHigh: priceHigh,
+          routeArrayIndex: index
+        };
+      })
+
+      tableData.tableTitle = searchPath;
+
+      tableData.parsed = true;
+    }
+
+    return tableData;
+  }
+
+  //--------------------------------------------------------------------------
+  handleRowClick = (state, rowInfo, column, instance) => {
+    return {
+      onClick: (e, handleOriginal) => {
+
+        if (rowInfo && rowInfo.original && rowInfo.original.routeArrayIndex >= 0) {
+          const routeArrayIndex = rowInfo.original.routeArrayIndex;
+          console.log('Arr Idx:', routeArrayIndex)
+          this.props.setRouteDetailsArrIdx(routeArrayIndex);
+          scroll.scrollTo(800);
+        }
+
+        // IMPORTANT! React-Table uses onClick internally to trigger
+        // events like expanding SubComponents and pivots.
+        // By default a custom 'onClick' handler will override this functionality.
+        // If you want to fire the original onClick handler, call the
+        // 'handleOriginal' function.
+        if (handleOriginal) {
+          handleOriginal()
+        }
+      }
+    }
+  }
+
+  //--------------------------------------------------------------------------
+  render() {
+
+    const { searchResponse, searchPath } = this.props;
+    const { parsed, data, tableTitle, currencyCode } = this.parseInputDataForTable(searchResponse, searchPath);
+
+    if (!parsed) {
+      return (null);
+    }
+
+    return (
+      <div>
+        <ReactTable
+          className="-striped -highlight result-table"
+          getTdProps={this.handleRowClick}
+          data={data}
+          columns={[
+            {
+              Header: tableTitle,
+              getHeaderProps: stylers.mainHeadingStyle,
+              columns: [
+                {
+                  getHeaderProps: stylers.leftAlignHeadingStyle,
+                  getProps: stylers.leftAlignStyle,
+                  Header: "Route",
+                  accessor: "route"
+                },
+                {
+                  getHeaderProps: stylers.rightAlignHeadingStyle,
+                  getProps: stylers.rightAlignStyle,
+                  Header: "Time (h)",
+                  accessor: "duration",
+                },
+                {
+                  getHeaderProps: stylers.rightAlignHeadingStyle,
+                  getProps: stylers.rightAlignStyle,
+                  Header: "Transfers",
+                  accessor: "transferCount"
+                },
+                {
+                  getHeaderProps: stylers.rightAlignHeadingStyle,
+                  getProps: stylers.rightAlignStyle,
+                  Header: "Min Price" + currencyCode,
+                  accessor: "priceLow"
+                },
+                {
+                  getHeaderProps: stylers.rightAlignHeadingStyle,
+                  getProps: stylers.rightAlignStyle,
+                  Header: "Max Price" + currencyCode,
+                  accessor: "priceHigh"
+                },
+                {
+                  Header: "",
+                  accessor: "routeArrayIndex",
+                  show: false
+                }
+              ]
+            },
+          ]}
+          defaultSorted={[
+            {
+              id: "duration",
+              desc: false
+            }
+          ]}
+          pageSizeOptions={[10, 15, 20, 25, 50, 100]}
+          defaultPageSize={10}
+        />
+      </div>
+    );
+  }
+}
+
+export default ResultTable;

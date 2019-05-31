@@ -15,8 +15,6 @@ var polyline = 'k|biJo~emBkf@flAeXfnBmt@l|@oO|EsYxUicAfVg\\jMyu@zf@ez@vgAyy@dp@y
 
 var polyline2 = 'q_r`KkhjxAeC`DeNjAkTrBiXrCyCwMgKqDiGeJa\\kNaNs@}GtEe_@`Qe~@~f@qYp@wJpa@m[ne@ah@h}@wRvXmy@f}@uW`g@sPpj@kIdc@uSl_BuMbo@gIfYkQ~c@_X`c@oE~Es\\jYmK|KiMlRcqAlgC}`@zl@g|@b~@gDbFmOz[cKdb@yAxKyLh_AmMdq@yPsKuQzVcBvIsWbf@oDt@_InDeO~FsQ|E}R`IpOtj@~FdIxTdShGbOsE|n@Zv_@tGlaAfFzwA~B~cAsCp~BrBlkDdBvxCzBre@`CzW_FjHkXjl@iUdXoOri@kQjX{e@lfAePhW}Ap`@sE~LrLxa@xE`HxLbTpXvh@vF`Z~Ctr@|Plh@xFvh@xF`V~Zhu@|X~b@dDaBzF|a@jKpb@tCvTpFfc@xI~v@|Fxj@tAzT~DjbBJ~c@{EtzCoE`i@wJxp@iHrk@s@jOqFbt@eGjj@}Kxt@iInb@\\`JgCxv@{Lr{@}FzY{I|ZqKnb@oKhk@aMvZuB`zA`Frh@rNh`@bVr`@rFfVnMp{@vNzq@dJ`\\hKlZrKxV|d@hx@rQvf@pVbcA~Gpk@fAdd@i@pr@tFpAl@ViElr@|@hv@y@vH_AhWnEjyCf@xOpAdj@mL~LiMbL_Dhy@wJd}AmLfiDq@~iCcDb_CoDt`ACdg@p@fSxIzuAx@bWpAn`ArOv^`FhSpCxGsBtZuDtf@uCjZP|M}B`GmD~k@uCpCnAlNdCr[zE~mBs@nTgMltA{VvrA}AjMiRl~BqEjz@kRbaBwFlVkQ`a@eYn_A}Q|e@uLdi@cBrw@cDjUkPxw@qEjl@}Bzn@eJv]iDLwHve@mA|PjJfh@fUvw@bKx^`Jxx@`Kvi@hAfLtJht@`In^rG~YpExZvGfl@xAtYzSroBxAfFbO`u@pI`g@tH`TlHx[tNln@nBnWdAnr@_@`_Ag@f{Ak@nWaC~eAoBhb@uCbcAuBna@kIzu@cLp}@qHv]_v@xrBwS|b@w[bj@iR~a@mEnRqKzd@sRtYwl@l`@gXt[_@I_s@zlAoOlR__@pa@}Rt\\aLbk@{P`_AiH`g@_G`u@sCpn@_Gnw@eLvu@mNxZmPlUr@rVkS|v@{BpA'
 
-console.log(decodePolyline(polyline));
-
 const GoMapsKey = `${process.env.REACT_APP_GOOGLE_MAPS_KEY}`;
 
 export class MapContainer extends Component {

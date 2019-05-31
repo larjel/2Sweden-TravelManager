@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import GoogleMap from 'google-map-react'
 import decodePolyline from 'decode-google-map-polyline';
 import Marker from './Extras/Marker'
-import Polyline from './Extras/Polyline'
 
 const googleMapsKey = `${process.env.REACT_APP_GOOGLE_MAPS_KEY}`;
 
@@ -10,6 +9,7 @@ const polyline = 'k|biJo~emBkf@flAeXfnBmt@l|@oO|EsYxUicAfVg\\jMyu@zf@ez@vgAyy@dp
 
 const polyline2 = 'q_r`KkhjxAeC`DeNjAkTrBiXrCyCwMgKqDiGeJa\\kNaNs@}GtEe_@`Qe~@~f@qYp@wJpa@m[ne@ah@h}@wRvXmy@f}@uW`g@sPpj@kIdc@uSl_BuMbo@gIfYkQ~c@_X`c@oE~Es\\jYmK|KiMlRcqAlgC}`@zl@g|@b~@gDbFmOz[cKdb@yAxKyLh_AmMdq@yPsKuQzVcBvIsWbf@oDt@_InDeO~FsQ|E}R`IpOtj@~FdIxTdShGbOsE|n@Zv_@tGlaAfFzwA~B~cAsCp~BrBlkDdBvxCzBre@`CzW_FjHkXjl@iUdXoOri@kQjX{e@lfAePhW}Ap`@sE~LrLxa@xE`HxLbTpXvh@vF`Z~Ctr@|Plh@xFvh@xF`V~Zhu@|X~b@dDaBzF|a@jKpb@tCvTpFfc@xI~v@|Fxj@tAzT~DjbBJ~c@{EtzCoE`i@wJxp@iHrk@s@jOqFbt@eGjj@}Kxt@iInb@\\`JgCxv@{Lr{@}FzY{I|ZqKnb@oKhk@aMvZuB`zA`Frh@rNh`@bVr`@rFfVnMp{@vNzq@dJ`\\hKlZrKxV|d@hx@rQvf@pVbcA~Gpk@fAdd@i@pr@tFpAl@ViElr@|@hv@y@vH_AhWnEjyCf@xOpAdj@mL~LiMbL_Dhy@wJd}AmLfiDq@~iCcDb_CoDt`ACdg@p@fSxIzuAx@bWpAn`ArOv^`FhSpCxGsBtZuDtf@uCjZP|M}B`GmD~k@uCpCnAlNdCr[zE~mBs@nTgMltA{VvrA}AjMiRl~BqEjz@kRbaBwFlVkQ`a@eYn_A}Q|e@uLdi@cBrw@cDjUkPxw@qEjl@}Bzn@eJv]iDLwHve@mA|PjJfh@fUvw@bKx^`Jxx@`Kvi@hAfLtJht@`In^rG~YpExZvGfl@xAtYzSroBxAfFbO`u@pI`g@tH`TlHx[tNln@nBnWdAnr@_@`_Ag@f{Ak@nWaC~eAoBhb@uCbcAuBna@kIzu@cLp}@qHv]_v@xrBwS|b@w[bj@iR~a@mEnRqKzd@sRtYwl@l`@gXt[_@I_s@zlAoOlR__@pa@}Rt\\aLbk@{P`_AiH`g@_G`u@sCpn@_Gnw@eLvu@mNxZmPlUr@rVkS|v@{BpA'
 
+//----------------------------------------------------------------------------
 class Map extends Component {
   constructor(props) {
     super(props)
@@ -21,7 +21,8 @@ class Map extends Component {
     }
   }
 
-  onMapLoaded(map, maps) {
+  //--------------------------------------------------------------------------
+  onMapLoaded = (map, maps) => {
     this.fitBounds(map, maps)
 
     this.setState({
@@ -32,7 +33,8 @@ class Map extends Component {
     })
   }
 
-  fitBounds(map, maps) {
+  //--------------------------------------------------------------------------
+  fitBounds = (map, maps) => {
     var bounds = new maps.LatLngBounds()
     for (let marker of this.props.markers) {
       bounds.extend(
@@ -42,34 +44,49 @@ class Map extends Component {
     map.fitBounds(bounds)
   }
 
-  afterMapLoadChanges() {
-    return (
-      <div style={{ display: 'none' }}>
-        <Polyline
-          map={this.state.map}
-          maps={this.state.maps}
-          markers={this.props.markers} />
-      </div>
-    )
+  //--------------------------------------------------------------------------
+  // This function generates vibrant, "evenly spaced" colours (i.e. no clustering). 
+  // This is ideal for creating easily distinguishable vibrant markers in Google Maps and other apps.
+  rainbowStop(h) {
+    let f = (n, k = (n + h * 12) % 12) => .5 - .5 * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+    let rgb2hex = (r, g, b) => "#" + [r, g, b].map(x => Math.round(x * 255).toString(16).padStart(2, 0)).join('');
+    return (rgb2hex(f(0), f(8), f(4)));
   }
 
+  //--------------------------------------------------------------------------
+  // Render non geodesic polyline (straight line) */
+  renderPolylines = (markers, map, maps) => {
+
+    let nonGeodesicPolyline = new this.state.maps.Polyline({
+      path: this.props.markers,
+      geodesic: false,
+      strokeColor: '#00a1e1',
+      strokeOpacity: 0.7,
+      strokeWeight: 3
+    })
+    nonGeodesicPolyline.setMap(this.state.map)
+  }
+
+  //--------------------------------------------------------------------------
   render() {
     return (
       <div style={{ height: '50vh', width: '50%' }}>
         <GoogleMap
           bootstrapURLKeys={{ key: googleMapsKey }}
+          yesIWantToUseGoogleMapApiInternals={true}
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
           onGoogleApiLoaded={({ map, maps }) => this.onMapLoaded(map, maps)}>
           <Marker text={'Åre'} lat={63.40109} lng={13.08222} />
           <Marker text={'Stockholm'} lat={59.33258} lng={18.0649} />
-          {this.state.mapsLoaded ? this.afterMapLoadChanges() : ''}
+          {this.state.mapsLoaded ? this.renderPolylines() : ''}
         </GoogleMap>
       </div>
     )
   }
 }
 
+//----------------------------------------------------------------------------
 Map.defaultProps = {
   markers: decodePolyline(polyline),
   //markers: [
@@ -84,6 +101,7 @@ Map.defaultProps = {
   zoom: 4
 }
 
+//----------------------------------------------------------------------------
 export default Map;
 
 // Stockholm
