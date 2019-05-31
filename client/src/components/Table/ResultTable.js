@@ -1,9 +1,11 @@
 import React from "react";
+import { animateScroll as scroll } from 'react-scroll'
 import * as utils from '../../utils/utils.js'
+import * as stylers from './stylers.js'
 
 // Import React Table
 import ReactTable from "react-table";
-import "react-table/react-table.css";
+import "./react-table.css";
 import "./ResultTable.css";
 
 class ResultTable extends React.Component {
@@ -15,11 +17,11 @@ class ResultTable extends React.Component {
 
   //--------------------------------------------------------------------------
   parseInputDataForTable = (searchResponse, searchPath) => {
-    const tableData = { data: [], tableTitle: null };
+    const tableData = { parsed: false, data: [], tableTitle: null, currencyCode: null };
 
     if (searchResponse && Array.isArray(searchResponse.routes) && searchResponse.routes.length > 0) {
 
-      const currencyCode = ' (' + searchResponse.currencyCode + ')';
+      tableData.currencyCode = ' (' + searchResponse.currencyCode + ')';
 
       tableData.data = searchResponse.routes.map((route, index) => {
         const totalDurationHours = utils.truncateDecimals(route.totalDuration / 60, 1);
@@ -46,17 +48,44 @@ class ResultTable extends React.Component {
       })
 
       tableData.tableTitle = searchPath;
+
+      tableData.parsed = true;
     }
 
     return tableData;
   }
 
+  //--------------------------------------------------------------------------
+  handleRowClick = (state, rowInfo, column, instance) => {
+    return {
+      onClick: (e, handleOriginal) => {
+
+        if (rowInfo && rowInfo.original && rowInfo.original.routeArrayIndex >= 0) {
+          const routeArrayIndex = rowInfo.original.routeArrayIndex;
+          console.log('Arr Idx:', routeArrayIndex)
+          this.props.setRouteDetailsArrIdx(routeArrayIndex);
+          scroll.scrollTo(800);
+        }
+
+        // IMPORTANT! React-Table uses onClick internally to trigger
+        // events like expanding SubComponents and pivots.
+        // By default a custom 'onClick' handler will override this functionality.
+        // If you want to fire the original onClick handler, call the
+        // 'handleOriginal' function.
+        if (handleOriginal) {
+          handleOriginal()
+        }
+      }
+    }
+  }
+
+  //--------------------------------------------------------------------------
   render() {
 
     const { searchResponse, searchPath } = this.props;
-    const { data, tableTitle } = this.parseInputDataForTable(searchResponse, searchPath);
+    const { parsed, data, tableTitle, currencyCode } = this.parseInputDataForTable(searchResponse, searchPath);
 
-    if (!tableTitle) {
+    if (!parsed) {
       return (null);
     }
 
@@ -64,49 +93,41 @@ class ResultTable extends React.Component {
       <div>
         <ReactTable
           className="-striped -highlight result-table"
-          getTdProps={(state, rowInfo, column, instance) => {
-            return {
-              onClick: (e, handleOriginal) => {
-                console.log('A Td Element was clicked!')
-                console.log('it produced this event:', e)
-                console.log('It was in this column:', column)
-                console.log('It was in this row:', rowInfo)
-                console.log('It was in this table instance:', instance)
-
-                // IMPORTANT! React-Table uses onClick internally to trigger
-                // events like expanding SubComponents and pivots.
-                // By default a custom 'onClick' handler will override this functionality.
-                // If you want to fire the original onClick handler, call the
-                // 'handleOriginal' function.
-                if (handleOriginal) {
-                  handleOriginal()
-                }
-              }
-            }
-          }}
+          getTdProps={this.handleRowClick}
           data={data}
           columns={[
             {
               Header: tableTitle,
+              getHeaderProps: stylers.mainHeadingStyle,
               columns: [
                 {
+                  getHeaderProps: stylers.leftAlignHeadingStyle,
+                  getProps: stylers.leftAlignStyle,
                   Header: "Route",
                   accessor: "route"
                 },
                 {
-                  Header: "Time",
-                  accessor: "duration"
+                  getHeaderProps: stylers.rightAlignHeadingStyle,
+                  getProps: stylers.rightAlignStyle,
+                  Header: "Time (h)",
+                  accessor: "duration",
                 },
                 {
+                  getHeaderProps: stylers.rightAlignHeadingStyle,
+                  getProps: stylers.rightAlignStyle,
                   Header: "Transfers",
                   accessor: "transferCount"
                 },
                 {
-                  Header: "Min Price",
+                  getHeaderProps: stylers.rightAlignHeadingStyle,
+                  getProps: stylers.rightAlignStyle,
+                  Header: "Min Price" + currencyCode,
                   accessor: "priceLow"
                 },
                 {
-                  Header: "Max Price",
+                  getHeaderProps: stylers.rightAlignHeadingStyle,
+                  getProps: stylers.rightAlignStyle,
+                  Header: "Max Price" + currencyCode,
                   accessor: "priceHigh"
                 },
                 {
@@ -123,6 +144,7 @@ class ResultTable extends React.Component {
               desc: false
             }
           ]}
+          pageSizeOptions={[10, 15, 20, 25, 50, 100]}
           defaultPageSize={10}
         />
       </div>
