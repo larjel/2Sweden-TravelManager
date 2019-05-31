@@ -61,8 +61,8 @@ class Map extends Component {
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
           onGoogleApiLoaded={({ map, maps }) => this.onMapLoaded(map, maps)}>
-          <Marker text={'Toronto'} lat={43.681583} lng={-79.61146} />
-          <Marker text={'Rioe de janeoro'} lat={59.33258} lng={18.0649} />
+          <Marker text={'Åre'} lat={63.40109} lng={13.08222} />
+          <Marker text={'Stockholm'} lat={59.33258} lng={18.0649} />
           {this.state.mapsLoaded ? this.afterMapLoadChanges() : ''}
         </GoogleMap>
       </div>
