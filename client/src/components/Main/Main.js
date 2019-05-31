@@ -1,6 +1,6 @@
 import React from 'react';
 import "./Main.css";
-import ResultTable from '../Tables/ResultTable';
+import ResultTable from '../Table/ResultTable';
 import * as apiModule from '../../utils/api.js'
 import * as utils from '../../utils/utils.js'
 import Select from 'react-select';
