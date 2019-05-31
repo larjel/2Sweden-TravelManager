@@ -59,6 +59,15 @@ class Header extends React.Component {
                     <li className="li" ><a href="/" onClick={(e) => this.handleClick(e, 'info')}><GoInfo /> Information</a></li>
                     <li className="li" >
                       <a href="/" onClick={this.showDropdownMenu}><GoLocation /> Locations</a>
+                      {this.state.displayMenu ? (
+                        <ul>
+                          <li><a className="active" href="/" onClick={(e) => this.handleClick(e, 'stockholm')}>Stockholm</a></li>
+                          <li><a href="/" onClick={(e) => this.handleClick(e, 'falun')}>Falun</a></li>
+                          <li><a href="/" onClick={(e) => this.handleClick(e, 'are')}>Åre</a></li>
+                        </ul>
+                      ) :
+                        (null)
+                      }
                     </li>
                     <li className="li" ><a href="/" onClick={(e) => this.handleClick(e, 'recommend')}><GoThumbsup /> Recommendations</a></li>
                   </ul>
