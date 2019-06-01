@@ -16,7 +16,6 @@ class Main extends React.Component {
     this.state = {
       searchValue1: null,
       searchValue2: null,
-      searchPath: null,
       autocompletePlaces: [],
       autocompletePlacesInProgress: false,
       currencyCode: null,
@@ -35,9 +34,6 @@ class Main extends React.Component {
 
       apiModule.getRoutes(this.state.searchValue1.value, this.state.searchValue2.value, this.state.currencyCode.value)
         .then(data => {
-          this.setState({
-            searchPath: this.state.searchValue1.label + ' -> ' + this.state.searchValue2.label
-          })
           // Set the search response in App so it is available to all components
           this.props.setSearchResponse(data);
         })
@@ -184,7 +180,6 @@ class Main extends React.Component {
         </form>
         <ResultTable className="resultTable"
           searchResponse={this.props.searchResponse}
-          searchPath={this.state.searchPath}
           setRouteArrIdxs={this.props.setRouteArrIdxs}
         />
       </main>

@@ -16,7 +16,7 @@ class ResultTable extends React.Component {
   }
 
   //--------------------------------------------------------------------------
-  parseInputDataForTable = (searchResponse, searchPath) => {
+  parseInputDataForTable = (searchResponse) => {
     const tableData = { parsed: false, data: [], tableTitle: null, currencyCode: null };
 
     if (searchResponse && Array.isArray(searchResponse.routes) && searchResponse.routes.length > 0) {
@@ -47,7 +47,15 @@ class ResultTable extends React.Component {
         };
       })
 
-      tableData.tableTitle = searchPath;
+      if (Array.isArray(searchResponse.places)) {
+        if (searchResponse.places.length > 1) {
+          tableData.tableTitle = searchResponse.places[0].longName + ' -> ' + searchResponse.places[1].longName;
+        } else if (searchResponse.places.length == 1) { // Same departure & destination
+          tableData.tableTitle = searchResponse.places[0].longName;
+        }
+      } else {
+        tableData.tableTitle = 'Results';
+      }
 
       tableData.parsed = true;
     }
@@ -81,8 +89,8 @@ class ResultTable extends React.Component {
   //--------------------------------------------------------------------------
   render() {
 
-    const { searchResponse, searchPath } = this.props;
-    const { parsed, data, tableTitle, currencyCode } = this.parseInputDataForTable(searchResponse, searchPath);
+    const { searchResponse } = this.props;
+    const { parsed, data, tableTitle, currencyCode } = this.parseInputDataForTable(searchResponse);
 
     if (!parsed) {
       return (null);
