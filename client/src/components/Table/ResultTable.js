@@ -2,8 +2,6 @@ import React from "react";
 import { animateScroll as scroll } from 'react-scroll'
 import * as utils from '../../utils/utils.js'
 import * as stylers from './stylers.js'
-
-// Import React Table
 import ReactTable from "react-table";
 import "./react-table.css";
 import "./ResultTable.css";

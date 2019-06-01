@@ -1,17 +1,50 @@
 import React from "react";
 import * as utils from '../../utils/utils.js'
 import * as stylers from './stylers.js'
-
-// Import React Table
 import ReactTable from "react-table";
 import "./react-table.css";
 import "./DetailsTable.css";
+import {
+  FaCar, FaTrain, FaPlane, FaWalking, FaBus, FaTaxi, FaSubway,
+  FaShuttleVan, FaShip, FaBicycle, FaHelicopter
+} from "react-icons/fa";
 
 class DetailsTable extends React.Component {
   constructor() {
     super();
     this.state = {
     };
+  }
+
+  //--------------------------------------------------------------------------
+  getTransportVehicleSymbol = (kind, name) => {
+    switch (kind) {
+      case 'plane':
+        return <FaPlane />;
+      case 'train':
+        return <FaTrain />;
+      case 'bus':
+        return <FaBus />;
+      case 'ferry':
+        return <FaShip />;
+      case 'foot':
+        return <FaWalking />;
+      case 'shuttle':
+        return <FaShuttleVan />;
+      case 'subway':
+        return <FaSubway />;
+      case 'taxi':
+        return <FaTaxi />;
+      case 'bicycle':
+        return <FaBicycle />;
+      case 'helicopter':
+        return <FaHelicopter />;
+      case 'car':
+      case 'towncar':
+        return <FaCar />;
+      default: // No matching symbol, just return the name
+        return name;
+    }
   }
 
   //--------------------------------------------------------------------------
@@ -29,7 +62,8 @@ class DetailsTable extends React.Component {
 
       if (Array.isArray(detailedRoute.segments)) {
         tableData.data = detailedRoute.segments.map((segment, index) => {
-          let transport = vehicles ? vehicles[segment.vehicle].name : segment.segmentKind;
+          const transportName = vehicles ? vehicles[segment.vehicle].name : segment.segmentKind;
+          const transportKind = vehicles ? vehicles[segment.vehicle].kind : segment.segmentKind;
           const transitDuration = utils.truncateDecimals(segment.transitDuration / 60, 1);
           const prices = segment.indicativePrices;
           const leg = index + 1;
@@ -55,7 +89,7 @@ class DetailsTable extends React.Component {
 
           return {
             leg: leg,
-            transport: transport,
+            transport: this.getTransportVehicleSymbol(transportKind, transportName),
             departure: departure,
             arrival: arrival,
             duration: transitDuration,
