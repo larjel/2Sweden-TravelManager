@@ -7,6 +7,9 @@ import Select from 'react-select';
 import AsyncSelect from 'react-select/lib/Async';
 import sthlm from './sthlmnight.jpg'
 
+const destinationOptions = utils.getDestinationList();
+const originOptions = utils.getOriginList();
+const currencyOptions = utils.getCurrencyList();
 
 class Main extends React.Component {
 
@@ -18,7 +21,7 @@ class Main extends React.Component {
       searchValue2: null,
       autocompletePlaces: [],
       autocompletePlacesInProgress: false,
-      currencyCode: null,
+      currencyCode: currencyOptions[0],
       errorMsg: null
     }
   }
@@ -113,9 +116,6 @@ class Main extends React.Component {
 
   //----------------------------------------------------------------------------
   render() {
-    const destinationOptions = utils.getDestinationList();
-    const originOptions = utils.getOriginList();
-    const currencyOptions = utils.getCurrencyList();
 
     var sectionStyle = {
       width: "100%",
@@ -143,21 +143,18 @@ class Main extends React.Component {
               escapeClearsValue={true}
               isClearable={true}
               placeholder='From...'
-              value={this.state.searchValue1}
             />
             <Select
               className="searchBox"
               placeholder='To...'
               isSearchable={false}
-              value={this.state.searchValue2}
               onChange={this.handleChangeSearch2}
               options={destinationOptions}
             />
             <Select
               className="currencyBox"
-              placeholder='Currency'
               isSearchable={false}
-              value={this.state.currencyCode}
+              defaultValue={currencyOptions[0]}
               onChange={this.handleCurrency}
               options={currencyOptions}
             />
