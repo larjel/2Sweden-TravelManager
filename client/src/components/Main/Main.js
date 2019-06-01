@@ -154,20 +154,6 @@ class Main extends React.Component {
             />
             <button className="search-button" type="submit" style={{ float: 'right' }}>Search</button>
           </div>
-          <div className="inputFields">
-            {/*
-            <label className="label" htmlFor="fromDate">Departure date</label>
-            <input
-              onChange={e => this.setState({ fromDate: e.target.value })}
-              className="input"
-              id="fromDate"
-              type="date"
-              max="2025-01-01" min="2024-01-01"
-              required="required">
-            </input>
-            */}
-
-          </div>
         </form>
         <ResultTable className="resultTable"
           searchResponse={this.props.searchResponse}
