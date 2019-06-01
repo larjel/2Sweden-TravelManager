@@ -22,23 +22,15 @@ class App extends Component {
 
   //----------------------------------------------------------------------------
   setSearchResponse = (searchResponse) => {
-    console.log('App: Search response set');
     this.setState({
       searchResponse: searchResponse
     });
   }
 
   //----------------------------------------------------------------------------
-  setRouteDetailsArrIdx = (routeDetailsArrIdx) => {
-    console.log('App: Route details set, Array index: ', routeDetailsArrIdx);
+  setRouteArrIdxs = (routeDetailsArrIdx, routeSegmentArrIdx) => {
     this.setState({
-      routeDetailsArrIdx: routeDetailsArrIdx
-    });
-  }
-
-  //----------------------------------------------------------------------------
-  setRouteSegmentArrIdx = (routeSegmentArrIdx) => {
-    this.setState({
+      routeDetailsArrIdx: routeDetailsArrIdx,
       routeSegmentArrIdx: routeSegmentArrIdx
     });
   }
@@ -68,12 +60,11 @@ class App extends Component {
             <Main
               searchResponse={searchResponse}
               setSearchResponse={this.setSearchResponse}
-              setRouteDetailsArrIdx={this.setRouteDetailsArrIdx}
-              setRouteSegmentArrIdx={this.setRouteSegmentArrIdx}
+              setRouteArrIdxs={this.setRouteArrIdxs}
             />
             <Sidebar
               searchResponse={searchResponse}
-              setRouteSegmentArrIdx={this.setRouteSegmentArrIdx}
+              setRouteArrIdxs={this.setRouteArrIdxs}
               routeDetailsArrIdx={routeDetailsArrIdx}
               routeSegmentArrIdx={routeSegmentArrIdx}
             />

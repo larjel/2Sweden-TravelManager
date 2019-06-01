@@ -62,8 +62,7 @@ class ResultTable extends React.Component {
 
         if (rowInfo && rowInfo.original && rowInfo.original.routeArrayIndex >= 0) {
           const routeArrayIndex = rowInfo.original.routeArrayIndex;
-          console.log('Arr Idx:', routeArrayIndex)
-          this.props.setRouteDetailsArrIdx(routeArrayIndex);
+          this.props.setRouteArrIdxs(routeArrayIndex, -1);
           scroll.scrollTo(800);
         }
 
@@ -73,7 +72,7 @@ class ResultTable extends React.Component {
         // If you want to fire the original onClick handler, call the
         // 'handleOriginal' function.
         if (handleOriginal) {
-          handleOriginal()
+          handleOriginal();
         }
       }
     }

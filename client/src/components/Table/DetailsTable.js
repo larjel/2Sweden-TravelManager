@@ -61,6 +61,7 @@ class DetailsTable extends React.Component {
             duration: transitDuration,
             priceLow: priceLow,
             priceHigh: priceHigh,
+            segmentArrayIndex: index
           };
         })
 
@@ -71,6 +72,30 @@ class DetailsTable extends React.Component {
     }
 
     return tableData;
+  }
+
+  //--------------------------------------------------------------------------
+  handleRowClick = (state, rowInfo, column, instance) => {
+    return {
+      onClick: (e, handleOriginal) => {
+
+        if (rowInfo && rowInfo.original && rowInfo.original.segmentArrayIndex >= 0) {
+          const segmentArrayIndex = rowInfo.original.segmentArrayIndex;
+          this.props.setRouteArrIdxs(this.props.routeDetailsArrIdx, segmentArrayIndex);
+        } else { // Clicks on empty row will cause the whole route to load again
+          this.props.setRouteArrIdxs(this.props.routeDetailsArrIdx, -1);
+        }
+
+        // IMPORTANT! React-Table uses onClick internally to trigger
+        // events like expanding SubComponents and pivots.
+        // By default a custom 'onClick' handler will override this functionality.
+        // If you want to fire the original onClick handler, call the
+        // 'handleOriginal' function.
+        if (handleOriginal) {
+          handleOriginal();
+        }
+      }
+    }
   }
 
   //--------------------------------------------------------------------------
@@ -87,6 +112,7 @@ class DetailsTable extends React.Component {
       <div>
         <ReactTable
           className="-striped -highlight details-table"
+          getTdProps={this.handleRowClick}
           data={data}
           columns={[
             {
@@ -135,6 +161,11 @@ class DetailsTable extends React.Component {
                   Header: "Max Price" + currencyCode,
                   accessor: "priceHigh"
                 },
+                {
+                  Header: "",
+                  accessor: "segmentArrayIndex",
+                  show: false
+                }
               ]
             },
           ]}

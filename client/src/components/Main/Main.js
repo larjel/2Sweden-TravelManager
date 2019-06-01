@@ -31,8 +31,7 @@ class Main extends React.Component {
       // Clear previous search response in App, which will cause all components to clear their contents
       this.props.setSearchResponse(null);
       // Clear any search details from previous search
-      this.props.setRouteSegmentArrIdx(-1);
-      this.props.setRouteDetailsArrIdx(-1);
+      this.props.setRouteArrIdxs(-1, -1);
 
       apiModule.getRoutes(this.state.searchValue1.value, this.state.searchValue2.value, this.state.currencyCode.value)
         .then(data => {
@@ -132,8 +131,6 @@ class Main extends React.Component {
       borderBottom: "2px solid black",
     };
 
-
-
     return (
       <main style={sectionStyle}>
         <h3 className="searchHeader">Choose desired travel route</h3>
@@ -188,7 +185,7 @@ class Main extends React.Component {
         <ResultTable className="resultTable"
           searchResponse={this.props.searchResponse}
           searchPath={this.state.searchPath}
-          setRouteDetailsArrIdx={this.props.setRouteDetailsArrIdx}
+          setRouteArrIdxs={this.props.setRouteArrIdxs}
         />
       </main>
     )
