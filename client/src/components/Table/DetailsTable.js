@@ -152,13 +152,13 @@ class DetailsTable extends React.Component {
                 {
                   getHeaderProps: stylers.rightAlignHeadingStyle,
                   getProps: stylers.rightAlignStyle,
-                  Header: "Min Price" + currencyCode,
+                  Header: "Min Price",
                   accessor: "priceLow"
                 },
                 {
                   getHeaderProps: stylers.rightAlignHeadingStyle,
                   getProps: stylers.rightAlignStyle,
-                  Header: "Max Price" + currencyCode,
+                  Header: "Max Price",
                   accessor: "priceHigh"
                 },
                 {
