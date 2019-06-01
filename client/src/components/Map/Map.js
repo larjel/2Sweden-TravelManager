@@ -219,30 +219,9 @@ class Map extends Component {
 
 //----------------------------------------------------------------------------
 Map.defaultProps = {
-  //markers: decodePolyline(polyline),
-  //markers: [
-
-  //{ lat: 43.681583, lng: -79.61146 }, //Toronto
-  //{ lat: 53.42728, lng: -6.24357 }, // Dublin
-  //{ lat: 59.33258, lng: 18.0649 }, // Stockholm
-  // { lat: 53.42728, lng: -6.24357 }, // Dublin
-  //{ lat: 43.681583, lng: -79.61146 } //Toronto
-  //],
   center: [59.33258, 18.0649],
   zoom: 4
 }
 
 //----------------------------------------------------------------------------
 export default Map;
-
-// Stockholm
-// "lat": 59.33258,
-// "lng": 18.0649,
-
-// Åre
-// "lat": 63.40109,
-// "lng": 13.08222,
-
-// Falun
-// "lat": 60.60357,
-// "lng": 15.62597,
