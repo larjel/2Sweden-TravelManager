@@ -50,7 +50,6 @@ class Main extends React.Component {
 
   //----------------------------------------------------------------------------
   handleChangeSearch1inp = (searchValue1) => {
-    console.log('Input change:', searchValue1);
     if (searchValue1) {
       this.setState({ searchValue1 });
     }
@@ -58,25 +57,21 @@ class Main extends React.Component {
 
   //----------------------------------------------------------------------------
   handleChangeSearch1chg = (searchValue1) => {
-    console.log('Selection change:', searchValue1);
     this.setState({ searchValue1 });
   }
 
   //----------------------------------------------------------------------------
   handleChangeSearch2 = (searchValue2) => {
     this.setState({ searchValue2 });
-    console.log('Destination selected:', searchValue2);
   }
 
   //----------------------------------------------------------------------------
   handleCurrency = (currencyCode) => {
     this.setState({ currencyCode });
-    console.log('Currency code:', currencyCode);
   }
 
   //----------------------------------------------------------------------------
   loadPlaces = (inputValue) => {
-    console.log('loadPlaces input: ' + inputValue);
     if (inputValue.length < 3) {
       this.setState({
         autocompletePlaces: [],
@@ -105,7 +100,6 @@ class Main extends React.Component {
           })
         )
     }
-    console.log('AUTOLIST: ', this.state.autocompletePlaces);
     return this.state.autocompletePlaces;
   };
 
