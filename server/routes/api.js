@@ -2,26 +2,10 @@ const express = require('express')
 const router = express.Router()
 const axios = require('axios')
 
-//----------------------------------------------------------------------------
-function getRome2RioGeocodeBaseUrl() {
-  const key = process.env.ROME_2_RIO_KEY
-  const url = `http://free.rome2rio.com/api/1.4/json/Geocode?key=${key}`
-  return url;
-}
-
-//----------------------------------------------------------------------------
-function getRome2RioSearchBaseUrl() {
-  const key = process.env.ROME_2_RIO_KEY
-  const url = `http://free.rome2rio.com/api/1.4/json/Search?key=${key}`
-  return url;
-}
-
-//----------------------------------------------------------------------------
-function getRome2RioAutocompleteBaseUrl() {
-  const key = process.env.ROME_2_RIO_KEY
-  const url = `http://free.rome2rio.com/api/1.4/json/Autocomplete?key=${key}`
-  return url;
-}
+const rome2RioKey = process.env.ROME_2_RIO_KEY
+const rome2RioGeocodeBaseUrl = `http://free.rome2rio.com/api/1.4/json/Geocode?key=${rome2RioKey}`
+const rome2RioSearchBaseUrl = `http://free.rome2rio.com/api/1.4/json/Search?key=${rome2RioKey}`
+const rome2RioAutocompleteBaseUrl = `http://free.rome2rio.com/api/1.4/json/Autocomplete?key=${rome2RioKey}`
 
 //----------------------------------------------------------------------------
 // Make a HTTP GET-Request
@@ -61,8 +45,7 @@ router.get('/newUser/:username', (req, res) => {
 router.post('/getLocations', (req, res) => {
   const place = req.body.place
 
-  const baseUrl = getRome2RioGeocodeBaseUrl()
-  const url = `${baseUrl}&query=${place}`
+  const url = `${rome2RioGeocodeBaseUrl}&query=${place}`
 
   httpGetRequest(url, res);
 })
@@ -76,15 +59,13 @@ router.post('/getSearchResults', (req, res) => {
   const toPlace = req.body.toPlace
   const languageCode = req.body.languageCode // ISO 639-1
   const currencyCode = req.body.currencyCode // ISO 4217
+  const extraParams = req.body.extraParams // Ex. '&noBikeshare&noRideshare'
 
-  const baseUrl = getRome2RioSearchBaseUrl()
-  const url = `${baseUrl}&oName=${fromPlace}&dName=${toPlace}&currencyCode=${currencyCode}&languageCode=${languageCode}`
-    // Limit the request severly (many noXXX) for faster response and less data to handle. May alter this further on.
-    // (Example: Rome->Stockholm. Response is shrunk from 217946 bytes for full response to 36100 bytes for the limited.)
-    //+ '&noFerry&noCar&noBikeshare&noRideshare&noTowncar&noCommuter&noSpecial&noMinorStart&noMinorEnd&noPath&noStop&noAirLeg'
+  let url = `${rome2RioSearchBaseUrl}&oName=${fromPlace}&dName=${toPlace}&currencyCode=${currencyCode}&languageCode=${languageCode}`
 
-    //+ '&noFerry&noCar&noBikeshare&noRideshare&noTowncar&noCommuter&noSpecial&noMinorStart&noMinorEnd&noStop&noAirLeg'
-    + '&noBikeshare&noRideshare&noTowncar&noSpecial&noStop'
+  if (extraParams) {
+    url += extraParams
+  }
 
   console.log('Request: ' + url)
 
@@ -98,8 +79,7 @@ router.post('/getSearchResults', (req, res) => {
 router.post('/getAutocomplete', (req, res) => {
   const textToAutocomplete = req.body.textToAutocomplete
 
-  const baseUrl = getRome2RioAutocompleteBaseUrl()
-  const url = `${baseUrl}&query=${textToAutocomplete}`
+  const url = `${rome2RioAutocompleteBaseUrl}&query=${textToAutocomplete}`
 
   console.log('Request: ' + url)
 
