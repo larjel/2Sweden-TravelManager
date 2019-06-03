@@ -61,6 +61,7 @@ class App extends Component {
               searchResponse={searchResponse}
               setSearchResponse={this.setSearchResponse}
               setRouteArrIdxs={this.setRouteArrIdxs}
+              routeDetailsArrIdx={routeDetailsArrIdx}
             />
             <Sidebar
               searchResponse={searchResponse}
