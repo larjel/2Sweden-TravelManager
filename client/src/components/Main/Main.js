@@ -36,8 +36,13 @@ class Main extends React.Component {
       // Clear any search details from previous search
       this.props.setRouteArrIdxs(-1, -1);
 
-      apiModule.getRoutes(this.state.searchValue1.value, this.state.searchValue2.value, this.state.currencyCode.value)
+      // Add some extra parameters to request to exclude response data that is not applicable and/or will not be used anyway
+      const extraParams = '&noBikeshare&noRideshare&noTowncar&noSpecial&noStop&noAirLeg';
+      apiModule.getRoutes(this.state.searchValue1.value, this.state.searchValue2.value,
+        this.state.currencyCode.value, extraParams)
         .then(data => {
+          // Remove data from response that will not be used
+          utils.filterJsonResponse(data);
           // Set the search response in App so it is available to all components
           this.props.setSearchResponse(data);
         })
@@ -159,6 +164,7 @@ class Main extends React.Component {
         <ResultTable className="resultTable"
           searchResponse={this.props.searchResponse}
           setRouteArrIdxs={this.props.setRouteArrIdxs}
+          routeDetailsArrIdx={this.props.routeDetailsArrIdx}
         />
       </main>
     )

@@ -7,11 +7,12 @@ import "./react-table.css";
 import "./ResultTable.css";
 import { FaArrowRight } from "react-icons/fa";
 
+let selectedRowIndex = -1;
+
 class ResultTable extends React.Component {
   constructor() {
     super();
     this.state = {
-      selectedRowIndex: -1
     };
   }
 
@@ -70,8 +71,15 @@ class ResultTable extends React.Component {
   }
 
   //--------------------------------------------------------------------------
+  resetSelectedRowColor = (routeDetailsArrIdx) => {
+    if (routeDetailsArrIdx === -1) {
+      selectedRowIndex = -1;
+    }
+  }
+
+  //--------------------------------------------------------------------------
   setSelectedRowColor = (state, rowInfo, column) => {
-    if (rowInfo && this.state.selectedRowIndex === rowInfo.index) {
+    if (rowInfo && selectedRowIndex === rowInfo.index) {
       return {
         style: {
           background: '#ccccce'
@@ -93,7 +101,7 @@ class ResultTable extends React.Component {
         if (rowInfo && rowInfo.original && rowInfo.original.routeArrayIndex >= 0) {
           const routeArrayIndex = rowInfo.original.routeArrayIndex;
           this.props.setRouteArrIdxs(routeArrayIndex, -1);
-          this.setState({ selectedRowIndex: rowInfo.index });
+          selectedRowIndex = rowInfo.index;
           scroll.scrollTo(800);
         }
 
@@ -112,12 +120,14 @@ class ResultTable extends React.Component {
   //--------------------------------------------------------------------------
   render() {
 
-    const { searchResponse } = this.props;
+    const { searchResponse, routeDetailsArrIdx } = this.props;
     const { parsed, data, tableTitle, currencyCode } = this.parseInputDataForTable(searchResponse);
 
     if (!parsed) {
       return (null);
     }
+
+    this.resetSelectedRowColor(routeDetailsArrIdx);
 
     return (
       <div>

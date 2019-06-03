@@ -1,61 +1,61 @@
 
 //----------------------------------------------------------------------------
 export function convertMinutesToDayHourMin(minutes) {
-    if (minutes) {
-        let days = Math.floor(minutes / (24 * 60));
-        let hours = Math.floor((minutes - (days * 24 * 60)) / 60);
-        let mins = minutes % 60;
+  if (minutes) {
+    let days = Math.floor(minutes / (24 * 60));
+    let hours = Math.floor((minutes - (days * 24 * 60)) / 60);
+    let mins = minutes % 60;
 
-        let timeString = days ? days + 'd ' : '';
-        timeString += hours ? hours + 'h ' : '';
-        timeString += mins + 'min ';
+    let timeString = days ? days + 'd ' : '';
+    timeString += hours ? hours + 'h ' : '';
+    timeString += mins + 'min ';
 
-        return timeString;
+    return timeString;
 
-    } else {
-        return 'Unknown';
-    }
+  } else {
+    return 'Unknown';
+  }
 }
 
 //----------------------------------------------------------------------------
 export function truncateDecimals(number, digits) {
-    var multiplier = Math.pow(10, digits),
-        adjustedNum = number * multiplier,
-        truncatedNum = Math[adjustedNum < 0 ? 'ceil' : 'floor'](adjustedNum);
+  var multiplier = Math.pow(10, digits),
+    adjustedNum = number * multiplier,
+    truncatedNum = Math[adjustedNum < 0 ? 'ceil' : 'floor'](adjustedNum);
 
-    return truncatedNum / multiplier;
+  return truncatedNum / multiplier;
 };
 
 //----------------------------------------------------------------------------
 export function getDestinationList() {
-    const destinationOptions = [
-        { value: 'Stockholm, Sweden', label: 'Stockholm' },
-        { value: 'Falun, Sweden', label: 'Falun' },
-        { value: 'Are, Sweden', label: 'Åre' }
-    ];
-    return destinationOptions;
+  const destinationOptions = [
+    { value: 'Stockholm, Sweden', label: 'Stockholm' },
+    { value: 'Falun, Sweden', label: 'Falun' },
+    { value: 'Are, Sweden', label: 'Åre' }
+  ];
+  return destinationOptions;
 }
 
 //----------------------------------------------------------------------------
 export function getOriginList() {
-    const originCities = [
-        'Athens, Greece',
-        'Beijing, China',
-        'Berlin, Germany',
-        'Buenos Aires, Argentina',
-        'Canberra, Australia',
-        'Copenhagen, Denmark',
-        'Helsinki, Finland',
-        'Rome, Italy',
-        'Sydney, Australia',
-        'Tokyo, Japan',
-        'Vienna, Austria',
-    ]
+  const originCities = [
+    'Athens, Greece',
+    'Beijing, China',
+    'Berlin, Germany',
+    'Buenos Aires, Argentina',
+    'Canberra, Australia',
+    'Copenhagen, Denmark',
+    'Helsinki, Finland',
+    'Rome, Italy',
+    'Sydney, Australia',
+    'Tokyo, Japan',
+    'Vienna, Austria',
+  ]
 
-    const originOptions = originCities.map(e => {
-        return { value: e, label: e }
-    })
-    return originOptions;
+  const originOptions = originCities.map(e => {
+    return { value: e, label: e }
+  })
+  return originOptions;
 }
 
 //----------------------------------------------------------------------------
@@ -63,17 +63,52 @@ export function getOriginList() {
 // See: https://en.wikipedia.org/wiki/ISO_4217 for complete list.
 //----------------------------------------------------------------------------
 export function getCurrencyList() {
-    const currencies = [
-        'SEK',
-        'USD',
-        'EUR',
-        'NOK',
-        'GPD',
-        'DKK'
-    ]
+  const currencies = [
+    'SEK',
+    'USD',
+    'EUR',
+    'NOK',
+    'GPD',
+    'DKK'
+  ]
 
-    const currencyOptions = currencies.map(e => {
-        return { value: e, label: e }
+  const currencyOptions = currencies.map(e => {
+    return { value: e, label: e }
+  })
+  return currencyOptions;
+}
+
+//----------------------------------------------------------------------------
+// Remove data that will not be used from the Rome2Rio API JSON response
+//----------------------------------------------------------------------------
+export function filterJsonResponse(data) {
+  if (!data) {
+    return;
+  }
+  if (data.airlines) {
+    data.airlines = null; // Remove airlines
+  }
+  if (data.aircrafts) {
+    data.aircrafts = null; // Remove aircrafts
+  }
+  if (data.agencies) {
+    data.agencies = null; // Remove agencies
+  }
+  if (data.routes && Array.isArray(data.routes)) {
+    // Remove 'alternatives' from each route
+    data.routes.forEach((route) => {
+      if (route.alternatives) {
+        route.alternatives = null;
+
+        if (route.segments && Array.isArray(route.segments)) {
+          // Remove 'agencies' from each segment
+          route.segments.forEach((segment) => {
+            if (segment.agencies) {
+              segment.agencies = null;
+            }
+          })
+        }
+      }
     })
-    return currencyOptions;
+  }
 }
