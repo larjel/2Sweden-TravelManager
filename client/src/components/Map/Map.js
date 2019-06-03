@@ -3,7 +3,7 @@ import GoogleMap from 'google-map-react'
 import decodePolyline from 'decode-google-map-polyline';
 import Marker from './Marker'
 
-const googleMapsKey = `${process.env.REACT_APP_GOOGLE_MAPS_KEY}`;
+const GOOGLE_MAPS_KEY = `${process.env.REACT_APP_GOOGLE_MAPS_KEY}`;
 
 let markers = [];
 let nonGeodesicPolyline = null;
@@ -203,7 +203,7 @@ class Map extends Component {
     return (
       <div style={{ height: '100vh', width: '100%' }}>
         <GoogleMap
-          bootstrapURLKeys={{ key: googleMapsKey }}
+          bootstrapURLKeys={{ key: GOOGLE_MAPS_KEY }}
           yesIWantToUseGoogleMapApiInternals={true}
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
