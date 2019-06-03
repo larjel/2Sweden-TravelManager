@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import GoogleMap from 'google-map-react'
 import decodePolyline from 'decode-google-map-polyline';
 import Marker from './Marker'
+import "./Map.css"
 
 const googleMapsKey = `${process.env.REACT_APP_GOOGLE_MAPS_KEY}`;
 
@@ -201,7 +202,7 @@ class Map extends Component {
     markers = markerData;
 
     return (
-      <div style={{ height: '100vh', width: '100%' }}>
+      <div className="google-map-style">
         <GoogleMap
           bootstrapURLKeys={{ key: googleMapsKey }}
           yesIWantToUseGoogleMapApiInternals={true}

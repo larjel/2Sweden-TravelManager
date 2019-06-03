@@ -14,3 +14,24 @@
   display: flex;
   flex-direction: row;
 }
+
+.icon-field {
+  height: 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.sidebar-space {
+  height: 20px;
+}
+
+@media (max-width: 1199px) {
+  .flex-container {
+    display: flex;
+    flex-direction: column;
+  }
+  .icon-field {
+   display: none;
+  }
+}

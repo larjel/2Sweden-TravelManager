@@ -99,8 +99,7 @@
     font-size: 30px;
   }
   .searchBox {
-    width: 15%;
-    margin: 5px;
+    width: 15%;   
   }
   .currencyBox {
     width: 9%;
@@ -110,8 +109,6 @@
     display: flex;
     justify-content: center;
     flex-direction: row;
-    margin: 15px;
-    padding: 5px;
   }
 }
 
@@ -121,12 +118,10 @@
     font-size: 30px
   }
   .searchBox {
-    width: 15%;
-    margin: 5px;
+    width: 15%;   
   }
   .currencyBox {
-    width: 8%;
-    margin: 5px;
+    width: 8%;   
   }
   .search-button {
     width: 10%;
@@ -135,7 +130,5 @@
     display: flex;
     justify-content: center;
     flex-direction: row;
-    margin: 15px;
-    padding: 5px;
   }
 }

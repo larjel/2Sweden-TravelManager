@@ -156,7 +156,7 @@ class DetailsTable extends React.Component {
                 {
                   getHeaderProps: stylers.leftAlignHeadingStyle,
                   getProps: stylers.leftAlignStyle,
-                  Header: "Leg",
+                  Header: "Stop",
                   accessor: "leg",
                 },
                 {
