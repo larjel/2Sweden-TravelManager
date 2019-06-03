@@ -5,6 +5,7 @@ import * as stylers from './stylers.js'
 import ReactTable from "react-table";
 import "./react-table.css";
 import "./ResultTable.css";
+import { FaArrowRight } from "react-icons/fa";
 
 class ResultTable extends React.Component {
   constructor() {
@@ -45,11 +46,18 @@ class ResultTable extends React.Component {
         };
       })
 
+      // Set the departure and arrival destinations table header
       if (Array.isArray(searchResponse.places)) {
-        const depPlaceIdx = searchResponse.routes[0].depPlace;
-        const arrPlaceIdx = searchResponse.routes[0].arrPlace;
-        tableData.tableTitle = searchResponse.places[depPlaceIdx].longName
-          + ' -> ' + searchResponse.places[arrPlaceIdx].longName;
+        if (searchResponse.places.length > 1) {
+          tableData.tableTitle = (
+            <div>
+              {searchResponse.places[0].longName + ' '}
+              <FaArrowRight />
+              {' ' + searchResponse.places[1].longName}
+            </div>);
+        } else if (searchResponse.places.length == 1) { // Same departure & destination
+          tableData.tableTitle = searchResponse.places[0].longName;
+        }
       } else {
         tableData.tableTitle = 'Results';
       }

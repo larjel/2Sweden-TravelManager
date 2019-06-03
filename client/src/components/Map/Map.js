@@ -158,8 +158,8 @@ class Map extends Component {
 
       // Get the main departure and arrival cities and store the coordinates 
       // and names for text markers as defaults (segment may override it)
-      const depPlaceIdx = searchResponse.routes[0].depPlace;
-      const arrPlaceIdx = searchResponse.routes[0].arrPlace;
+      const depPlaceIdx = 0;
+      const arrPlaceIdx = (searchResponse.places.length > 1) ? 1 : 0;
 
       mapData.depData = this.createDepDestDataObject(searchResponse.places, depPlaceIdx);
       mapData.destData = this.createDepDestDataObject(searchResponse.places, arrPlaceIdx);
