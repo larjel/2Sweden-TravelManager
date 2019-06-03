@@ -7,9 +7,10 @@ import Select from 'react-select';
 import AsyncSelect from 'react-select/lib/Async';
 import sthlm from './sthlmnight.jpg'
 
-const destinationOptions = utils.getDestinationList();
-const originOptions = utils.getOriginList();
-const currencyOptions = utils.getCurrencyList();
+const DESTINATION_OPTIONS = utils.getDestinationList();
+const ORIGIN_OPTIONS = utils.getOriginList();
+const CURRENCY_OPTIONS = utils.getCurrencyList();
+const DEFAULT_CURRENCY_OPTION_IDX = 0;
 
 class Main extends React.Component {
 
@@ -21,7 +22,7 @@ class Main extends React.Component {
       searchValue2: null,
       autocompletePlaces: [],
       autocompletePlacesInProgress: false,
-      currencyCode: currencyOptions[0],
+      currencyCode: CURRENCY_OPTIONS[DEFAULT_CURRENCY_OPTION_IDX],
       errorMsg: null
     }
   }
@@ -131,7 +132,7 @@ class Main extends React.Component {
               cacheOptions={true}
               isSearchable={true}
               loadOptions={this.loadOptions}
-              defaultOptions={originOptions}
+              defaultOptions={ORIGIN_OPTIONS}
               onInputChange={this.handleChangeSearch1inp}
               onChange={this.handleChangeSearch1chg}
               escapeClearsValue={true}
@@ -143,14 +144,14 @@ class Main extends React.Component {
               placeholder='To...'
               isSearchable={false}
               onChange={this.handleChangeSearch2}
-              options={destinationOptions}
+              options={DESTINATION_OPTIONS}
             />
             <Select
               className="currencyBox"
               isSearchable={false}
-              defaultValue={currencyOptions[0]}
+              defaultValue={CURRENCY_OPTIONS[DEFAULT_CURRENCY_OPTION_IDX]}
               onChange={this.handleCurrency}
-              options={currencyOptions}
+              options={CURRENCY_OPTIONS}
             />
             <button className="search-button" type="submit" style={{ float: 'right' }}>Search</button>
           </div>
