@@ -2,10 +2,10 @@ const express = require('express')
 const router = express.Router()
 const axios = require('axios')
 
-const rome2RioKey = process.env.ROME_2_RIO_KEY
-const rome2RioGeocodeBaseUrl = `http://free.rome2rio.com/api/1.4/json/Geocode?key=${rome2RioKey}`
-const rome2RioSearchBaseUrl = `http://free.rome2rio.com/api/1.4/json/Search?key=${rome2RioKey}`
-const rome2RioAutocompleteBaseUrl = `http://free.rome2rio.com/api/1.4/json/Autocomplete?key=${rome2RioKey}`
+const ROME2RIO_KEY = process.env.ROME_2_RIO_KEY
+const ROME2RIO_GEOCODE_BASE_URL = `http://free.rome2rio.com/api/1.4/json/Geocode?key=${ROME2RIO_KEY}`
+const ROME2RIO_SEARCH_BASE_URL = `http://free.rome2rio.com/api/1.4/json/Search?key=${ROME2RIO_KEY}`
+const ROME2RIO_AUTOCOMPLETE_BASE_URL = `http://free.rome2rio.com/api/1.4/json/Autocomplete?key=${ROME2RIO_KEY}`
 
 //----------------------------------------------------------------------------
 // Make a HTTP GET-Request
@@ -45,7 +45,7 @@ router.get('/newUser/:username', (req, res) => {
 router.post('/getLocations', (req, res) => {
   const place = req.body.place
 
-  const url = `${rome2RioGeocodeBaseUrl}&query=${place}`
+  const url = `${ROME2RIO_GEOCODE_BASE_URL}&query=${place}`
 
   httpGetRequest(url, res);
 })
@@ -61,7 +61,7 @@ router.post('/getSearchResults', (req, res) => {
   const currencyCode = req.body.currencyCode // ISO 4217
   const extraParams = req.body.extraParams // Ex. '&noBikeshare&noRideshare'
 
-  let url = `${rome2RioSearchBaseUrl}&oName=${fromPlace}&dName=${toPlace}&currencyCode=${currencyCode}&languageCode=${languageCode}`
+  let url = `${ROME2RIO_SEARCH_BASE_URL}&oName=${fromPlace}&dName=${toPlace}&currencyCode=${currencyCode}&languageCode=${languageCode}`
 
   if (extraParams) {
     url += extraParams
@@ -79,7 +79,7 @@ router.post('/getSearchResults', (req, res) => {
 router.post('/getAutocomplete', (req, res) => {
   const textToAutocomplete = req.body.textToAutocomplete
 
-  const url = `${rome2RioAutocompleteBaseUrl}&query=${textToAutocomplete}`
+  const url = `${ROME2RIO_AUTOCOMPLETE_BASE_URL}&query=${textToAutocomplete}`
 
   console.log('Request: ' + url)
 
