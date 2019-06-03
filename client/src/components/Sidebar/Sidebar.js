@@ -2,6 +2,13 @@ import React from 'react'
 import "./Sidebar.css"
 import DetailsTable from '../Table/DetailsTable';
 import Map from '../Map/Map';
+import reactLogo from "./react.png"
+import javascriptLogo from "./javascript.png"
+import htmlLogo from "./html.png"
+import romeLogo from "./rome.png"
+import cssLogo from "./CSS3.png"
+import googleLogo from "./googlem.png"
+import Media from 'react-media';
 
 class Sidebar extends React.Component {
     constructor(props) {
@@ -20,6 +27,15 @@ class Sidebar extends React.Component {
         return (
             <aside style={sectionStyle}>
                 <div className="wrapper">
+                    <div className="icon-field">
+                        <img src={reactLogo} alt="reactlogo"></img>
+                        <img src={javascriptLogo} alt="reactlogo"></img>
+                        <img src={htmlLogo} alt="reactlogo"></img>
+                        <img src={cssLogo} alt="reactlogo"></img>
+                        <img src={romeLogo} alt="reactlogo"></img>
+                        <img src={googleLogo} alt="reactlogo"></img>
+                    </div>
+                    <div className="sidebar-space"></div>
                     <div className="flex-container">
                         <DetailsTable
                             searchResponse={this.props.searchResponse}
@@ -33,7 +49,7 @@ class Sidebar extends React.Component {
                             routeSegmentArrIdx={this.props.routeSegmentArrIdx}
                         />
                     </div>
-                    <div className="push"></div>
+                  
                 </div>
             </aside>
         )

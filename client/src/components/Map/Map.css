@@ -1,0 +1,12 @@
+.google-map-style {
+    height: 70vh;
+    width: 70%;
+    padding: 5px;
+}
+
+@media (max-width: 1199px) {
+    .google-map-style {
+        width: 100%;
+    }
+  
+  }

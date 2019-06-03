@@ -2,4 +2,11 @@
   background-color: white;
   color: black;
   font-size: 14px;
+  margin: 10px;
+}
+
+@media (max-width: 1199px) {
+  .result-table {
+    max-height: 400px;
+  }
 }
