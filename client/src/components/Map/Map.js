@@ -208,8 +208,8 @@ class Map extends Component {
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
           onGoogleApiLoaded={({ map, maps }) => this.onMapLoaded(map, maps)}>
-          <Marker text={depData.text} lat={depData.lat} lng={depData.lng} />
-          <Marker text={destData.text} lat={destData.lat} lng={destData.lng} />
+          <Marker text={depData.text} lat={depData.lat} lng={depData.lng} background='#00a1e1' />
+          <Marker text={destData.text} lat={destData.lat} lng={destData.lng} background='#248735' />
           {this.state.mapsLoaded ? this.renderPolylines(this.state.map, this.state.maps) : ''}
         </GoogleMap>
       </div>
