@@ -24,6 +24,7 @@ class Sidebar extends React.Component {
                         <DetailsTable
                             searchResponse={this.props.searchResponse}
                             routeDetailsArrIdx={this.props.routeDetailsArrIdx}
+                            routeSegmentArrIdx={this.props.routeSegmentArrIdx}
                             setRouteArrIdxs={this.props.setRouteArrIdxs}
                         />
                         <Map

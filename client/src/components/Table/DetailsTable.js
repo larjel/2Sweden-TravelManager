@@ -9,6 +9,8 @@ import {
   FaShuttleVan, FaShip, FaBicycle, FaHelicopter
 } from "react-icons/fa";
 
+let selectedRowIndex = -1;
+
 class DetailsTable extends React.Component {
   constructor() {
     super();
@@ -109,6 +111,29 @@ class DetailsTable extends React.Component {
   }
 
   //--------------------------------------------------------------------------
+  resetSelectedRowColor = (routeSegmentArrIdx) => {
+    if (routeSegmentArrIdx === -1) {
+      selectedRowIndex = -1;
+    }
+  }
+
+  //--------------------------------------------------------------------------
+  setSelectedRowColor = (state, rowInfo, column) => {
+    if (rowInfo && selectedRowIndex === rowInfo.index) {
+      return {
+        style: {
+          background: '#ccccce'
+        }
+      }
+    }
+    else {
+      return {
+        style: {}
+      }
+    }
+  }
+
+  //--------------------------------------------------------------------------
   handleRowClick = (state, rowInfo, column, instance) => {
     return {
       onClick: (e, handleOriginal) => {
@@ -116,8 +141,10 @@ class DetailsTable extends React.Component {
         if (rowInfo && rowInfo.original && rowInfo.original.segmentArrayIndex >= 0) {
           const segmentArrayIndex = rowInfo.original.segmentArrayIndex;
           this.props.setRouteArrIdxs(this.props.routeDetailsArrIdx, segmentArrayIndex);
+          selectedRowIndex = rowInfo.index;
         } else { // Clicks on empty row will cause the whole route to load again
           this.props.setRouteArrIdxs(this.props.routeDetailsArrIdx, -1);
+          selectedRowIndex = -1; // Deselect all rows
         }
 
         // IMPORTANT! React-Table uses onClick internally to trigger
@@ -135,18 +162,21 @@ class DetailsTable extends React.Component {
   //--------------------------------------------------------------------------
   render() {
 
-    const { searchResponse, routeDetailsArrIdx } = this.props;
+    const { searchResponse, routeDetailsArrIdx, routeSegmentArrIdx } = this.props;
     const { parsed, data, tableTitle, currencyCode } = this.parseInputDataForTable(searchResponse, routeDetailsArrIdx);
 
     if (!parsed) {
       return (null);
     }
 
+    this.resetSelectedRowColor(routeSegmentArrIdx);
+
     return (
       <div>
         <ReactTable
           className="-striped -highlight details-table"
           getTdProps={this.handleRowClick}
+          getTrProps={this.setSelectedRowColor}
           data={data}
           columns={[
             {
