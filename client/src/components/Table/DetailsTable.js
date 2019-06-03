@@ -13,6 +13,7 @@ class DetailsTable extends React.Component {
   constructor() {
     super();
     this.state = {
+      selectedRowIndex: -1
     };
   }
 
@@ -109,6 +110,22 @@ class DetailsTable extends React.Component {
   }
 
   //--------------------------------------------------------------------------
+  setSelectedRowColor = (state, rowInfo, column) => {
+    if (rowInfo && this.state.selectedRowIndex === rowInfo.index) {
+      return {
+        style: {
+          background: '#ccccce'
+        }
+      }
+    }
+    else {
+      return {
+        style: {}
+      }
+    }
+  }
+
+  //--------------------------------------------------------------------------
   handleRowClick = (state, rowInfo, column, instance) => {
     return {
       onClick: (e, handleOriginal) => {
@@ -116,8 +133,10 @@ class DetailsTable extends React.Component {
         if (rowInfo && rowInfo.original && rowInfo.original.segmentArrayIndex >= 0) {
           const segmentArrayIndex = rowInfo.original.segmentArrayIndex;
           this.props.setRouteArrIdxs(this.props.routeDetailsArrIdx, segmentArrayIndex);
+          this.setState({ selectedRowIndex: rowInfo.index });
         } else { // Clicks on empty row will cause the whole route to load again
           this.props.setRouteArrIdxs(this.props.routeDetailsArrIdx, -1);
+          this.setState({ selectedRowIndex: -1 }); // Deselect all rows
         }
 
         // IMPORTANT! React-Table uses onClick internally to trigger
@@ -147,6 +166,7 @@ class DetailsTable extends React.Component {
         <ReactTable
           className="-striped -highlight details-table"
           getTdProps={this.handleRowClick}
+          getTrProps={this.setSelectedRowColor}
           data={data}
           columns={[
             {

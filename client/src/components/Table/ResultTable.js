@@ -11,6 +11,7 @@ class ResultTable extends React.Component {
   constructor() {
     super();
     this.state = {
+      selectedRowIndex: -1
     };
   }
 
@@ -69,6 +70,22 @@ class ResultTable extends React.Component {
   }
 
   //--------------------------------------------------------------------------
+  setSelectedRowColor = (state, rowInfo, column) => {
+    if (rowInfo && this.state.selectedRowIndex === rowInfo.index) {
+      return {
+        style: {
+          background: '#ccccce'
+        }
+      }
+    }
+    else {
+      return {
+        style: {}
+      }
+    }
+  }
+
+  //--------------------------------------------------------------------------
   handleRowClick = (state, rowInfo, column, instance) => {
     return {
       onClick: (e, handleOriginal) => {
@@ -76,6 +93,7 @@ class ResultTable extends React.Component {
         if (rowInfo && rowInfo.original && rowInfo.original.routeArrayIndex >= 0) {
           const routeArrayIndex = rowInfo.original.routeArrayIndex;
           this.props.setRouteArrIdxs(routeArrayIndex, -1);
+          this.setState({ selectedRowIndex: rowInfo.index });
           scroll.scrollTo(800);
         }
 
@@ -106,6 +124,7 @@ class ResultTable extends React.Component {
         <ReactTable
           className="-striped -highlight result-table"
           getTdProps={this.handleRowClick}
+          getTrProps={this.setSelectedRowColor}
           data={data}
           columns={[
             {
