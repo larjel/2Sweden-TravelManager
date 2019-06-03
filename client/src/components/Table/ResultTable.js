@@ -46,11 +46,10 @@ class ResultTable extends React.Component {
       })
 
       if (Array.isArray(searchResponse.places)) {
-        if (searchResponse.places.length > 1) {
-          tableData.tableTitle = searchResponse.places[0].longName + ' -> ' + searchResponse.places[1].longName;
-        } else if (searchResponse.places.length == 1) { // Same departure & destination
-          tableData.tableTitle = searchResponse.places[0].longName;
-        }
+        const depPlaceIdx = searchResponse.routes[0].depPlace;
+        const arrPlaceIdx = searchResponse.routes[0].arrPlace;
+        tableData.tableTitle = searchResponse.places[depPlaceIdx].longName
+          + ' -> ' + searchResponse.places[arrPlaceIdx].longName;
       } else {
         tableData.tableTitle = 'Results';
       }
