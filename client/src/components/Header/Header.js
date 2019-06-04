@@ -33,7 +33,7 @@ class Header extends React.Component {
         <Media query="(max-width: 1199px)">
           {matches =>
             matches ? (
-              <Hamburgermenu />
+              <Hamburgermenu setActiveMainPage={this.props.setActiveMainPage} />
             ) : (
                 <nav className="my-navbar">
                   <ul className="ul">
@@ -46,7 +46,7 @@ class Header extends React.Component {
                         <a href="/" onClick={(e) => this.handleClick(e, 'stockholm')}>Stockholm</a>
                         <a href="/" onClick={(e) => this.handleClick(e, 'falun')}>Falun</a>
                         <a href="/" onClick={(e) => this.handleClick(e, 'are')}>Åre</a>
-                      </div>                               
+                      </div>
                     </li>
                     <li className="li" ><a href="/" onClick={(e) => this.handleClick(e, 'recommend')}><GoThumbsup /> Recommendations</a></li>
                   </ul>
