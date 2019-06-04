@@ -163,7 +163,7 @@ class DetailsTable extends React.Component {
   render() {
 
     const { searchResponse, routeDetailsArrIdx, routeSegmentArrIdx } = this.props;
-    const { parsed, data, tableTitle, currencyCode } = this.parseInputDataForTable(searchResponse, routeDetailsArrIdx);
+    const { parsed, data, tableTitle } = this.parseInputDataForTable(searchResponse, routeDetailsArrIdx);
 
     if (!parsed) {
       return (null);

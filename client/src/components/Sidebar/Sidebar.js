@@ -8,20 +8,14 @@ import htmlLogo from "./html.png"
 import romeLogo from "./rome.png"
 import cssLogo from "./CSS3.png"
 import googleLogo from "./googlem.png"
-import Media from 'react-media';
 
 class Sidebar extends React.Component {
-    constructor(props) {
-        super(props)
-    }
-
     render() {
         var sectionStyle = {
             width: "100%",
-            gridArea: "content",
             color: "white",
             padding: "10px",
-            gridArea: "sidebar",
+            gridArea: "sidebar"
         };
 
         return (

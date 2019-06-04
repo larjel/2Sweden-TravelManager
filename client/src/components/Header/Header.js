@@ -1,6 +1,5 @@
 import React from 'react'
 import logo from './projektlogga.png'
-import twitter from './sweTwitter.jpg'
 import "./Header.css"
 import "./dropdown.css"
 import { GoSearch, GoInfo, GoLocation, GoHome, GoThumbsup } from 'react-icons/go';

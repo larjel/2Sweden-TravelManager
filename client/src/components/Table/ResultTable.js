@@ -57,7 +57,7 @@ class ResultTable extends React.Component {
               <FaArrowRight />
               {' ' + searchResponse.places[1].longName}
             </div>);
-        } else if (searchResponse.places.length == 1) { // Same departure & destination
+        } else if (searchResponse.places.length === 1) { // Same departure & destination
           tableData.tableTitle = searchResponse.places[0].longName;
         }
       } else {
