@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 @import url('https://fonts.googleapis.com/css?family=Lato');
-
 .main-head {
   grid-area: header;
   background-color: #006699;
@@ -27,7 +26,7 @@ header ul {
   padding: 0 10px 0 10px;
 }
 
-.myNavbar {
+.my-navbar {
   position: relative;
   display: flex;
   flex-wrap: wrap;
@@ -35,18 +34,6 @@ header ul {
   justify-content: flex-end;
   padding: .5rem 1rem;
   margin-top: 30px;
-  /*
-  float: right;
-  background-color: #006699;
-  color: #ffcc00;
-  margin-right: 2px;
-  margin-bottom: 0;
-  position: absolute;
-  */
-}
-
-.yellow {
-  color: black;
 }
 
 .logo {
@@ -67,7 +54,7 @@ header ul {
   margin-top: -3px;
 }
 
-.myNavbar a:hover {
+.my-navbar a:hover {
   color: #ffcc00;
   text-decoration: none;
 }
@@ -117,7 +104,7 @@ header ul {
 }
 
 @media (min-width: 1000px) and (max-width: 1199px) {
-  .myNavbar {
+  .my-navbar {
     margin-top: 5px;
   }
   .headerText {
@@ -130,7 +117,7 @@ header ul {
 }
 
 @media (min-width: 1200px) and (max-width: 1599px) {
-  .myNavbar {
+  .my-navbar {
     margin-top: 59px;
   }
   .headerText {
@@ -146,7 +133,7 @@ header ul {
 }
 
 @media (min-width: 1600px) and (max-width: 1699px) {
-  .myNavbar {
+  .my-navbar {
     margin-top: 60px;
   }
   .headerText {
@@ -163,7 +150,7 @@ header ul {
 }
 
 @media (min-width: 1700px) {
-  .myNavbar {
+  .my-navbar {
     margin-top: 60px;
   }
   .headerText {
