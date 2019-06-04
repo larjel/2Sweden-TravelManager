@@ -18,7 +18,6 @@ class Header extends React.Component {
 
   handleClick(e, val) {
     e.preventDefault();
-    console.log('The link was clicked. Value: ' + val);
     this.props.setActiveMainPage(val);
   }
 
