@@ -16,7 +16,7 @@ class App extends Component {
       searchResponse: null,
       routeDetailsArrIdx: -1,
       routeSegmentArrIdx: -1,
-      activePage: 'home',
+      activePage: MENU_OPT.HOME,
       errorMsg: null
     }
   }
