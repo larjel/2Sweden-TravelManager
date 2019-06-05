@@ -2,10 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import "./normalizer.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./styleSheet.css";
 
 ReactDOM.render(<App />, document.getElementById('root'));
-
 
 serviceWorker.unregister();
