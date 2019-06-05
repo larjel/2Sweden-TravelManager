@@ -2,9 +2,6 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 
-
-
-
 @keyframes appear {
   0% {
     opacity: 0;
@@ -32,7 +29,7 @@
   }
 }
 
-@media (min-width: 700px) and(max-width: 1100px) {
+@media (min-width: 700px) and (max-width: 1100px) {
   .ipad-screen {
     display: flex;
     left: 50px;

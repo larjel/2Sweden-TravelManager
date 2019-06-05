@@ -53,7 +53,7 @@
 .textCenter {
   text-align: center;
 }
-@media (min-width: 300px) and(max-width: 399px) {
+@media (min-width: 300px) and (max-width: 399px) {
   .search-button {
     width: 100%;
   }
