@@ -5,7 +5,7 @@ import Map from '../Map/Map';
 import reactLogo from "./react.png"
 import javascriptLogo from "./javascript.png"
 import htmlLogo from "./html.png"
-import romeLogo from "./rome.png"
+import romeLogo from "./romelogo.png"
 import cssLogo from "./CSS3.png"
 import googleLogo from "./googlem.png"
 

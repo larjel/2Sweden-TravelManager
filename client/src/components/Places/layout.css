@@ -7,8 +7,6 @@ html{overflow-y:scroll;} /* Forces a scrollbar when the viewport is larger than 
 html[xmlns] .clear{display:block;}
 * html .clear{height:1%;}
 
-a{outline:none; text-decoration:none;}
-
 code{font-weight:normal; font-style:normal; font-family:Georgia, "Times New Roman", Times, serif;}
 
 .fl_left{float:left;}
@@ -29,22 +27,20 @@ q:after{content:' �'; font-size:26px; line-height:0;}
 
 div.wrapper{display:block; width:100%; margin:0; padding:0; text-align:left;}
 
-.row1, .row1 a{color:#C0BAB6; background-color:#333333;}
-.row2{color:#979797; background-color:#FFFFFF;}
-.row2 a{color:#FF9900; background-color:#FFFFFF;}
-.row3{color:#989898; background-color:#333333;}
-.row3 a{color:#FF9900; background-color:#333333;}
-.row4, .row4 a{color:#919191; background-color:#232323;}
+.row1, .row1 a{color:#ffcc00; background-color:#006699;}
+.row2{color:gray; background-color:#FFFFFF;}
+.row2 a{color: #ffcc00; font-weight: bold; background-color:#FFFFFF;}
+.row3{color:#ffcc00; background-color:#006699;}
+.row3 a{color: #ffcc00; font-weight: bold; background-color:#006699;}
+.row4, .row4 a{color:#ffcc00; background-color:#006699;}
 
 /*----------------------------------------------Generalise-------------------------------------*/
 
 #header, #container, #footer, #copyright{display:block; width:960px; margin:0 auto;}
 
-h1, h2, h3, h4, h5, h6{margin:0; padding:0; font-size:32px; font-weight:lighter; line-height:normal;}
 
 blockquote, q{display:block; padding:8px 10px; color:#979797; background-color:#ECECEC; font-style:italic; line-height:normal;}
-blockquote:before, q:before{content:'� '; font-size:26px;}
-blockquote:after, q:after{content:' �'; font-size:26px; line-height:0;}
+
 
 form, fieldset, legend{margin:0; padding:0; border:none;}
 legend{display:none;}
@@ -100,12 +96,7 @@ input, textarea, select{font-size:12px; font-family:Georgia,"Times New Roman",Ti
 
 #footer{padding:30px 0; font-size:12px; line-height:1.4em;}
 
-#footer section h2.title{margin:0 0 25px 0; color:#FFFFFF; background-color:#333333; font-size:12px; font-weight:bold; text-transform:uppercase;}
+#footer section h2.title{margin:0 0 25px 0; color:#ffcc00; font-size:14px; font-weight:bold; text-transform:uppercase;}
 
-#footer section nav li{margin:0 0 5px 0; padding:0 0 5px 0; border-bottom:1px solid #555555;}
+#footer section nav li{margin:0 0 5px 0; padding:0 0 5px 0; border-bottom:1px solid black;}
 #footer section nav li.last{margin:0;}
-
-/*----------------------------------------------Copyright-------------------------------------*/
-
-#copyright{padding:20px 0;}
-#copyright p{margin:0; padding: 0;}
