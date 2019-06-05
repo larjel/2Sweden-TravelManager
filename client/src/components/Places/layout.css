@@ -90,6 +90,7 @@ input, textarea, select{font-size:12px; font-family:Georgia,"Times New Roman",Ti
 
 #container #homepage #intro article figure img{float:right; margin:0 0 10px 0; padding:4px; border:1px solid #D6D6D6;}
 #container #homepage #intro article figure figcaption{float:left; width:460px;}
+#container section a:hover{ text-decoration: none;}
 
 
 /*----------------------------------------------Footer-------------------------------------*/
@@ -98,5 +99,12 @@ input, textarea, select{font-size:12px; font-family:Georgia,"Times New Roman",Ti
 
 #footer section h2.title{margin:0 0 25px 0; color:#ffcc00; font-size:14px; font-weight:bold; text-transform:uppercase;}
 
-#footer section nav li{margin:0 0 5px 0; padding:0 0 5px 0; border-bottom:1px solid black;}
+#footer section nav li{margin:0 0 5px 0; padding:0 0 5px 0; border-bottom:1px solid #006699;}
 #footer section nav li.last{margin:0;}
+#footer section nav a:hover{
+    text-decoration: none;
+    color: azure;
+}
+
+
+
