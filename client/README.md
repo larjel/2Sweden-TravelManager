@@ -7,6 +7,12 @@ This is the **FRONTEND** part of the project.
 ### `npm install`
 should be run after cloning to download all node modules.
 
+### IMPORTANT
+The Google API Key (as found in Trello) should be added in a file called *.env*<br> 
+in the root of the client directory. The content should have the following format:
+
+REACT_APP_GOOGLE_MAPS_KEY = *[key]* 
+
 ## Available Scripts
 
 In the project directory, you can run:
