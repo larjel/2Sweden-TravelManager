@@ -1,5 +1,17 @@
 
 //----------------------------------------------------------------------------
+// Constants used for selection of menu options
+export const MENU_OPT = {
+  SEARCH: 'search',
+  HOME: 'home',
+  INFO: 'info',
+  RECOMMEND: 'recommend',
+  STOCKHOLM: 'stockholm',
+  FALUN: 'falun',
+  ARE: 'are'
+}
+
+//----------------------------------------------------------------------------
 export function convertMinutesToDayHourMin(minutes) {
   if (minutes) {
     let days = Math.floor(minutes / (24 * 60));

@@ -5,6 +5,7 @@ import "./dropdown.css"
 import { GoSearch, GoInfo, GoLocation, GoHome, GoThumbsup } from 'react-icons/go';
 import Hamburgermenu from "./Hamburgermenu"
 import Media from 'react-media';
+import { MENU_OPT } from '../../utils/utils.js'
 
 class Header extends React.Component {
 
@@ -35,18 +36,18 @@ class Header extends React.Component {
             ) : (
                 <nav className="my-navbar">
                   <ul className="ul">
-                    <li className="current li" ><a className="active" href="/" onClick={(e) => this.handleClick(e, 'home')}><GoHome /> Home</a></li>
-                    <li className="li" ><a href="/" onClick={(e) => this.handleClick(e, 'search')}><GoSearch /> New search</a></li>
-                    <li className="li" ><a href="/" onClick={(e) => this.handleClick(e, 'info')}><GoInfo /> Information</a></li>
+                    <li className="current li" ><a className="active" href="/" onClick={(e) => this.handleClick(e, MENU_OPT.HOME)}><GoHome /> Home</a></li>
+                    <li className="li" ><a href="/" onClick={(e) => this.handleClick(e, MENU_OPT.SEARCH)}><GoSearch /> New search</a></li>
+                    <li className="li" ><a href="/" onClick={(e) => this.handleClick(e, MENU_OPT.INFO)}><GoInfo /> Information</a></li>
                     <li className="li dropdown" >
                       <button className="dropbtn"><GoLocation /> Locations</button>
                       <div className="dropdown-content">
-                        <a href="/" onClick={(e) => this.handleClick(e, 'stockholm')}>Stockholm</a>
-                        <a href="/" onClick={(e) => this.handleClick(e, 'falun')}>Falun</a>
-                        <a href="/" onClick={(e) => this.handleClick(e, 'are')}>Åre</a>
+                        <a href="/" onClick={(e) => this.handleClick(e, MENU_OPT.STOCKHOLM)}>Stockholm</a>
+                        <a href="/" onClick={(e) => this.handleClick(e, MENU_OPT.FALUN)}>Falun</a>
+                        <a href="/" onClick={(e) => this.handleClick(e, MENU_OPT.ARE)}>Åre</a>
                       </div>
                     </li>
-                    <li className="li" ><a href="/" onClick={(e) => this.handleClick(e, 'recommend')}><GoThumbsup /> Recommendations</a></li>
+                    <li className="li" ><a href="/" onClick={(e) => this.handleClick(e, MENU_OPT.RECOMMEND)}><GoThumbsup /> Recommendations</a></li>
                   </ul>
                 </nav>
               )
