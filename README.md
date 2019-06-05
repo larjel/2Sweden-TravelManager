@@ -7,7 +7,7 @@ Under varumärket 2 Sweden (uttalas To Sweden) skapas ett antal olika event och 
 
 Ett av de projekt som skall genomföras är att en webbnärvaro skall skapas. 
 
-Det är för detta uppdrag ni har kallats in. 
+Det är för detta uppdrag **Apollo Warriors** har kallats in. 
 
 Inom ramen för detta projekt skall användaren kunna finna information och data hur man på snabbaste och enklaste och billigaste sätt kan ta sig:
 
