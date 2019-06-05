@@ -37,7 +37,7 @@ class App extends React.Component {
         //top: 0,
         //left: 0,
         top: '2vh',
-        left: '1vh',
+        left: '0.5vh',
         zIndex: '99',
         opacity: 0.9,
         display: 'flex',
