@@ -1,10 +1,10 @@
 
-const serverAddress = 'localhost'
-const serverPort = 5000
+const SERVER_ADDRESS = 'localhost'
+const SERVER_PORT = 5000
 
 //----------------------------------------------------------------------------
 const createApiURL = (uri) => {
-    return 'http://' + serverAddress + ':' + serverPort + '/api/' + uri
+    return 'http://' + SERVER_ADDRESS + ':' + SERVER_PORT + '/api/' + uri
 }
 
 //----------------------------------------------------------------------------
