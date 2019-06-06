@@ -7,7 +7,7 @@ To be able to style the different components we had to use both classes and id-t
 import React, { Component } from 'react';
 import "../layout.css"
 import "./Falun.css"
-import imgMaxResDefault from './img/maxresdefault-falun.jpg'
+import imgMaxResDefault from './img/maxresdefault-falun2.jpg'
 import imgDalarnaMine from './img/dalarna-sweden-mine-falun.jpg'
 import imgFalun01 from './img/003722-falun.jpg'
 import imgFirstHotel from './img/suite-first-hotel-grand-falun.jpg'
@@ -28,7 +28,7 @@ class Falun extends Component {
                 <img
                   src={imgMaxResDefault}
                   width={960}
-                  height={360}
+                  height={470}
                   alt="Falun by night"
                 />
               </a>

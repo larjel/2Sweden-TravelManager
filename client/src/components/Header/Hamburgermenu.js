@@ -1,10 +1,11 @@
 import React from 'react'
+import { MENU_OPT } from '../../utils/utils.js'
 import "./Hamburgermenu.css"
 
 // Menu options
 const MENU = ['Home', 'New search', 'Information', 'Recommendations', 'About Stockholm', 'About Falun', 'About Åre'];
 // Values to use for the callback method to set the actual page. Important: Must match on index with MENU above.
-const MOPT = ['home', 'search', 'info', 'recommend', 'stockholm', 'falun', 'are'];
+const MOPT = [MENU_OPT.HOME, MENU_OPT.SEARCH, MENU_OPT.INFO, MENU_OPT.RECOMMEND, MENU_OPT.STOCKHOLM, MENU_OPT.FALUN, MENU_OPT.ARE];
 
 /* App.jsx */
 class App extends React.Component {
@@ -42,7 +43,7 @@ class App extends React.Component {
         opacity: 0.9,
         display: 'flex',
         alignItems: 'center',
-       // background: 'black',
+        // background: 'black',
         width: '100%',
         color: 'white',
         fontFamily: 'Lobster',

@@ -7,7 +7,7 @@ To be able to style the different components we had to use both classes and id-t
 import React, { Component } from 'react';
 import "../layout.css"
 import "./Are.css"
-import imgOffpist from './img/offpist-are-AA-Are.jpg'
+import imgOffpist from './img/offpist-are-AA-Are2.png'
 import imgRockberg from './img/crop_media_1254_foto-ola-rockberg-kabin-1-are.jpg'
 import imgStation from './img/station-are.jpg'
 import imgInteriorRoom from './img/interior_room_lookin_out_copperhill_480-are.jpg'
@@ -29,7 +29,7 @@ class Are extends Component {
                 <img
                   src={imgOffpist}
                   width={960}
-                  height={360}
+                  height={458}
                   alt="Offpist skiing"
                 />
               </a>

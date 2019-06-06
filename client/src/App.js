@@ -6,6 +6,7 @@ import Footer from './components/Footer/Footer'
 import Are from './components/Places/Are/Are'
 import Falun from './components/Places/Falun/Falun'
 import Stockholm from './components/Places/Stockholm/Stockholm'
+import { MENU_OPT } from './utils/utils.js'
 
 //------------------------------------------------------------------------------
 class App extends Component {
@@ -15,7 +16,7 @@ class App extends Component {
       searchResponse: null,
       routeDetailsArrIdx: -1,
       routeSegmentArrIdx: -1,
-      activePage: 'home',
+      activePage: MENU_OPT.HOME,
       errorMsg: null
     }
   }
@@ -49,12 +50,12 @@ class App extends Component {
     const routeSegmentArrIdx = this.state.routeSegmentArrIdx;
 
     switch (this.state.activePage) {
-      case 'search':
+      case MENU_OPT.SEARCH:
         window.location.reload(); // Refresh page
         return (null);
-      case 'home':
-      case 'info':
-      case 'recommend':
+      case MENU_OPT.HOME:
+      case MENU_OPT.INFO:
+      case MENU_OPT.RECOMMEND:
         return (
           <>
             <Main
@@ -71,11 +72,11 @@ class App extends Component {
             />
           </>
         );
-      case 'stockholm':
+      case MENU_OPT.STOCKHOLM:
         return <Stockholm />;
-      case 'falun':
+      case MENU_OPT.FALUN:
         return <Falun />;
-      case 'are':
+      case MENU_OPT.ARE:
         return <Are />;
       default:
         return null;
