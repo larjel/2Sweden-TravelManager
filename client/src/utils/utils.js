@@ -1,3 +1,4 @@
+import checkPropTypes from 'check-prop-types';
 
 //----------------------------------------------------------------------------
 // Constants used for selection of menu options
@@ -124,3 +125,21 @@ export function filterJsonResponse(data) {
     })
   }
 }
+
+//----------------------------------------------------------------------------
+// Find by test attribute. Test support function.
+export const findByTestAttr = (component, attr) => {
+  const wrapper = component.find(`[data-test='${attr}']`);
+  return wrapper;
+};
+
+//----------------------------------------------------------------------------
+// Check props. Test support function.
+export const checkProps = (component, expectedProps) => {
+  // ESLint will warn on "using proptypes from another component is not safe", but since
+  // this function is only used for testing, we will ignore this warning
+  /*eslint-disable */
+  const propsErr = checkPropTypes(component.propTypes, expectedProps, 'props', component.name);
+  /*eslint-enable */
+  return propsErr;
+};
