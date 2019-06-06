@@ -1,3 +1,9 @@
+/*!!!!!!!!!!!!!!!!!!!!!!!!
+
+To be able to style the different components we had to use both classes and id-tags in the 'Places' -components
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+
 import React, { Component } from 'react';
 import "../layout.css"
 import "./Are.css"
@@ -6,6 +12,7 @@ import imgRockberg from './img/crop_media_1254_foto-ola-rockberg-kabin-1-are.jpg
 import imgStation from './img/station-are.jpg'
 import imgInteriorRoom from './img/interior_room_lookin_out_copperhill_480-are.jpg'
 import imgAreBjornen from './img/Are_Bjornen_Stugby_20100611_TOJ6225-are.jpg'
+
 
 class Are extends Component {
 

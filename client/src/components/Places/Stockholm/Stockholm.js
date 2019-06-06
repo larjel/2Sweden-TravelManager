@@ -1,3 +1,10 @@
+/*!!!!!!!!!!!!!!!!!!!!!!!!
+
+To be able to style the different components we had to use both classes and id-tags in the 'Places' -components
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+
+
 import React, { Component } from 'react';
 import "../layout.css"
 import "./Stockholm.css"
@@ -168,9 +175,6 @@ class Stockholm extends Component {
                     <a href="https://www.tripadvisor.com/Attractions-g189852-Activities-Stockholm.html">
                       Recommendations from Tripadvisor
                     </a>
-                  </li>
-                  <li>
-                    <a href="/">Attractions</a>
                   </li>
                   <li className="last">
                     <a href="/">Attractions</a>

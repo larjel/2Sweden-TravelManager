@@ -1,3 +1,9 @@
+/*!!!!!!!!!!!!!!!!!!!!!!!!
+
+To be able to style the different components we had to use both classes and id-tags in the 'Places' -components
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
+
 import React, { Component } from 'react';
 import "../layout.css"
 import "./Falun.css"
@@ -149,8 +155,11 @@ class Falun extends Component {
                   <li>
                     <a href="/">History of Falun</a>
                   </li>
-                  <li className="last">
+                  <li>
                     <a href="/">Weather in Falun</a>
+                  </li>
+                  <li className="last">
+                    <a href="/">Attractions</a>
                   </li>
                 </ul>
               </nav>
