@@ -1,10 +1,10 @@
 .side {
-    grid-area: sidebar;
-  }
+  grid-area: sidebar;
+}
 
 .wrapper {
-    min-height: 100%;
-  }
+  min-height: 100%;
+}
 
 .push {
   height: 100px;
@@ -32,6 +32,6 @@
     flex-direction: column;
   }
   .icon-field {
-   display: none;
+    display: none;
   }
 }
