@@ -11,6 +11,7 @@ export const MENU_OPT = {
   FALUN: 'falun',
   ARE: 'are'
 }
+Object.freeze(MENU_OPT); // Makes the variables of MENU_OPT immutable
 
 //----------------------------------------------------------------------------
 export function convertMinutesToDayHourMin(minutes) {

@@ -1,9 +1,25 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { shallow } from 'enzyme';
 import App from './App';
+import { findByTestAttr } from './utils/utils';
 
-it('renders without crashing', () => {
-  const div = document.createElement('div');
-  ReactDOM.render(<App />, div);
-  ReactDOM.unmountComponentAtNode(div);
+// Basic setup. Do a shallow render of App and return it.
+const setUp = (props = {}) => {
+  const component = shallow(<App {...props} />);
+  return component;
+};
+
+describe('App Component', () => {
+
+  let component;
+  beforeEach(() => {
+    // Runs before each test
+    component = setUp();
+  });
+
+  it('Should render without errors', () => {
+    const wrapper = findByTestAttr(component, 'wrapper');
+    expect(wrapper.length).toBe(1);
+  });
+
 });

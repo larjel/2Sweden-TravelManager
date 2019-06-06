@@ -13,10 +13,10 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      searchResponse: null,
-      routeDetailsArrIdx: -1,
-      routeSegmentArrIdx: -1,
-      activePage: MENU_OPT.HOME,
+      searchResponse: null, // The response from the Rome2Rio API
+      routeDetailsArrIdx: -1, // The array index for the currently selected route
+      routeSegmentArrIdx: -1, // The array index for the currently selected route segment
+      activePage: MENU_OPT.HOME, // The currently selected active page
       errorMsg: null
     }
   }
@@ -87,7 +87,7 @@ class App extends Component {
   render() {
 
     return (
-      <div className='wrapper'>
+      <div className='wrapper' data-test='wrapper'>
         <Header setActiveMainPage={this.setActiveMainPage} />
         {this.getActiveMainPage()}
         <Footer />
