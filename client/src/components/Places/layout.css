@@ -126,9 +126,9 @@ div.wrapper {
 
 /*----------------------------------------------Generalise-------------------------------------*/
 
-#header, #container, #footer, #copyright {
+#container, .footer {
     display: block;
-    width: 960px;
+    width: 970px;
     margin: 0 auto;
 }
 
@@ -271,13 +271,13 @@ input, textarea, select {
 
 /*----------------------------------------------Footer-------------------------------------*/
 
-#footer {
+.footer {
     padding: 30px 0;
     font-size: 12px;
     line-height: 1.4em;
 }
 
-#footer section h2.title {
+.footer section h2.title {
     margin: 0 0 25px 0;
     color: #ffcc00;
     font-size: 14px;
@@ -285,17 +285,17 @@ input, textarea, select {
     text-transform: uppercase;
 }
 
-#footer section nav li {
+.footer section nav li {
     margin: 0 0 5px 0;
     padding: 0 0 5px 0;
     border-bottom: 1px solid #006699;
 }
 
-#footer section nav li.last {
+.footer section nav li.last {
     margin: 0;
 }
 
-#footer section nav a:hover {
+.footer section nav a:hover {
     text-decoration: none;
     color: azure;
 }

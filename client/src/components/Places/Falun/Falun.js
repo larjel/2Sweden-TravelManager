@@ -141,7 +141,7 @@ class Falun extends Component {
         </div>
         {/* Footer */}
         <div className="wrapper row3">
-          <div id="footer" className="clear">
+          <div className="clear footer">
             {/* Section One */}
             <section className="one_quarter">
               <h2 className="title">About Falun</h2>
