@@ -1,13 +1,8 @@
-
-ul {
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+@import url('https://fonts.googleapis.com/css?family=Lato');
+.place-ul {
     list-style-type: none;
 }
-
-html {
-    overflow-y: scroll;
-}
-
-/* Forces a scrollbar when the viewport is larger than the websites content - CSS3 */
 
 .clear:after {
     content: ".";
@@ -35,7 +30,6 @@ code {
     font-weight: normal;
     font-style: normal;
     font-family: Georgia, "Times New Roman", Times, serif;
-
 }
 
 .fl_left {
@@ -214,55 +208,10 @@ input, textarea, select {
 
 /*----------------------------------------------Header-------------------------------------*/
 
-#header {
-    padding: 20px 0;
-}
-
-#header #hgroup {
-    float: left;
-    margin: 0 0 20px 0;
-}
-
-#header #hgroup h1, #header #hgroup h2 {
-    font-weight: normal;
-    font-style: normal;
-    text-transform: none;
-}
-
-#header #hgroup h1 {
-    font-size: 36px;
-}
-
-#header #hgroup h2 {
-    font-size: 13px;
-}
-
-#header nav {
-    display: block;
-    float: right;
-    margin: 10px 0 0 0;
-    padding: 20px 0;
-    color: #C0BAB6;
-    background-color: #232323;
-}
-
-#header nav ul {
-    padding: 0 20px;
-}
-
-#header nav li {
-    display: inline;
-    margin-right: 25px;
-    text-transform: uppercase;
-}
-
-#header nav li.last {
-    margin-right: 0;
-}
-
-#header nav li a:hover {
-    color: #FF9900;
-    background-color: #232323;
+.places-header-text {
+    text-align: center;
+    margin-top: 20px;
+    font-family: Raleway;
 }
 
 /*----------------------------------------------Content Area-------------------------------------*/

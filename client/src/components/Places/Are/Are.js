@@ -6,13 +6,11 @@ To be able to style the different components we had to use both classes and id-t
 
 import React, { Component } from 'react';
 import "../layout.css"
-import "./Are.css"
 import imgOffpist from './img/offpist-are-AA-Are2.png'
 import imgRockberg from './img/crop_media_1254_foto-ola-rockberg-kabin-1-are.jpg'
 import imgStation from './img/station-are.jpg'
 import imgInteriorRoom from './img/interior_room_lookin_out_copperhill_480-are.jpg'
 import imgAreBjornen from './img/Are_Bjornen_Stugby_20100611_TOJ6225-are.jpg'
-
 
 class Are extends Component {
 
@@ -24,7 +22,7 @@ class Are extends Component {
   render() {
     return (
       <main>
-        <h2 className="headerAre">Åre - Sweden's leading ski resort</h2>
+        <h2 className="places-header-text">Åre - Sweden's leading ski resort</h2>
         {/* content */}
         <div className="wrapper row2">
           <div id="container" className="clear">
@@ -150,7 +148,7 @@ class Are extends Component {
             <section className="one_quarter">
               <h2 className="title">About Åre</h2>
               <nav>
-                <ul>
+                <ul className="place-ul">
                   <li>
                     <a href="/">Welcome to Åre</a>
                   </li>
@@ -173,7 +171,7 @@ class Are extends Component {
             <section className="one_quarter">
               <h2 className="title">Attractions</h2>
               <nav>
-                <ul>
+                <ul className="place-ul">
                   <li>
                     <a href="/">Things to do in Åre</a>
                   </li>
@@ -196,7 +194,7 @@ class Are extends Component {
             <section className="one_quarter">
               <h2 className="title">Transport</h2>
               <nav>
-                <ul>
+                <ul className="place-ul">
                   <li>
                     <a href="/">Local Transport</a>
                   </li>
@@ -219,7 +217,7 @@ class Are extends Component {
             <section className="one_quarter lastbox">
               <h2 className="title">Accommodation</h2>
               <nav>
-                <ul>
+                <ul className="place-ul">
                   <li>
                     <a href="/">Holiday club</a>
                   </li>

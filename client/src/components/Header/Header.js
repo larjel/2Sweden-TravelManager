@@ -26,7 +26,7 @@ class Header extends React.Component {
       <header className="main-head">
 
         <img className="logo" src={logo} alt="Logo" />
-        <h1 className="headerText">
+        <h1 className="header-text">
           WINTER OLYMPIC GAMES 2024
         </h1>
         <Media query="(max-width: 1199px)">

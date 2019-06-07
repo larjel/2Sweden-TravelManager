@@ -7,7 +7,6 @@ To be able to style the different components we had to use both classes and id-t
 
 import React, { Component } from 'react';
 import "../layout.css"
-import "./Stockholm.css"
 import imgEurSweden from './img/eur-sweden-stockholm.jpg'
 import imgStockholmView from './img/stockholm-view.jpg'
 import imgForarlosa from './img/forarlosatag.jpg'
@@ -24,7 +23,7 @@ class Stockholm extends Component {
   render() {
     return (
       <main>
-        <h2 className="headText">Stockholm - Venice of the north</h2>
+        <h2 className="places-header-text">Stockholm - Venice of the north</h2>
         {/* content */}
         <div className="wrapper row2">
           <div id="container" className="clear">
@@ -138,7 +137,7 @@ class Stockholm extends Component {
             <section className="one_quarter">
               <h2 className="title">About stockholm</h2>
               <nav>
-                <ul>
+                <ul className="place-ul">
                   <li>
                     <a href="https://en.wikipedia.org/wiki/Stockholm">
                       More About Stockholm
@@ -165,7 +164,7 @@ class Stockholm extends Component {
             <section className="one_quarter">
               <h2 className="title">Attractions</h2>
               <nav>
-                <ul>
+                <ul className="place-ul">
                   <li>
                     <a href="https://www.visitstockholm.com/">
                       Things to do in Stockholm
@@ -191,7 +190,7 @@ class Stockholm extends Component {
             <section className="one_quarter">
               <h2 className="title">Transport</h2>
               <nav>
-                <ul>
+                <ul className="place-ul">
                   <li>
                     <a href="https://sl.se/">Local Transport</a>
                   </li>
@@ -222,7 +221,7 @@ class Stockholm extends Component {
             <section className="one_quarter lastbox">
               <h2 className="title">Accommodation</h2>
               <nav>
-                <ul>
+                <ul className="place-ul">
                   <li>
                     <a href="https://www.sheratonstockholm.se/">
                       Sheraton Stockholm

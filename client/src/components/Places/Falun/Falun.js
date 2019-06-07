@@ -6,7 +6,6 @@ To be able to style the different components we had to use both classes and id-t
 
 import React, { Component } from 'react';
 import "../layout.css"
-import "./Falun.css"
 import imgMaxResDefault from './img/maxresdefault-falun2.jpg'
 import imgDalarnaMine from './img/dalarna-sweden-mine-falun.jpg'
 import imgFalun01 from './img/003722-falun.jpg'
@@ -23,7 +22,7 @@ class Falun extends Component {
   render() {
     return (
       <main>
-        <h2 className="falunHeader">Falun - Northern lights</h2>
+        <h2 className="places-header-text">Falun - Northern lights</h2>
         {/* content */}
         <div className="wrapper row2">
           <div id="container" className="clear">
@@ -147,7 +146,7 @@ class Falun extends Component {
             <section className="one_quarter">
               <h2 className="title">About Falun</h2>
               <nav>
-                <ul>
+                <ul className="place-ul">
                   <li>
                     <a href="/">Welcome to Falun</a>
                   </li>
@@ -173,7 +172,7 @@ class Falun extends Component {
             <section className="one_quarter">
               <h2 className="title">Attractions</h2>
               <nav>
-                <ul>
+                <ul className="place-ul">
                   <li>
                     <a href="/">Things to do in Falun</a>
                   </li>
@@ -196,7 +195,7 @@ class Falun extends Component {
             <section className="one_quarter">
               <h2 className="title">Transport</h2>
               <nav>
-                <ul>
+                <ul className="place-ul">
                   <li>
                     <a href="/">Local Transport</a>
                   </li>
@@ -219,7 +218,7 @@ class Falun extends Component {
             <section className="one_quarter lastbox">
               <h2 className="title">Accommodation</h2>
               <nav>
-                <ul>
+                <ul className="place-ul">
                   <li>
                     <a href="/">Scandic Falun</a>
                   </li>
