@@ -15,6 +15,11 @@ import imgFalun02 from './img/falun.jpg'
 
 class Falun extends Component {
 
+  scrollToFooter = (event) => {
+    event.preventDefault();
+    document.getElementById('footer').scrollIntoView(true);
+  }
+
   render() {
     return (
       <main>
@@ -24,7 +29,7 @@ class Falun extends Component {
           <div id="container" className="clear">
             {/* Slider */}
             <section id="slider">
-              <a href="/">
+              <a href="https://en.wikipedia.org/wiki/Falun">
                 <img
                   src={imgMaxResDefault}
                   width={960}
@@ -52,7 +57,7 @@ class Falun extends Component {
                         of the world heritage sites.
                       </p>
                       <footer className="more">
-                        <a href="#footer">Read More »</a>
+                        <a href="/" onClick={this.scrollToFooter}>Read More »</a>
                       </footer>
                     </figcaption>
                   </figure>
@@ -69,7 +74,7 @@ class Falun extends Component {
                       <h2>Transport</h2>
                       <p>There is a local transport system in the city. It's located at the core of Falun.</p>
                       <footer className="more">
-                        <a href="#footer">Read More »</a>
+                        <a href="/" onClick={this.scrollToFooter}>Read More »</a>
                       </footer>
                     </figcaption>
                   </figure>
@@ -88,7 +93,7 @@ class Falun extends Component {
                         You can choose from many hotels to stay at in Falun. Both central and closer to the events.
                       </p>
                       <footer className="more">
-                        <a href="#footer">Read More »</a>
+                        <a href="/" onClick={this.scrollToFooter}>Read More »</a>
                       </footer>
                     </figcaption>
                   </figure>

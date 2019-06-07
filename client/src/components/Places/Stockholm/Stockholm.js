@@ -16,6 +16,11 @@ import imgStockholm1024x681 from './img/stockholm-1024x681.jpg'
 
 class Stockholm extends Component {
 
+  scrollToFooter = (event) => {
+    event.preventDefault();
+    document.getElementById('footer').scrollIntoView(true);
+  }
+
   render() {
     return (
       <main>
@@ -25,7 +30,7 @@ class Stockholm extends Component {
           <div id="container" className="clear">
             {/* Slider */}
             <section id="slider">
-              <a href="/">
+              <a href="https://en.wikipedia.org/wiki/Stockholm">
                 <img src={imgEurSweden} alt="Stockholm view" />
               </a>
             </section>
@@ -40,7 +45,7 @@ class Stockholm extends Component {
                       <h2>Places to See in Stockholm</h2>
                       <p>Stockholm has a lot of Attractions. Visit the Old city and much more.</p>
                       <footer className="more">
-                        <a href="#footer">Read More »</a>
+                        <a href="/" onClick={this.scrollToFooter}>Read More »</a>
                       </footer>
                     </figcaption>
                   </figure>
@@ -57,7 +62,7 @@ class Stockholm extends Component {
                       <h2>Local Transport</h2>
                       <p>Stockholm has a big public transport system.</p>
                       <footer className="more">
-                        <a href="#footer">Read More »</a>
+                        <a href="/" onClick={this.scrollToFooter}>Read More »</a>
                       </footer>
                     </figcaption>
                   </figure>
@@ -76,7 +81,7 @@ class Stockholm extends Component {
                         There is a wide range of Hotels to stay at in Stockholm.
                       </p>
                       <footer className="more">
-                        <a href="#footer">Read More »</a>
+                        <a href="/" onClick={this.scrollToFooter}>Read More »</a>
                       </footer>
                     </figcaption>
                   </figure>

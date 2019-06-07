@@ -16,6 +16,11 @@ import imgAreBjornen from './img/Are_Bjornen_Stugby_20100611_TOJ6225-are.jpg'
 
 class Are extends Component {
 
+  scrollToFooter = (event) => {
+    event.preventDefault();
+    document.getElementById('footer').scrollIntoView(true);
+  }
+
   render() {
     return (
       <main>
@@ -25,7 +30,7 @@ class Are extends Component {
           <div id="container" className="clear">
             {/* Slider */}
             <section id="slider">
-              <a href="/">
+              <a href="https://en.wikipedia.org/wiki/%C3%85re">
                 <img
                   src={imgOffpist}
                   width={960}
@@ -54,7 +59,7 @@ class Are extends Component {
                         Sweden.
                       </p>
                       <footer className="more">
-                        <a href="#footer">Read More »</a>
+                        <a href="/" onClick={this.scrollToFooter}>Read More »</a>
                       </footer>
                     </figcaption>
                   </figure>
@@ -71,7 +76,7 @@ class Are extends Component {
                       <h2>Transport</h2>
                       <p>There is a local transport system in the city. From where you can travel to rest of Sweden</p>
                       <footer className="more">
-                        <a href="#footer">Read More »</a>
+                        <a href="/" onClick={this.scrollToFooter}>Read More »</a>
                       </footer>
                     </figcaption>
                   </figure>
@@ -90,7 +95,7 @@ class Are extends Component {
                         You can choose from many hotels to stay at in Åre. Or maybe a cozy cabin in the middle of the slope.
                       </p>
                       <footer className="more">
-                        <a href="#footer">Read More »</a>
+                        <a href="/" onClick={this.scrollToFooter}>Read More »</a>
                       </footer>
                     </figcaption>
                   </figure>
