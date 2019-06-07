@@ -182,7 +182,7 @@ class Are extends Component {
                     <a href="/">Attractions in Åre</a>
                   </li>
                   <li>
-                    <a href="/">Recommendations form tripadvisor</a>
+                    <a href="/">Recommendations from tripadvisor</a>
                   </li>
                   <li className="last">
                     <a href="/">Attractions</a>

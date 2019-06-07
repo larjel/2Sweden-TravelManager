@@ -1,301 +1,213 @@
 @import url('https://fonts.googleapis.com/css?family=Raleway');
 @import url('https://fonts.googleapis.com/css?family=Lato');
 .place-ul {
-    list-style-type: none;
+  list-style-type: none;
 }
 
 .clear:after {
-    content: ".";
-    display: block;
-    height: 0;
-    clear: both;
-    visibility: hidden;
-    line-height: 0;
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
 }
 
 .clear {
-    display: block;
-    clear: both;
-}
-
-html[xmlns] .clear {
-    display: block;
-}
-
-* html .clear {
-    height: 1%;
-}
-
-code {
-    font-weight: normal;
-    font-style: normal;
-    font-family: Georgia, "Times New Roman", Times, serif;
-}
-
-.fl_left {
-    float: left;
-}
-
-.fl_right {
-    float: right;
-}
-
-img {
-    margin: 0;
-    padding: 0;
-    border: none;
-    line-height: normal;
-    vertical-align: middle;
-}
-
-.imgl {
-    float: left;
-    margin: 0 15px 15px 0;
-    clear: left;
-}
-
-.imgr {
-    float: right;
-    margin: 0 0 15px 15px;
-    clear: right;
-}
-
-/*----------------------------------------------HTML 5 Overrides-------------------------------------*/
-
-q {
-    display: block;
-    padding: 0 10px 8px 10px;
-    color: #979797;
-    background-color: #ECECEC;
-    font-style: italic;
-    line-height: normal;
-}
-
-q:before {
-    content: '� ';
-    font-size: 26px;
-}
-
-q:after {
-    content: ' �';
-    font-size: 26px;
-    line-height: 0;
+  display: block;
+  clear: both;
 }
 
 /* ----------------------------------------------Wrapper-------------------------------------*/
 
 div.wrapper {
-    display: block;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    text-align: left;
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: left;
 }
 
 .row1, .row1 a {
-    color: #ffcc00;
-    background-color: #006699;
+  color: #ffcc00;
+  background-color: #006699;
 }
 
 .row2 {
-    color: gray;
-    background-color: #FFFFFF;
+  color: gray;
+  background-color: #FFFFFF;
 }
 
 .row2 a {
-    color: #ffcc00;
-    font-weight: bold;
-    background-color: #FFFFFF;
+  color: #ffcc00;
+  font-weight: bold;
+  background-color: #FFFFFF;
 }
 
 .row3 {
-    color: #ffcc00;
-    background-color: #006699;
+  color: #ffcc00;
+  background-color: #006699;
 }
 
 .row3 a {
-    color: #ffcc00;
-    font-weight: bold;
-    background-color: #006699;
+  color: #ffcc00;
+  font-weight: bold;
+  background-color: #006699;
 }
 
 .row4, .row4 a {
-    color: #ffcc00;
-    background-color: #006699;
+  color: #ffcc00;
+  background-color: #006699;
 }
 
 /*----------------------------------------------Generalise-------------------------------------*/
 
 #container, .footer {
-    display: block;
-    width: 970px;
-    margin: 0 auto;
-}
-
-blockquote, q {
-    display: block;
-    padding: 8px 10px;
-    color: #979797;
-    background-color: #ECECEC;
-    font-style: italic;
-    line-height: normal;
-}
-
-form, fieldset, legend {
-    margin: 0;
-    padding: 0;
-    border: none;
-}
-
-legend {
-    display: none;
-}
-
-input, textarea, select {
-    font-size: 12px;
-    font-family: Georgia, "Times New Roman", Times, serif;
+  display: block;
+  width: 970px;
+  margin: 0 auto;
 }
 
 .one_quarter, .two_quarter, .three_quarter, .four_quarter {
-    display: block;
-    float: left;
-    margin: 0 20px 0 0;
+  display: block;
+  float: left;
+  margin: 0 20px 0 0;
 }
 
 .one_quarter {
-    width: 225px;
+  width: 225px;
 }
 
 .two_quarter {
-    width: 470px;
+  width: 470px;
 }
 
 .three_quarter {
-    width: 715px;
+  width: 715px;
 }
 
 .four_quarter {
-    width: 960px;
-    float: none;
-    margin-right: 0;
-    clear: both;
+  width: 960px;
+  float: none;
+  margin-right: 0;
+  clear: both;
 }
 
 .one_third, .two_third, .three_third {
-    display: block;
-    float: left;
-    margin: 0 30px 0 0;
+  display: block;
+  float: left;
+  margin: 0 30px 0 0;
 }
 
 .one_third {
-    width: 300px;
+  width: 300px;
 }
 
 .two_third {
-    width: 630px;
+  width: 630px;
 }
 
 .three_third {
-    width: 960px;
-    float: none;
-    margin-right: 0;
-    clear: both;
+  width: 960px;
+  float: none;
+  margin-right: 0;
+  clear: both;
 }
 
 .lastbox {
-    margin-right: 0;
+  margin-right: 0;
 }
 
 /*----------------------------------------------Header-------------------------------------*/
 
 .places-header-text {
-    text-align: center;
-    margin-top: 20px;
-    font-family: Raleway;
+  text-align: center;
+  margin-top: 20px;
+  font-family: Raleway;
 }
 
 /*----------------------------------------------Content Area-------------------------------------*/
 
 #container {
-    padding: 30px 0;
+  padding: 30px 0;
 }
 
 #container section {
-    display: block;
-    width: 100%;
-    margin: 0 0 30px 0;
-    padding: 0;
-    text-decoration: none;
+  display: block;
+  width: 100%;
+  margin: 0 0 30px 0;
+  padding: 0;
+  text-decoration: none;
 }
 
 #container .last {
-    margin: 0;
+  margin: 0;
 }
 
 #container .more {
-    text-align: right;
+  text-align: right;
 }
 
 #container #homepage {
-    display: block;
-    width: 100%;
-    line-height: 1.8em;
+  display: block;
+  width: 100%;
+  line-height: 1.8em;
 }
 
 #container #homepage #services article figure img {
-    margin: 0 0 15px 0;
-    padding: 4px;
-    border: 1px solid #D6D6D6;
+  margin: 0 0 15px 0;
+  padding: 4px;
+  border: 1px solid #D6D6D6;
 }
 
 #container #homepage #services article figure h2 {
-    font-size: 14px;
-    font-weight: bold;
+  font-size: 14px;
+  font-weight: bold;
 }
 
 #container #homepage #intro article figure img {
-    float: right;
-    margin: 0 0 10px 0;
-    padding: 4px;
-    border: 1px solid #D6D6D6;
+  float: right;
+  margin: 0 0 10px 0;
+  padding: 4px;
+  border: 1px solid #D6D6D6;
 }
 
 #container #homepage #intro article figure figcaption {
-    float: left;
-    width: 460px;
+  float: left;
+  width: 460px;
 }
 
 #container section a:hover {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 /*----------------------------------------------Footer-------------------------------------*/
 
 .footer {
-    padding: 30px 0;
-    font-size: 12px;
-    line-height: 1.4em;
+  padding: 30px 0;
+  font-size: 12px;
+  line-height: 1.4em;
 }
 
 .footer section h2.title {
-    margin: 0 0 25px 0;
-    color: #ffcc00;
-    font-size: 14px;
-    font-weight: bold;
-    text-transform: uppercase;
+  margin: 0 0 25px 0;
+  color: #ffcc00;
+  font-size: 14px;
+  font-weight: bold;
+  text-transform: uppercase;
 }
 
 .footer section nav li {
-    margin: 0 0 5px 0;
-    padding: 0 0 5px 0;
-    border-bottom: 1px solid #006699;
+  margin: 0 0 5px 0;
+  padding: 0 0 5px 0;
+  border-bottom: 1px solid #006699;
 }
 
 .footer section nav li.last {
-    margin: 0;
+  margin: 0;
 }
 
 .footer section nav a:hover {
-    text-decoration: none;
-    color: azure;
+  text-decoration: none;
+  color: azure;
 }
