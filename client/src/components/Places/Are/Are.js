@@ -21,11 +21,11 @@ class Are extends Component {
 
   render() {
     return (
-      <main>
-        <h2 className="places-header-text">Åre - Sweden's leading ski resort</h2>
+      <main className="pl-main-font">
+        <h2 className="pl-header-text">Åre - Sweden's leading ski resort</h2>
         {/* content */}
         <div className="wrapper row2">
-          <div id="container" className="clear">
+          <div id="container" className="pl-clear">
             {/* Slider */}
             <section id="slider">
               <a href="https://en.wikipedia.org/wiki/%C3%85re">
@@ -40,7 +40,7 @@ class Are extends Component {
             {/* main content */}
             <div id="homepage">
               {/* Services */}
-              <section id="services" className="clear">
+              <section id="services" className="pl-clear">
                 <article className="one_third">
                   <figure>
                     <img
@@ -105,7 +105,7 @@ class Are extends Component {
               {/* ########################################################################################## */}
               {/* ########################################################################################## */}
               {/* Introduction */}
-              <section id="intro" className="last clear">
+              <section id="intro" className="last pl-clear">
                 <article>
                   <figure>
                     <img
@@ -143,7 +143,7 @@ class Are extends Component {
         </div>
         {/* Footer */}
         <div className="wrapper row3">
-          <div className="clear footer">
+          <div className="pl-clear pl-footer">
             {/* Section One */}
             <section className="one_quarter">
               <h2 className="title">About Åre</h2>

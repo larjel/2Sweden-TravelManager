@@ -4,7 +4,7 @@
   list-style-type: none;
 }
 
-.clear:after {
+.pl-clear:after {
   content: ".";
   display: block;
   height: 0;
@@ -13,14 +13,19 @@
   line-height: 0;
 }
 
-.clear {
+.pl-clear {
   display: block;
   clear: both;
 }
 
+.pl-main-font {
+  font-size: 14px;
+}
+
 /* ----------------------------------------------Wrapper-------------------------------------*/
 
-div.wrapper {
+div .wrapper {
+  /* Note that div.wrapper will extend the wrapper class in styleSheet.css */
   display: block;
   width: 100%;
   margin: 0;
@@ -62,7 +67,7 @@ div.wrapper {
 
 /*----------------------------------------------Generalise-------------------------------------*/
 
-#container, .footer {
+#container, .pl-footer {
   display: block;
   width: 970px;
   margin: 0 auto;
@@ -120,7 +125,7 @@ div.wrapper {
 
 /*----------------------------------------------Header-------------------------------------*/
 
-.places-header-text {
+.pl-header-text {
   text-align: center;
   margin-top: 20px;
   font-family: Raleway;
@@ -183,31 +188,31 @@ div.wrapper {
 
 /*----------------------------------------------Footer-------------------------------------*/
 
-.footer {
+.pl-footer {
   padding: 30px 0;
   font-size: 12px;
   line-height: 1.4em;
 }
 
-.footer section h2.title {
-  margin: 0 0 25px 0;
+.pl-footer section h2.title {
+  margin: 10px 0 25px 0;
   color: #ffcc00;
   font-size: 14px;
   font-weight: bold;
   text-transform: uppercase;
 }
 
-.footer section nav li {
+.pl-footer section nav li {
   margin: 0 0 5px 0;
   padding: 0 0 5px 0;
   border-bottom: 1px solid #006699;
 }
 
-.footer section nav li.last {
+.pl-footer section nav li.last {
   margin: 0;
 }
 
-.footer section nav a:hover {
+.pl-footer section nav a:hover {
   text-decoration: none;
   color: azure;
 }
