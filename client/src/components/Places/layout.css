@@ -67,7 +67,7 @@ div .wrapper {
 
 /*----------------------------------------------Generalise-------------------------------------*/
 
-#container, .pl-footer {
+.pl-container, .pl-footer {
   display: block;
   width: 970px;
   margin: 0 auto;
@@ -133,11 +133,11 @@ div .wrapper {
 
 /*----------------------------------------------Content Area-------------------------------------*/
 
-#container {
+.pl-container {
   padding: 30px 0;
 }
 
-#container section {
+.pl-container section {
   display: block;
   width: 100%;
   margin: 0 0 30px 0;
@@ -145,44 +145,44 @@ div .wrapper {
   text-decoration: none;
 }
 
-#container .last {
+.pl-container .last {
   margin: 0;
 }
 
-#container .more {
+.pl-container .more {
   text-align: right;
 }
 
-#container #homepage {
+.pl-container .pl-homepage {
   display: block;
   width: 100%;
   line-height: 1.8em;
 }
 
-#container #homepage #services article figure img {
+.pl-container .pl-homepage .pl-services article figure img {
   margin: 0 0 15px 0;
   padding: 4px;
   border: 1px solid #D6D6D6;
 }
 
-#container #homepage #services article figure h2 {
+.pl-container .pl-homepage .pl-services article figure h2 {
   font-size: 14px;
   font-weight: bold;
 }
 
-#container #homepage #intro article figure img {
+.pl-container .pl-homepage .pl-intro article figure img {
   float: right;
   margin: 0 0 10px 0;
   padding: 4px;
   border: 1px solid #D6D6D6;
 }
 
-#container #homepage #intro article figure figcaption {
+.pl-container .pl-homepage .pl-intro article figure figcaption {
   float: left;
   width: 460px;
 }
 
-#container section a:hover {
+.pl-container section a:hover {
   text-decoration: none;
 }
 

@@ -1,10 +1,3 @@
-/*!!!!!!!!!!!!!!!!!!!!!!!!
-
-To be able to style the different components we had to use both classes and id-tags in the 'Places' -components
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-
-
 import React, { Component } from 'react';
 import "../layout.css"
 import imgEurSweden from './img/eur-sweden-stockholm.jpg'
@@ -17,7 +10,7 @@ class Stockholm extends Component {
 
   scrollToFooter = (event) => {
     event.preventDefault();
-    document.getElementById('footer').scrollIntoView(true);
+    document.getElementById('footerScrollId').scrollIntoView(true);
   }
 
   render() {
@@ -26,7 +19,7 @@ class Stockholm extends Component {
         <h2 className="pl-header-text">Stockholm - Venice of the north</h2>
         {/* content */}
         <div className="wrapper row2">
-          <div id="container" className="pl-clear">
+          <div className="pl-clear pl-container">
             {/* Slider */}
             <section id="slider">
               <a href="https://en.wikipedia.org/wiki/Stockholm">
@@ -34,9 +27,9 @@ class Stockholm extends Component {
               </a>
             </section>
             {/* main content */}
-            <div id="homepage">
+            <div className="pl-homepage">
               {/* Services */}
-              <section id="services" className="pl-clear">
+              <section className="pl-clear pl-services">
                 <article className="one_third">
                   <figure>
                     <img src={imgStockholmView} width={290} height={180} alt="Stockholm view" />
@@ -86,13 +79,8 @@ class Stockholm extends Component {
                   </figure>
                 </article>
               </section>
-              {/* / Services */}
-              {/* ########################################################################################## */}
-              {/* ########################################################################################## */}
-              {/* ########################################################################################## */}
-              {/* ########################################################################################## */}
               {/* Introduction */}
-              <section id="intro">
+              <section className="last pl-clear pl-intro">
                 <article>
                   <figure>
                     <img
@@ -132,7 +120,7 @@ class Stockholm extends Component {
         </div>
         {/* Footer */}
         <div className="wrapper row3">
-          <div className="pl-clear pl-footer">
+          <div id="footerScrollId" className="pl-clear pl-footer">
             {/* Section One */}
             <section className="one_quarter">
               <h2 className="title">About stockholm</h2>
