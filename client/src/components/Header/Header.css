@@ -41,7 +41,7 @@ header ul {
   float: left;
 }
 
-.headerText {
+.header-text {
   color: #ffcc00;
   font-family: Raleway;
   position: relative;
@@ -60,7 +60,7 @@ header ul {
 }
 
 @media (min-width: 300px) and (max-width: 399px) {
-  .headerText {
+  .header-text {
     font-size: 15px;
     margin-top: -15px;
     left: 15px;
@@ -75,7 +75,7 @@ header ul {
 }
 
 @media (min-width: 400px) and (max-width: 699px) {
-  .headerText {
+  .header-text {
     font-size: 17px;
     margin-top: 42px;
     margin-left: 10px;
@@ -90,7 +90,7 @@ header ul {
 }
 
 @media (min-width: 700px) and (max-width: 999px) {
-  .headerText {
+  .header-text {
     font-size: 30px;
     margin-top: 25px;
   }
@@ -107,7 +107,7 @@ header ul {
   .my-navbar {
     margin-top: 5px;
   }
-  .headerText {
+  .header-text {
     font-size: 45px;
     margin-top: 30px;
   }
@@ -120,7 +120,7 @@ header ul {
   .my-navbar {
     margin-top: 59px;
   }
-  .headerText {
+  .header-text {
     font-size: 20px;
     margin-top: 61px;
   }
@@ -136,7 +136,7 @@ header ul {
   .my-navbar {
     margin-top: 60px;
   }
-  .headerText {
+  .header-text {
     margin-top: 63px;
     font-size: 20px;
   }
@@ -153,7 +153,7 @@ header ul {
   .my-navbar {
     margin-top: 60px;
   }
-  .headerText {
+  .header-text {
     margin-top: 63px;
     font-size: 20px;
   }

@@ -1,33 +1,25 @@
-/*!!!!!!!!!!!!!!!!!!!!!!!!
-
-To be able to style the different components we had to use both classes and id-tags in the 'Places' -components
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-
 import React, { Component } from 'react';
 import "../layout.css"
-import "./Are.css"
 import imgOffpist from './img/offpist-are-AA-Are2.png'
 import imgRockberg from './img/crop_media_1254_foto-ola-rockberg-kabin-1-are.jpg'
 import imgStation from './img/station-are.jpg'
 import imgInteriorRoom from './img/interior_room_lookin_out_copperhill_480-are.jpg'
 import imgAreBjornen from './img/Are_Bjornen_Stugby_20100611_TOJ6225-are.jpg'
 
-
 class Are extends Component {
 
   scrollToFooter = (event) => {
     event.preventDefault();
-    document.getElementById('footer').scrollIntoView(true);
+    document.getElementById('footerScrollId').scrollIntoView(true);
   }
 
   render() {
     return (
-      <main>
-        <h2 className="headerAre">Åre - Sweden's leading ski resort</h2>
+      <main className="pl-main-font">
+        <h2 className="pl-header-text">Åre - Sweden's leading ski resort</h2>
         {/* content */}
         <div className="wrapper row2">
-          <div id="container" className="clear">
+          <div className="pl-clear pl-container">
             {/* Slider */}
             <section id="slider">
               <a href="https://en.wikipedia.org/wiki/%C3%85re">
@@ -40,9 +32,9 @@ class Are extends Component {
               </a>
             </section>
             {/* main content */}
-            <div id="homepage">
+            <div className="pl-homepage">
               {/* Services */}
-              <section id="services" className="clear">
+              <section className="pl-clear pl-services">
                 <article className="one_third">
                   <figure>
                     <img
@@ -101,13 +93,8 @@ class Are extends Component {
                   </figure>
                 </article>
               </section>
-              {/* / Services */}
-              {/* ########################################################################################## */}
-              {/* ########################################################################################## */}
-              {/* ########################################################################################## */}
-              {/* ########################################################################################## */}
               {/* Introduction */}
-              <section id="intro" className="last clear">
+              <section className="last pl-clear pl-intro">
                 <article>
                   <figure>
                     <img
@@ -145,12 +132,12 @@ class Are extends Component {
         </div>
         {/* Footer */}
         <div className="wrapper row3">
-          <div id="footer" className="clear">
+          <div id="footerScrollId" className="pl-clear pl-footer">
             {/* Section One */}
             <section className="one_quarter">
               <h2 className="title">About Åre</h2>
               <nav>
-                <ul>
+                <ul className="place-ul">
                   <li>
                     <a href="/">Welcome to Åre</a>
                   </li>
@@ -173,7 +160,7 @@ class Are extends Component {
             <section className="one_quarter">
               <h2 className="title">Attractions</h2>
               <nav>
-                <ul>
+                <ul className="place-ul">
                   <li>
                     <a href="/">Things to do in Åre</a>
                   </li>
@@ -184,7 +171,7 @@ class Are extends Component {
                     <a href="/">Attractions in Åre</a>
                   </li>
                   <li>
-                    <a href="/">Recommendations form tripadvisor</a>
+                    <a href="/">Recommendations from tripadvisor</a>
                   </li>
                   <li className="last">
                     <a href="/">Attractions</a>
@@ -196,7 +183,7 @@ class Are extends Component {
             <section className="one_quarter">
               <h2 className="title">Transport</h2>
               <nav>
-                <ul>
+                <ul className="place-ul">
                   <li>
                     <a href="/">Local Transport</a>
                   </li>
@@ -219,7 +206,7 @@ class Are extends Component {
             <section className="one_quarter lastbox">
               <h2 className="title">Accommodation</h2>
               <nav>
-                <ul>
+                <ul className="place-ul">
                   <li>
                     <a href="/">Holiday club</a>
                   </li>

@@ -1,12 +1,5 @@
-/*!!!!!!!!!!!!!!!!!!!!!!!!
-
-To be able to style the different components we had to use both classes and id-tags in the 'Places' -components
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-
 import React, { Component } from 'react';
 import "../layout.css"
-import "./Falun.css"
 import imgMaxResDefault from './img/maxresdefault-falun2.jpg'
 import imgDalarnaMine from './img/dalarna-sweden-mine-falun.jpg'
 import imgFalun01 from './img/003722-falun.jpg'
@@ -17,16 +10,16 @@ class Falun extends Component {
 
   scrollToFooter = (event) => {
     event.preventDefault();
-    document.getElementById('footer').scrollIntoView(true);
+    document.getElementById('footerScrollId').scrollIntoView(true);
   }
 
   render() {
     return (
-      <main>
-        <h2 className="falunHeader">Falun - Northern lights</h2>
+      <main className="pl-main-font">
+        <h2 className="pl-header-text">Falun - Northern lights</h2>
         {/* content */}
         <div className="wrapper row2">
-          <div id="container" className="clear">
+          <div className="pl-clear pl-container">
             {/* Slider */}
             <section id="slider">
               <a href="https://en.wikipedia.org/wiki/Falun">
@@ -39,9 +32,9 @@ class Falun extends Component {
               </a>
             </section>
             {/* main content */}
-            <div id="homepage">
+            <div className="pl-homepage">
               {/* Services */}
-              <section id="services" className="clear">
+              <section className="pl-clear pl-services">
                 <article className="one_third">
                   <figure>
                     <img
@@ -99,13 +92,8 @@ class Falun extends Component {
                   </figure>
                 </article>
               </section>
-              {/* / Services */}
-              {/* ########################################################################################## */}
-              {/* ########################################################################################## */}
-              {/* ########################################################################################## */}
-              {/* ########################################################################################## */}
               {/* Introduction */}
-              <section id="intro" className="last clear">
+              <section className="last pl-clear pl-intro">
                 <article>
                   <figure>
                     <img src={imgFalun02} width={450} height={350} alt="Falun town" />
@@ -142,12 +130,12 @@ class Falun extends Component {
         </div>
         {/* Footer */}
         <div className="wrapper row3">
-          <div id="footer" className="clear">
+          <div id="footerScrollId" className="pl-clear pl-footer">
             {/* Section One */}
             <section className="one_quarter">
               <h2 className="title">About Falun</h2>
               <nav>
-                <ul>
+                <ul className="place-ul">
                   <li>
                     <a href="/">Welcome to Falun</a>
                   </li>
@@ -173,7 +161,7 @@ class Falun extends Component {
             <section className="one_quarter">
               <h2 className="title">Attractions</h2>
               <nav>
-                <ul>
+                <ul className="place-ul">
                   <li>
                     <a href="/">Things to do in Falun</a>
                   </li>
@@ -196,7 +184,7 @@ class Falun extends Component {
             <section className="one_quarter">
               <h2 className="title">Transport</h2>
               <nav>
-                <ul>
+                <ul className="place-ul">
                   <li>
                     <a href="/">Local Transport</a>
                   </li>
@@ -219,7 +207,7 @@ class Falun extends Component {
             <section className="one_quarter lastbox">
               <h2 className="title">Accommodation</h2>
               <nav>
-                <ul>
+                <ul className="place-ul">
                   <li>
                     <a href="/">Scandic Falun</a>
                   </li>

@@ -1,13 +1,5 @@
-/*!!!!!!!!!!!!!!!!!!!!!!!!
-
-To be able to style the different components we had to use both classes and id-tags in the 'Places' -components
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!*/
-
-
 import React, { Component } from 'react';
 import "../layout.css"
-import "./Stockholm.css"
 import imgEurSweden from './img/eur-sweden-stockholm.jpg'
 import imgStockholmView from './img/stockholm-view.jpg'
 import imgForarlosa from './img/forarlosatag.jpg'
@@ -18,16 +10,16 @@ class Stockholm extends Component {
 
   scrollToFooter = (event) => {
     event.preventDefault();
-    document.getElementById('footer').scrollIntoView(true);
+    document.getElementById('footerScrollId').scrollIntoView(true);
   }
 
   render() {
     return (
-      <main>
-        <h2 className="headText">Stockholm - Venice of the north</h2>
+      <main className="pl-main-font">
+        <h2 className="pl-header-text">Stockholm - Venice of the north</h2>
         {/* content */}
         <div className="wrapper row2">
-          <div id="container" className="clear">
+          <div className="pl-clear pl-container">
             {/* Slider */}
             <section id="slider">
               <a href="https://en.wikipedia.org/wiki/Stockholm">
@@ -35,9 +27,9 @@ class Stockholm extends Component {
               </a>
             </section>
             {/* main content */}
-            <div id="homepage">
+            <div className="pl-homepage">
               {/* Services */}
-              <section id="services" className="clear">
+              <section className="pl-clear pl-services">
                 <article className="one_third">
                   <figure>
                     <img src={imgStockholmView} width={290} height={180} alt="Stockholm view" />
@@ -87,13 +79,8 @@ class Stockholm extends Component {
                   </figure>
                 </article>
               </section>
-              {/* / Services */}
-              {/* ########################################################################################## */}
-              {/* ########################################################################################## */}
-              {/* ########################################################################################## */}
-              {/* ########################################################################################## */}
               {/* Introduction */}
-              <section id="intro">
+              <section className="last pl-clear pl-intro">
                 <article>
                   <figure>
                     <img
@@ -133,12 +120,12 @@ class Stockholm extends Component {
         </div>
         {/* Footer */}
         <div className="wrapper row3">
-          <div id="footer" className="clear">
+          <div id="footerScrollId" className="pl-clear pl-footer">
             {/* Section One */}
             <section className="one_quarter">
               <h2 className="title">About stockholm</h2>
               <nav>
-                <ul>
+                <ul className="place-ul">
                   <li>
                     <a href="https://en.wikipedia.org/wiki/Stockholm">
                       More About Stockholm
@@ -165,7 +152,7 @@ class Stockholm extends Component {
             <section className="one_quarter">
               <h2 className="title">Attractions</h2>
               <nav>
-                <ul>
+                <ul className="place-ul">
                   <li>
                     <a href="https://www.visitstockholm.com/">
                       Things to do in Stockholm
@@ -191,7 +178,7 @@ class Stockholm extends Component {
             <section className="one_quarter">
               <h2 className="title">Transport</h2>
               <nav>
-                <ul>
+                <ul className="place-ul">
                   <li>
                     <a href="https://sl.se/">Local Transport</a>
                   </li>
@@ -222,7 +209,7 @@ class Stockholm extends Component {
             <section className="one_quarter lastbox">
               <h2 className="title">Accommodation</h2>
               <nav>
-                <ul>
+                <ul className="place-ul">
                   <li>
                     <a href="https://www.sheratonstockholm.se/">
                       Sheraton Stockholm
