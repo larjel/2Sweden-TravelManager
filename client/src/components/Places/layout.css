@@ -153,31 +153,31 @@ div .wrapper {
   text-align: right;
 }
 
-.pl-container .pl-homepage {
+.pl-homepage {
   display: block;
   width: 100%;
   line-height: 1.8em;
 }
 
-.pl-container .pl-homepage .pl-services article figure img {
+.pl-services article figure img {
   margin: 0 0 15px 0;
   padding: 4px;
   border: 1px solid #D6D6D6;
 }
 
-.pl-container .pl-homepage .pl-services article figure h2 {
+.pl-services article figure h2 {
   font-size: 14px;
   font-weight: bold;
 }
 
-.pl-container .pl-homepage .pl-intro article figure img {
+.pl-intro article figure img {
   float: right;
   margin: 0 0 10px 0;
   padding: 4px;
   border: 1px solid #D6D6D6;
 }
 
-.pl-container .pl-homepage .pl-intro article figure figcaption {
+.pl-intro article figure figcaption {
   float: left;
   width: 460px;
 }
