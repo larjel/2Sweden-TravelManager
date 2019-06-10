@@ -133,7 +133,7 @@ class Falun extends Component {
           <div id="footerScrollId" className="pl-clear pl-footer">
             {/* Section One */}
             <section className="one_quarter">
-              <h2 className="title">About Falun</h2>
+              <h2 className="pl-title">About Falun</h2>
               <nav>
                 <ul className="place-ul">
                   <li>
@@ -159,7 +159,7 @@ class Falun extends Component {
             </section>
             {/* Section Two */}
             <section className="one_quarter">
-              <h2 className="title">Attractions</h2>
+              <h2 className="pl-title">Attractions</h2>
               <nav>
                 <ul className="place-ul">
                   <li>
@@ -182,7 +182,7 @@ class Falun extends Component {
             </section>
             {/* Section Three */}
             <section className="one_quarter">
-              <h2 className="title">Transport</h2>
+              <h2 className="pl-title">Transport</h2>
               <nav>
                 <ul className="place-ul">
                   <li>
@@ -205,7 +205,7 @@ class Falun extends Component {
             </section>
             {/* Section Four */}
             <section className="one_quarter lastbox">
-              <h2 className="title">Accommodation</h2>
+              <h2 className="pl-title">Accommodation</h2>
               <nav>
                 <ul className="place-ul">
                   <li>

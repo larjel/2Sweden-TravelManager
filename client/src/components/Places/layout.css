@@ -159,25 +159,25 @@ div .wrapper {
   line-height: 1.8em;
 }
 
-.pl-services article figure img {
+.pl-services figure img {
   margin: 0 0 15px 0;
   padding: 4px;
   border: 1px solid #D6D6D6;
 }
 
-.pl-services article figure h2 {
+.pl-services figure h2 {
   font-size: 14px;
   font-weight: bold;
 }
 
-.pl-intro article figure img {
+.pl-intro figure img {
   float: right;
   margin: 0 0 10px 0;
   padding: 4px;
   border: 1px solid #D6D6D6;
 }
 
-.pl-intro article figure figcaption {
+.pl-intro figure figcaption {
   float: left;
   width: 460px;
 }
@@ -194,7 +194,7 @@ div .wrapper {
   line-height: 1.4em;
 }
 
-.pl-footer section h2.title {
+.pl-footer .pl-title {
   margin: 10px 0 25px 0;
   color: #ffcc00;
   font-size: 14px;
@@ -202,17 +202,17 @@ div .wrapper {
   text-transform: uppercase;
 }
 
-.pl-footer section nav li {
+.pl-footer nav li {
   margin: 0 0 5px 0;
   padding: 0 0 5px 0;
   border-bottom: 1px solid #006699;
 }
 
-.pl-footer section nav li.last {
+.pl-footer nav li.last {
   margin: 0;
 }
 
-.pl-footer section nav a:hover {
+.pl-footer nav a:hover {
   text-decoration: none;
   color: azure;
 }
