@@ -17,11 +17,11 @@ class Are extends Component {
     return (
       <main className="pl-main-font">
         <h2 className="pl-header-text">Åre - Sweden's leading ski resort</h2>
-        {/* content */}
+        {/* Content */}
         <div className="wrapper row2">
           <div className="pl-clear pl-container">
-            {/* Slider */}
-            <section id="slider">
+            {/* Main picture */}
+            <section>
               <a href="https://en.wikipedia.org/wiki/%C3%85re">
                 <img
                   src={imgOffpist}
@@ -31,7 +31,7 @@ class Are extends Component {
                 />
               </a>
             </section>
-            {/* main content */}
+            {/* Main content */}
             <div className="pl-homepage">
               {/* Services */}
               <section className="pl-clear pl-services">

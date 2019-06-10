@@ -17,16 +17,16 @@ class Stockholm extends Component {
     return (
       <main className="pl-main-font">
         <h2 className="pl-header-text">Stockholm - Venice of the north</h2>
-        {/* content */}
+        {/* Content */}
         <div className="wrapper row2">
           <div className="pl-clear pl-container">
-            {/* Slider */}
-            <section id="slider">
+            {/* Main picture */}
+            <section>
               <a href="https://en.wikipedia.org/wiki/Stockholm">
                 <img src={imgEurSweden} alt="Stockholm view" />
               </a>
             </section>
-            {/* main content */}
+            {/* Main content */}
             <div className="pl-homepage">
               {/* Services */}
               <section className="pl-clear pl-services">

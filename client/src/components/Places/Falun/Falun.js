@@ -17,11 +17,11 @@ class Falun extends Component {
     return (
       <main className="pl-main-font">
         <h2 className="pl-header-text">Falun - Northern lights</h2>
-        {/* content */}
+        {/* Content */}
         <div className="wrapper row2">
           <div className="pl-clear pl-container">
-            {/* Slider */}
-            <section id="slider">
+            {/* Main picture */}
+            <section>
               <a href="https://en.wikipedia.org/wiki/Falun">
                 <img
                   src={imgMaxResDefault}
@@ -31,7 +31,7 @@ class Falun extends Component {
                 />
               </a>
             </section>
-            {/* main content */}
+            {/* Main content */}
             <div className="pl-homepage">
               {/* Services */}
               <section className="pl-clear pl-services">
