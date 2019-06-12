@@ -25,7 +25,7 @@ class ResultTable extends React.Component {
       tableData.currencyCode = ' (' + searchResponse.currencyCode + ')';
 
       tableData.data = searchResponse.routes.map((route, index) => {
-        const totalDurationHours = utils.truncateDecimals(route.totalDuration / 60, 1);
+        const totalDurationHours = utils.truncDecAndRound(route.totalDuration / 60, 1);
         const prices = route.indicativePrices;
         let priceLow = null;
         let priceHigh = null;

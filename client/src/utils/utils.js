@@ -32,10 +32,10 @@ export function convertMinutesToDayHourMin(minutes) {
 }
 
 //----------------------------------------------------------------------------
-export function truncateDecimals(number, digits) {
-  var multiplier = Math.pow(10, digits),
-    adjustedNum = number * multiplier,
-    truncatedNum = Math.trunc(adjustedNum);
+export function truncDecAndRound(number, digits) {
+  const multiplier = Math.pow(10, digits);
+  const adjustedNum = number * multiplier;
+  const truncatedNum = Math.round(adjustedNum);
 
   return truncatedNum / multiplier;
 };

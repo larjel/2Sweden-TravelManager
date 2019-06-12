@@ -66,7 +66,7 @@ class DetailsTable extends React.Component {
         tableData.data = detailedRoute.segments.map((segment, index) => {
           const transportName = vehicles ? vehicles[segment.vehicle].name : segment.segmentKind;
           const transportKind = vehicles ? vehicles[segment.vehicle].kind : segment.segmentKind;
-          const transitDuration = utils.truncateDecimals(segment.transitDuration / 60, 1);
+          const transitDuration = utils.truncDecAndRound(segment.transitDuration / 60, 1);
           const prices = segment.indicativePrices;
           const leg = index + 1;
           let priceLow = null;
