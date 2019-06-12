@@ -79,10 +79,10 @@ export function getOriginList() {
 export function getCurrencyList() {
   const currencies = [
     'SEK',
-    'USD',
     'EUR',
+    'USD',
+    'GBP',
     'NOK',
-    'GPD',
     'DKK'
   ]
 
