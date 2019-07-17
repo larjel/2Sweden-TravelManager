@@ -2,6 +2,7 @@ import React from 'react'
 import "./Sidebar.css"
 import DetailsTable from '../Table/DetailsTable';
 import Map from '../Map/Map';
+import OpenStreetMap from '../Map/OpenStreetMap';
 import reactLogo from "./img/react.png"
 import javascriptLogo from "./img/javascript.png"
 import htmlLogo from "./img/html.png"
@@ -37,7 +38,7 @@ class Sidebar extends React.Component {
                             routeSegmentArrIdx={this.props.routeSegmentArrIdx}
                             setRouteArrIdxs={this.props.setRouteArrIdxs}
                         />
-                        <Map
+                        <OpenStreetMap
                             searchResponse={this.props.searchResponse}
                             routeDetailsArrIdx={this.props.routeDetailsArrIdx}
                             routeSegmentArrIdx={this.props.routeSegmentArrIdx}
