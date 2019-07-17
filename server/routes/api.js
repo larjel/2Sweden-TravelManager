@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 const axios = require('axios')
 
-const ROME2RIO_KEY = process.env.ROME_2_RIO_KEY
+const ROME2RIO_KEY = process.env.REACT_APP_ROME_2_RIO_KEY
 const ROME2RIO_GEOCODE_BASE_URL = `http://free.rome2rio.com/api/1.4/json/Geocode?key=${ROME2RIO_KEY}`
 const ROME2RIO_SEARCH_BASE_URL = `http://free.rome2rio.com/api/1.4/json/Search?key=${ROME2RIO_KEY}`
 const ROME2RIO_AUTOCOMPLETE_BASE_URL = `http://free.rome2rio.com/api/1.4/json/Autocomplete?key=${ROME2RIO_KEY}`

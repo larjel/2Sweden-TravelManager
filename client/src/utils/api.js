@@ -1,6 +1,6 @@
 
-const SERVER_ADDRESS = 'localhost'
-const SERVER_PORT = 5000
+const SERVER_ADDRESS = process.env.REACT_APP_SERVER_ADDRESS
+const SERVER_PORT = process.env.REACT_APP_SERVER_PORT
 
 //----------------------------------------------------------------------------
 const createApiURL = (uri) => {

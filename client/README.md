@@ -13,6 +13,11 @@ in the root of the client directory. The content should have the following forma
 
 REACT_APP_GOOGLE_MAPS_KEY = *[key]* 
 
+And the backend server config should be added as follows (for local dev):
+
+REACT_APP_SERVER_ADDRESS = localhost<br>
+REACT_APP_SERVER_PORT = 5000
+
 ## Available Scripts
 
 In the project directory, you can run:

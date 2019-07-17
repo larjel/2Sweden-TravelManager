@@ -11,7 +11,7 @@ should be run after cloning to download all node modules.
 The secret Rome2Rio API Key (as found at the end of *ITHS - v17.pdf*) should be added in a<br>
 file called *.env* in the root of the server directory. The content should have the following format:
 
-ROME_2_RIO_KEY = *[key]* 
+REACT_APP_ROME_2_RIO_KEY = *[key]* 
 
 ## Available Scripts
 
