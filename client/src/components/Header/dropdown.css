@@ -3,9 +3,6 @@
 .dropbtn {
     background-color: inherit;
     color: azure;
-    /*color: inherit;*/
-    /*padding: 16px;
-  font-size: 16px;*/
     border: none;
 }
 
@@ -25,10 +22,8 @@
 .dropdown-content {
     display: none;
     position: absolute;
-    /*background-color: #f1f1f1;*/
     background-color: #006699;
     width: 110px;
-    /* box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);*/
     z-index: 1;
 }
 
