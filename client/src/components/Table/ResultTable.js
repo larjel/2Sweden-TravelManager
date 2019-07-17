@@ -42,8 +42,8 @@ class ResultTable extends React.Component {
           route: route.name,
           duration: totalDurationHours,
           transferCount: transferCount,
-          priceLow: priceLow,
-          priceHigh: priceHigh,
+          priceLow,
+          priceHigh,
           routeArrayIndex: index
         };
       })

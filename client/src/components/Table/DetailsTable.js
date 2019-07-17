@@ -90,13 +90,13 @@ class DetailsTable extends React.Component {
           }
 
           return {
-            leg: leg,
+            leg,
             transport: this.getTransportVehicleSymbol(transportKind, transportName),
-            departure: departure,
-            arrival: arrival,
+            departure,
+            arrival,
             duration: transitDuration,
-            priceLow: priceLow,
-            priceHigh: priceHigh,
+            priceLow,
+            priceHigh,
             segmentArrayIndex: index
           };
         })

@@ -23,16 +23,14 @@ class App extends Component {
 
   //----------------------------------------------------------------------------
   setSearchResponse = (searchResponse) => {
-    this.setState({
-      searchResponse: searchResponse
-    });
+    this.setState({ searchResponse });
   }
 
   //----------------------------------------------------------------------------
   setRouteArrIdxs = (routeDetailsArrIdx, routeSegmentArrIdx) => {
     this.setState({
-      routeDetailsArrIdx: routeDetailsArrIdx,
-      routeSegmentArrIdx: routeSegmentArrIdx
+      routeDetailsArrIdx,
+      routeSegmentArrIdx
     });
   }
 

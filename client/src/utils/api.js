@@ -35,11 +35,11 @@ export const getRoutes = async (fromPlace, toPlace, currencyCode = 'SEK', extraP
     // Sends a request to backend with POST-method.
     let response = await fetch(createApiURL('getSearchResults'),
         createMessage({
-            fromPlace: fromPlace,
-            toPlace: toPlace,
-            currencyCode: currencyCode,
+            fromPlace,
+            toPlace,
+            currencyCode,
             languageCode: 'en',
-            extraParams: extraParams
+            extraParams
         })
     )
     let data = await response.json()

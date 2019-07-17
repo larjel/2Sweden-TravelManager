@@ -29,8 +29,8 @@ class Map extends Component {
     this.setState({
       ...this.state,
       mapsLoaded: true,
-      map: map,
-      maps: maps
+      map,
+      maps
     })
   }
 
