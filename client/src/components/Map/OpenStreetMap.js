@@ -1,12 +1,127 @@
 import React from 'react'
 import { Map as LeafletMap, TileLayer, Marker, Popup } from 'react-leaflet';
+import decodePolyline from 'decode-google-map-polyline';
 import "./OpenStreetMap.css"
 
+let markers = [];
+
 class OpenStreetMap extends React.Component {
+
+  //--------------------------------------------------------------------------
+  createDepDestDataObject = (places, index) => {
+    return {
+      text: places[index].shortName,
+      lat: places[index].lat,
+      lng: places[index].lng
+    }
+  }
+
+  //--------------------------------------------------------------------------
+  showSingleSegment = (searchResponse, routeDetailsArrIdx, routeSegmentArrIdx, mapData) => {
+    if (Array.isArray(searchResponse.routes[routeDetailsArrIdx].segments)) {
+      //this.clearPolylines();
+      const segment = searchResponse.routes[routeDetailsArrIdx].segments[routeSegmentArrIdx];
+      const depPlaceIdx = segment.depPlace;
+      const arrPlaceIdx = segment.arrPlace;
+      if (segment.path) {
+        mapData.markerData = decodePolyline(segment.path);
+      } else { // Just use point-to-point coordinates
+        mapData.markerData = [
+          { lat: searchResponse.places[depPlaceIdx].lat, lng: searchResponse.places[depPlaceIdx].lng },
+          { lat: searchResponse.places[arrPlaceIdx].lat, lng: searchResponse.places[arrPlaceIdx].lng }
+        ];
+      }
+      mapData.depData = this.createDepDestDataObject(searchResponse.places, depPlaceIdx);
+      mapData.destData = this.createDepDestDataObject(searchResponse.places, arrPlaceIdx);
+    }
+  }
+
+  //--------------------------------------------------------------------------
+  showAllSegments = (searchResponse, routeDetailsArrIdx, mapData) => {
+    if (Array.isArray(searchResponse.routes[routeDetailsArrIdx].segments)) {
+      //this.clearPolylines();
+      const segments = searchResponse.routes[routeDetailsArrIdx].segments;
+      for (let i = 0; i < segments.length; i++) {
+        // Does 'path' with encoded polyline data exist?
+        if (segments[i].path) {
+          mapData.markerData.push(...decodePolyline(segments[i].path));
+        } else { // Just use point-to-point coordinates
+          const depPlaceIdx = segments[i].depPlace;
+          const arrPlaceIdx = segments[i].arrPlace;
+          mapData.markerData.push(
+            {
+              lat: searchResponse.places[depPlaceIdx].lat,
+              lng: searchResponse.places[depPlaceIdx].lng
+            });
+          mapData.markerData.push(
+            {
+              lat: searchResponse.places[arrPlaceIdx].lat,
+              lng: searchResponse.places[arrPlaceIdx].lng
+            });
+        }
+      }
+    }
+  }
+
+  //--------------------------------------------------------------------------
+  parseInputDataForMap = (searchResponse, routeDetailsArrIdx, routeSegmentArrIdx) => {
+    const mapData = {
+      parsed: false,
+      markerData: [],
+      depData: { text: null, lat: null, lng: null },
+      destData: { text: null, lat: null, lng: null }
+    };
+
+    if (searchResponse && Array.isArray(searchResponse.routes) && searchResponse.routes.length > 0
+      && Array.isArray(searchResponse.places) && searchResponse.places.length > 0) {
+
+      // Get the main departure and arrival cities and store the coordinates 
+      // and names for text markers as defaults (segment may override it)
+      const depPlaceIdx = 0;
+      const arrPlaceIdx = (searchResponse.places.length > 1) ? 1 : 0;
+
+      mapData.depData = this.createDepDestDataObject(searchResponse.places, depPlaceIdx);
+      mapData.destData = this.createDepDestDataObject(searchResponse.places, arrPlaceIdx);
+      // =================
+
+      if (routeDetailsArrIdx >= 0 && routeSegmentArrIdx >= 0) {
+        // A row in the detailed search result table has been clicked, show single segment
+        this.showSingleSegment(searchResponse, routeDetailsArrIdx, routeSegmentArrIdx, mapData);
+      } else if (routeDetailsArrIdx >= 0) {
+        // A row in the main search result table has been clicked, show complete route (all segements)
+        this.showAllSegments(searchResponse, routeDetailsArrIdx, mapData);
+      } else {
+        // No row in a table has been clicked yet, just show departure and destination locations
+        //this.clearPolylines();
+        mapData.markerData = [
+          { lat: mapData.depData.lat, lng: mapData.depData.lng },
+          { lat: mapData.destData.lat, lng: mapData.destData.lng }
+        ];
+      }
+
+      mapData.parsed = true;
+
+      //this.fitBoundsUpdate(); // Update the bounds and thus also the zoom of the map
+    }
+
+    return mapData;
+  }
+
+  //--------------------------------------------------------------------------
   render() {
+
+    const { searchResponse, routeDetailsArrIdx, routeSegmentArrIdx } = this.props;
+    const { parsed, markerData, depData, destData } = this.parseInputDataForMap(searchResponse, routeDetailsArrIdx, routeSegmentArrIdx);
+
+    if (!parsed) {
+      return (null)
+    }
+
+    markers = markerData;
+    
     return (
       <LeafletMap
-        center={[50, 10]}
+        center={[depData.lat, depData.lng]}
         zoom={6}
         maxZoom={10}
         attributionControl={true}
@@ -20,9 +135,9 @@ class OpenStreetMap extends React.Component {
         <TileLayer
           url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
         />
-        <Marker position={[50, 10]}>
+        <Marker position={[depData.lat, depData.lng]}>
           <Popup>
-            Popup for any custom information.
+          {depData.text}
           </Popup>
         </Marker>
       </LeafletMap>
