@@ -1,5 +1,5 @@
 import React from 'react'
-import { Map as LeafletMap, TileLayer, Marker, Popup } from 'react-leaflet';
+import { Map as LeafletMap, TileLayer, Marker, Popup, Polyline, Tooltip } from 'react-leaflet';
 import decodePolyline from 'decode-google-map-polyline';
 import "./OpenStreetMap.css"
 
@@ -19,7 +19,6 @@ class OpenStreetMap extends React.Component {
   //--------------------------------------------------------------------------
   showSingleSegment = (searchResponse, routeDetailsArrIdx, routeSegmentArrIdx, mapData) => {
     if (Array.isArray(searchResponse.routes[routeDetailsArrIdx].segments)) {
-      //this.clearPolylines();
       const segment = searchResponse.routes[routeDetailsArrIdx].segments[routeSegmentArrIdx];
       const depPlaceIdx = segment.depPlace;
       const arrPlaceIdx = segment.arrPlace;
@@ -39,7 +38,6 @@ class OpenStreetMap extends React.Component {
   //--------------------------------------------------------------------------
   showAllSegments = (searchResponse, routeDetailsArrIdx, mapData) => {
     if (Array.isArray(searchResponse.routes[routeDetailsArrIdx].segments)) {
-      //this.clearPolylines();
       const segments = searchResponse.routes[routeDetailsArrIdx].segments;
       for (let i = 0; i < segments.length; i++) {
         // Does 'path' with encoded polyline data exist?
@@ -92,7 +90,6 @@ class OpenStreetMap extends React.Component {
         this.showAllSegments(searchResponse, routeDetailsArrIdx, mapData);
       } else {
         // No row in a table has been clicked yet, just show departure and destination locations
-        //this.clearPolylines();
         mapData.markerData = [
           { lat: mapData.depData.lat, lng: mapData.depData.lng },
           { lat: mapData.destData.lat, lng: mapData.destData.lng }
@@ -100,8 +97,6 @@ class OpenStreetMap extends React.Component {
       }
 
       mapData.parsed = true;
-
-      //this.fitBoundsUpdate(); // Update the bounds and thus also the zoom of the map
     }
 
     return mapData;
@@ -118,12 +113,10 @@ class OpenStreetMap extends React.Component {
     }
 
     markers = markerData;
-    
+
     return (
       <LeafletMap
-        center={[depData.lat, depData.lng]}
-        zoom={6}
-        maxZoom={10}
+        bounds={[[depData.lat, depData.lng], [destData.lat, destData.lng]]}
         attributionControl={true}
         zoomControl={true}
         doubleClickZoom={true}
@@ -136,10 +129,17 @@ class OpenStreetMap extends React.Component {
           url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
         />
         <Marker position={[depData.lat, depData.lng]}>
-          <Popup>
-          {depData.text}
-          </Popup>
+          <Tooltip direction='right' offset={[-8, -2]} opacity={1} permanent>
+            <span>{depData.text}</span>
+          </Tooltip>
         </Marker>
+        <Marker position={[destData.lat, destData.lng]}>
+          <Tooltip direction='right' offset={[-8, -2]} opacity={1} permanent>
+            <span>{destData.text}</span>
+          </Tooltip>
+        </Marker>
+        <Polyline positions={markers}>
+        </Polyline>
       </LeafletMap>
     );
   }

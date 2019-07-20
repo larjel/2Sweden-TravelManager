@@ -9,7 +9,7 @@ const Footer = () => {
             <img className="logo2" src={logo} alt="Logo"></img>
             <img className="twitter" src={twitter} alt="TwitterLogo"></img>
             <p className="footerText">
-                Christian Jigling | Lars Jelleryd | Stefan Ohlsson | Ida Maria Solli | Ahmed Ismail
+                Lars Jelleryd | Christian Jigling | Stefan Ohlsson | Ida Maria Solli | Ahmed Ismail
             </p>
         </footer>
     )

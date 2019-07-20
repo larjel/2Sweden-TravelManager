@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import GoogleMap from 'google-map-react'
+import Map from 'google-map-react'
 import decodePolyline from 'decode-google-map-polyline';
-import Marker from './Marker'
-import "./Map.css"
+import GoogleMapMarker from './GoogleMapMarker'
+import "./GoogleMap.css"
 
 const GOOGLE_MAPS_KEY = `${process.env.REACT_APP_GOOGLE_MAPS_KEY}`;
 
@@ -10,7 +10,7 @@ let markers = [];
 let nonGeodesicPolyline = null;
 
 //----------------------------------------------------------------------------
-class Map extends Component {
+class GoogleMap extends Component {
 
   constructor(props) {
     super(props)
@@ -203,16 +203,16 @@ class Map extends Component {
 
     return (
       <div className="google-map-style">
-        <GoogleMap
+        <Map
           bootstrapURLKeys={{ key: GOOGLE_MAPS_KEY }}
           yesIWantToUseGoogleMapApiInternals={true}
           defaultCenter={this.props.center}
           defaultZoom={this.props.zoom}
           onGoogleApiLoaded={({ map, maps }) => this.onMapLoaded(map, maps)}>
-          <Marker text={depData.text} lat={depData.lat} lng={depData.lng} background='#00a1e1' />
-          <Marker text={destData.text} lat={destData.lat} lng={destData.lng} background='#248735' />
+          <GoogleMapMarker text={depData.text} lat={depData.lat} lng={depData.lng} background='#00a1e1' />
+          <GoogleMapMarker text={destData.text} lat={destData.lat} lng={destData.lng} background='#248735' />
           {this.state.mapsLoaded ? this.renderPolylines(this.state.map, this.state.maps) : ''}
-        </GoogleMap>
+        </Map>
       </div>
     )
   }
@@ -225,4 +225,4 @@ Map.defaultProps = {
 }
 
 //----------------------------------------------------------------------------
-export default Map;
+export default GoogleMap;
