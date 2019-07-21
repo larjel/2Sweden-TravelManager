@@ -1,5 +1,5 @@
 import React from 'react'
-import { Map as LeafletMap, TileLayer, Marker, Popup, Polyline, Tooltip } from 'react-leaflet';
+import { Map as LeafletMap, TileLayer, Marker, Polyline, Tooltip } from 'react-leaflet';
 import decodePolyline from 'decode-google-map-polyline';
 import "./OpenStreetMap.css"
 
