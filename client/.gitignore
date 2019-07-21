@@ -95,3 +95,6 @@ typings/
 
 # misc
 .DS_Store
+
+# Production build directory
+build/
