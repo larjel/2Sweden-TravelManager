@@ -1,18 +1,11 @@
 
-## Välkomna
-På uppdrag av den Svenska Olympiska kommittén så bjuder vi in hela
-världen på fest. Alla är välkomna. 
+## Welcome
+Imagine that Sweden hosts the Winter Olympics 2024 (which they don't, but anyway).
 
-Under varumärket 2 Sweden (uttalas To Sweden) skapas ett antal olika event och paket runt om i världen. 
+This is a web page for finding possible travel options from anywhere in the world to three different locations in Sweden where the Olympics would be held.
 
-Ett av de projekt som skall genomföras är att en webbnärvaro skall skapas. 
+It is a two part React web application with a client (frontend) part and a server part.
 
-Det är för detta uppdrag **Apollo Warriors** har kallats in. 
+It uses the Rome2Rio Rest API to fetch trip data and OpenStreetMap to display the trip on a map.
 
-Inom ramen för detta projekt skall användaren kunna finna information och data hur man på snabbaste och enklaste och billigaste sätt kan ta sig:
-
-- Till Sverige för eventet.
-- Inom Sverige under eventet
-- Hem efter eventet.
-
-Det skall vara en lösning som skapar mervärde för eventet samt attraherar resande till det samma. 
+The deployed page can be tested here: [http://lobotomizer.asuscomm.com:3000/](http://lobotomizer.asuscomm.com:3000/)
