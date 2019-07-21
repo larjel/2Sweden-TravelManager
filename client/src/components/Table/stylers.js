@@ -28,20 +28,6 @@ export const leftAlignHeadingStyle = () => {
 }
 
 //--------------------------------------------------------------------------
-export const departingHeadingStyle = () => {
-  return {
-    style: { textAlign: 'left', fontWeight: 'bold', color: '#00a1e1' }
-  }
-}
-
-//--------------------------------------------------------------------------
-export const arrivingHeadingStyle = () => {
-  return {
-    style: { textAlign: 'left', fontWeight: 'bold', color: '#248735' }
-  }
-}
-
-//--------------------------------------------------------------------------
 export const mainHeadingStyle = () => {
   return {
     style: { fontWeight: 'bold', fontSize: '150%' }

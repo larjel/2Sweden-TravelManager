@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export default class Marker extends Component {
+export default class GoogleMapMarker extends Component {
   render() {
     return (
       <div style={{ whiteSpace: 'nowrap', display: 'inline-block', background: this.props.background, color: '#ffffff', padding: '0.2rem' }}>

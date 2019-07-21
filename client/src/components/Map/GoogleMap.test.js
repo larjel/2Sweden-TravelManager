@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Map from './Map';
+import GoogleMap from './GoogleMap';
 
 // Basic setup. Do a shallow render of Map and return it.
 const setUp = (props = {}) => {
-  const component = shallow(<Map {...props} />);
+  const component = shallow(<GoogleMap {...props} />);
   return component;
 };
 

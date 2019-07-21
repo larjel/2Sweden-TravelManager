@@ -196,13 +196,13 @@ class DetailsTable extends React.Component {
                   accessor: "transport",
                 },
                 {
-                  getHeaderProps: stylers.departingHeadingStyle,
+                  getHeaderProps: stylers.leftAlignHeadingStyle,
                   getProps: stylers.leftAlignStyle,
                   Header: "Departing",
                   accessor: "departure"
                 },
                 {
-                  getHeaderProps: stylers.arrivingHeadingStyle,
+                  getHeaderProps: stylers.leftAlignHeadingStyle,
                   getProps: stylers.leftAlignStyle,
                   Header: "Arriving",
                   accessor: "arrival"
