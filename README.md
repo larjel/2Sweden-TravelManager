@@ -7,5 +7,3 @@ This is a web page for finding possible travel options from anywhere in the worl
 It is a two part React web application with a client (frontend) part and a server part.
 
 It uses the Rome2Rio Rest API to fetch trip data and OpenStreetMap to display the trip on a map.
-
-The deployed page can be tested here: [http://lobotomizer.asuscomm.com:3000/](http://lobotomizer.asuscomm.com:3000/)
