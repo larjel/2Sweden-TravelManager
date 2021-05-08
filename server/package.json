@@ -21,7 +21,7 @@
     "express": "^4.16.4",
     "google-maps-react": "^2.0.2",
     "http-errors": "~1.6.3",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.21",
     "morgan": "~1.9.1",
     "pug": "^2.0.3",
     "uglify-js": "^3.6.0"
